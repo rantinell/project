@@ -23,6 +23,4 @@
 	
 	<context:component-scan base-package="com.team1.controller" />
 	
-	
-	
 </beans:beans>
