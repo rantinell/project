@@ -3,6 +3,9 @@
 <html>
 <head>
 	<title>Home</title>
+	<script>
+		self.location="/main";
+	</script>
 </head>
 <body>
 <h1>
