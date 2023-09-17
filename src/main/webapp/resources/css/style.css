@@ -469,7 +469,7 @@
     width: 75%;
   }
   .col-md-8 {
-    width: 66.66666667%;
+    width: 100%;
   }
   .col-md-7 {
     width: 58.33333333%;
@@ -5656,6 +5656,60 @@ ul {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
 }
+
+/* 이하 .hero 커스텀 */
+.customhero {
+  background-position: center;
+  text-align: center;
+  background-size: cover;
+  position: relative;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 445px;
+}
+.customhero .hero-ct {
+  padding-top: 170px;
+}
+.customhero h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.customhero ul.breadcumb {
+  list-style-type: none;
+}
+.customhero ul.breadcumb li.active a {
+  color: #4280bf;
+}
+.customhero ul.breadcumb li,
+.customhero ul.breadcumb a {
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.customhero ul.breadcumb span {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.customhero:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+/* .hero 커스텀 끝 */
+
 /*movie single hero*/
 .mv-single-hero {
   background: url('../images/uploads/hero-bg.jpg') no-repeat;
@@ -6843,7 +6897,7 @@ p.ceb-single {
   font-weight: 400;
   text-transform: uppercase;
 }
-.overlay {
+/* .overlay {
   background-color: rgba(0, 0, 0, 0.75);
   bottom: 0;
   left: 0;
@@ -6896,21 +6950,26 @@ p.ceb-single {
   .overlay .close {
     display: block;
   }
-}
-.overlay .login-content {
+} */
+
+/* 이하 overlay 삭제  */
+.login-content {
   width: 430px;
   padding: 50px;
   border: 1px solid #e1e1e1;
   height: auto;
   background-color: #ffffff;
+  transform: translate(80%, 0%);
+  
 }
 @media (max-width: 767px) {
-  .overlay .login-content {
+   .login-content {
     width: 300px;
     padding: 30px;
+    transform: translate(40%, 0%);
   }
 }
-.overlay .login-content h3 {
+ .login-content h3 {
   font-family: 'Dosis', sans-serif;
   font-size: 36px;
   color: #222222;
@@ -6920,11 +6979,11 @@ p.ceb-single {
   text-align: center;
 }
 @media (max-width: 767px) {
-  .overlay .login-content h3 {
+  .login-content h3 {
     margin-bottom: 15px;
   }
 }
-.overlay .login-content .remember {
+.login-content .remember {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -6939,22 +6998,22 @@ p.ceb-single {
   text-transform: none;
 }
 @media (max-width: 767px) {
-  .overlay .login-content .remember {
+  .login-content .remember {
     margin-bottom: 15px;
   }
 }
-.overlay .login-content .remember input[type="checkbox"] {
+ .login-content .remember input[type="checkbox"] {
   width: 20px;
   height: 20px;
   border: 1px solid #e1e1e1;
   margin-right: 5px;
   position: relative;
 }
-.overlay .login-content .remember span {
+.login-content .remember span {
   margin-top: 3px;
   position: absolute;
 }
-.overlay .login-content label {
+.login-content label {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
@@ -6964,11 +7023,11 @@ p.ceb-single {
   margin-bottom: 25px;
 }
 @media (max-width: 767px) {
-  .overlay .login-content label {
+   .login-content label {
     margin-bottom: 15px;
   }
 }
-.overlay .login-content label input {
+.login-content label input {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
@@ -6978,14 +7037,14 @@ p.ceb-single {
   height: 42px;
   border: 1px solid #e1e1e1;
 }
-.overlay .login-content label input::-webkit-input-placeholder {
+ .login-content label input::-webkit-input-placeholder {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
   font-weight: bold;
   text-transform: capitalize;
 }
-.overlay .login-content button {
+ .login-content button {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #ffffff;
@@ -6997,18 +7056,18 @@ p.ceb-single {
   width: 100%;
   cursor: pointer;
 }
-.overlay .login-content p {
+ .login-content p {
   color: #222222;
   margin-top: 35px;
   margin-bottom: 20px;
 }
 @media (max-width: 767px) {
-  .overlay .login-content p {
+   .login-content p {
     margin-bottom: 15px;
     margin-top: 15px;
   }
 }
-.overlay .login-content .social-btn-2 {
+ .login-content .social-btn-2 {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -7016,7 +7075,7 @@ p.ceb-single {
   align-items: center;
   justify-content: space-between;
 }
-.overlay .login-content .social-btn-2 a {
+ .login-content .social-btn-2 a {
   width: 50%;
   height: 42px;
   display: -webkit-flex;
@@ -7035,16 +7094,18 @@ p.ceb-single {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.overlay .login-content .social-btn-2 a i {
+ .login-content .social-btn-2 a i {
   margin-right: 10px;
 }
-.overlay .login-content .social-btn-2 .fb {
+ .login-content .social-btn-2 .fb {
   background-color: #3a5a9a;
   margin-right: 15px;
 }
-.overlay .login-content .social-btn-2 .tw {
+ .login-content .social-btn-2 .tw {
   background-color: #00b9ef;
 }
+/* 삭제 끝  */
+
 .slider {
   background: url('../images/uploads/slider-bg.jpg') no-repeat;
   background-position: center;

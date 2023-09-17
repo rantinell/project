@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
@@ -60,17 +59,12 @@
 							<h3>Login</h3>
 							<form method="post" action="/login">
 								<div class="row">
-									<label for="username"> Username: <input type="text"
-										name="username" id="username" placeholder="Hugh Jackman"
-										pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+									<label for="username"> Username: <input type="text" name="username" id="username" placeholder="Hugh Jackman" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
-									<label for="password"> Password: <input type="password"
-										name="password" id="password" placeholder="******"
-										pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-										required="required" />
+									<label for="password"> Password: <input type="password" name="password" id="password" placeholder="******" required="required" />
 									</label>
 								</div>
 								<div class="row">
