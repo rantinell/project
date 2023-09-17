@@ -13,8 +13,23 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
 public class MovieController {
-	@GetMapping("/board/ranking")
+	@GetMapping("/ranking")
 	public void ranking() {
-		
+		log.info("ranking page...");
+	}
+	
+	@GetMapping("/nowplaying")
+	public void nowplaying() {
+		log.info("nowplaying page...");
+	}
+	
+	@GetMapping("/commingsoon")
+	public void comming() {
+		log.info("commingsoon page...");
+	}
+	
+	@GetMapping("/recommend")
+	public void recommend() {
+		log.info("recommend page...");
 	}
 }

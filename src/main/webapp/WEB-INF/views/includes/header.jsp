@@ -58,23 +58,15 @@
 							<a href="#page-top"></a>
 						</li>
 						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" href="/home"> Home </a>
+							<a class="btn btn-default dropdown-toggle lv1" href="/">Home </a>
 						</li>
 						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							movies<i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
+							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">movies<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
-									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid_light.html">Movie grid</a></li>
-										<li><a href="moviegridfw_light.html">movie grid full width</a></li>
-									</ul>
-								</li>			
-								<li><a href="movielist_light.html">Movie list</a></li>
-								<li><a href="moviesingle_light.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle_light.html">Series single</a></li>
+								<li><a href="/board/ranking" >영화 랭킹</a></li>			
+								<li><a href="/board/nowplaying">상영중</a></li>
+								<li><a href="/board/commingsoon">상영예정</a></li>
+								<li class="it-last"><a href="/board/recommend">추천영화</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
