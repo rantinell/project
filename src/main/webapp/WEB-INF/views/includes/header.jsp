@@ -32,6 +32,32 @@
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/plugins2.js"></script>
 	<script src="/resources/js/custom.js"></script>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	/* $(function() {
+		$("#keyword").keypress(function(e){
+			//검색어 입력 후 엔터키 입력하면 조회버튼 클릭
+			if(e.keyCode && e.keyCode == 13){
+				$("#searchBtn").trigger("click");
+				return false;
+			}
+		});
+	}); */
+
+	var searchForm = $("#searchForm");
+	
+	$("#searchForm button").on("click", function(e){
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert("키워드를 입력하세요");
+			return false;
+		}
+		searchForm.find("input[name='pageNum']").val("1");
+		e.preventDefault();
+		
+		searchForm.submit();
+});
+</script>
 
 </head>
 <body>
@@ -49,7 +75,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index_light.html"><img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58"></a>
+				    <a href="/"><img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -128,7 +154,12 @@
 	    
 	    <!-- top search form -->
 	    <div class="top-search">
-			<input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+	    <form id="searchForm" class="searchForm" action="/board/search" method="get">
+	    	<input type="text" id="keyword" name="keyword" placeholder="검색하고 싶은 영화제목을 입력 후 엔터키를 누르세요.">
+	    	<button type="submit" class="btn btn-default" id="searchBtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+	        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+	        <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+	    </form>
 	    </div>
 	</div>
 </header>
