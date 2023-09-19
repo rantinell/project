@@ -59,12 +59,12 @@
 							<h3>Login</h3>
 							<form method="post" action="/login">
 								<div class="row">
-									<label for="username"> Username: <input type="text" name="username" id="username" placeholder="Hugh Jackman" required="required" />
+									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
-									<label for="password"> Password: <input type="password" name="password" id="password" placeholder="******" required="required" />
+									<label for="password"> Password: <input type="password" name="password" id="password" required="required" />
 									</label>
 								</div>
 								<div class="row">

@@ -7,25 +7,25 @@
 						http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="customAccessDenied" class="com.team1.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess" class="com.team1.security.CustomLoginSuccessHandler"></bean>
+	<bean id="customAccessDenied" class="com.team5.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customLoginSuccess" class="com.team5.security.CustomLoginSuccessHandler"></bean>
 
 	<!-- <bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"></bean> -->
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
-	<bean id="customUserDetailsService" class="com.team1.security.CustomUserDetailsService"></bean>
+	<bean id="customUserDetailsService" class="com.team5.security.CustomUserDetailsService"></bean>
 
  
 	<security:http>
 
-		<!-- <security:intercept-url pattern="/sample/all" access="permitAll" />
+		<security:intercept-url pattern="/sample/all" access="permitAll" />
 
 		<security:intercept-url	pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 
 		<security:intercept-url pattern="/sample/manager" access="hasRole('ROLE_MANAGER')" />
 
-		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" /> -->
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
 
 		<security:access-denied-handler	ref="customAccessDenied" />
 
@@ -39,8 +39,9 @@
 
 
 	<security:authentication-manager>
-
+		<!-- <security:authentication-provider> -->
 		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<!-- <security:jdbc-user-service data-source-ref="dataSource"/> -->
 
 			<security:password-encoder ref="bcryptPasswordEncoder" />
 
