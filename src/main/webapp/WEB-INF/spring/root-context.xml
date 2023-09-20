@@ -40,6 +40,13 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<tx:annotation-driven />
+	<mybatis-spring:scan base-package="com.team1.mapper" />
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.team1.service"></context:component-scan>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<task:annotation-driven/>
 
 	<mybatis-spring:scan base-package="com.team5.mapper"/>
 	<context:component-scan base-package="com.team5.service"></context:component-scan>
