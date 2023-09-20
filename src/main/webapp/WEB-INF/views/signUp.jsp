@@ -35,23 +35,41 @@
 <script src="/resources/js/custom.js"></script>
 
 <script type="text/javascript">
-function passtest() {
-    var p1 = document.getElementById('password-2').value;
-    var p2 = document.getElementById('repassword-2').value;
-    
-    if(p1.length < 6) {
-            alert('입력한 글자가 6글자 이상이어야 합니다.');
-            return false;
-        }
-        
-        if( p1 != p2 ) {
-          alert("비밀번호불일치");
-          return false;
-        } else{
-          alert("비밀번호가 일치합니다");
-          return true;
-        }
-  }
+$(document).ready(function(){
+	function passtest() {
+	    var p1 = document.getElementById('password-2').value;
+	    var p2 = document.getElementById('repassword-2').value;
+	    
+	    if(p1.length < 6) {
+	    	alert('입력한 글자가 6글자 이상이어야 합니다.');
+	        	return false;
+	    }
+	        
+	    if( p1 != p2 ) {
+	    	alert("비밀번호불일치");
+	    	return false;
+	    } else{
+	    	alert("비밀번호가 일치합니다");
+	    return true;
+	    }
+	}
+	
+	function fn_idChk(){
+		$.ajax({
+			url : "idChk",
+			type : "post",
+			dataType : "json",
+			data : {"m_id" : $("#username-2").val()},
+			success : function(data){
+				if(data == 1){
+					alert("중복된 아이디입니다.");
+				}else if(data == 0){
+					$("#idChk").attr("value", "Y");
+					alert("사용가능한 아이디입니다.");
+				}
+			}
+		});
+}	
 </script>
 
 </head>
@@ -82,7 +100,9 @@ function passtest() {
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="username" id="username-2"required="required" placeholder="사용할 아이디를 입력하세요."/>
 									</label>
+									<button class="idChk btn btn-default" type="button" id="idChk" onclick="fn_idChk()" style="width: 20%; display: block; margin: auto">중복확인</button>
 								</div>
+								<br>
 								<div class="row">
 									<label for="password-2"> 비밀번호 * <input type="password" name="password" id="password-2" required="required" placeholder="6자리 이상 입력하세요." />
 									</label>
@@ -104,7 +124,7 @@ function passtest() {
 									</label>
 								</div>
 								<div class="row">
-									<button type="button" onclick="passtest">sign up</button>
+									<button type="submit" onclick="passtest">sign up</button>
 								</div>
 							</form>
 						</div>

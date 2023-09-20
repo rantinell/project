@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team5.domain.MemberVO;
 import com.team5.service.MemberService;
@@ -70,7 +72,16 @@ public class CommonController {
 		log.info("signUp....");
 	}
 	
-	@RequestMapping("/signUp")
+	//아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	public int idChk(MemberVO vo) throws Exception {
+		int result = memberService.idChk(vo);
+		return result;
+	}
+	
+	// 회원가입 post
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String postSignUp(MemberVO memberVO) throws Exception {
 		log.info("post signUp...");
 		int result = memberService.idChk(memberVO);
@@ -87,7 +98,7 @@ public class CommonController {
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
-		return "redirect:/";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/userdetails")
