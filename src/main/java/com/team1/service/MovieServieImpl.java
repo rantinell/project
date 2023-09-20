@@ -35,6 +35,15 @@ public class MovieServieImpl implements MovieService {
 		
 		return movieMapper.getRankList();
 	}
+	
+	@Override
+	public List<MovieVo> getExpectedList(){
+		
+		log.info("getExpectedList........");
+		
+		return movieMapper.getExpectedList();
+		
+	}
 
 	@Override
 	public List<MovieVo> getRecommendList() {

@@ -14,6 +14,8 @@ public interface MovieService {
 	
 	public List<MovieVo> getRankList();
 	
+	public List<MovieVo> getExpectedList();
+	
 	public List<MovieVo> getRecommendList();
 	public List<MovieVo> getRecommendList(int g_num);
 
