@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.mapper.MovieMapper">
+
+	<select id="getMovieList" resultType="com.team1.dto.MovieVo">
+
+		select * from test_movie_details details
+		full outer join test_movie_info info on details.mi_num = info.mi_num
+		full outer join test_movie_genre genre on info.g_num = genre.g_num
+
+	</select>
+
+	<select id="getRankList" resultType="com.team1.dto.MovieVo">
+
+		select * from test_movie_details details
+		full outer join test_movie_info info on details.mi_num = info.mi_num
+		full outer join test_movie_genre genre on info.g_num = genre.g_num
+		order by info.mi_total_point desc
+
+	</select>
+
+	<select id="getRecommendList" resultType="com.team1.dto.MovieVo">
+		
+				select * from test_movie_details details
+				full outer join test_movie_info info on details.mi_num = info.mi_num
+				full outer join test_movie_genre genre on info.g_num = genre.g_num
+				where genre.g_num = #{g_num}
+				order by info.mi_total_point desc
+			
+	</select>
+	
+	
+	<select id="getMemberList" resultType="com.team1.dto.MemberVo">
+		select * from test_member
+	</select>
+
+</mapper>
