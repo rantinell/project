@@ -3,16 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
      
 <%@ include file="includes/header.jsp"%>
-<  
+ 
   
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1><c:out value="${board.name}"/> 's profile</h1>
+					<h1> Admin Page</h1>
 					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="/">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>Profile</li>
 					</ul>
 				</div>
