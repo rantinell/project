@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.team5.mapper.MemberMapper">
+	<select id="read" resultMap="memberMap">
+		SELECT mem.m_num, m_id, m_nick, m_pw, m_name, m_tel, m_mail, g_num, m_lev
+		FROM 
+  			test_member mem
+		WHERE mem.m_id = #{m_id} 
+	</select>
+
+	<resultMap type="com.team5.domain.MemberVO" id="memberMap">
+		<result property="m_num" column="m_num"/>		
+		<result property="m_id" column="m_id"/>
+		<result property="m_nick" column="m_nick"/>
+		<result property="m_pw" column="m_pw"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_tel" column="m_tel"/>
+		<result property="m_mail" column="m_mail"/>
+		<result property="g_num" column="g_num"/>
+		<result property="m_lev" column="m_lev"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	<resultMap type="com.team5.domain.AuthVO" id="authMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_lev" column="m_lev"/>
+	</resultMap>
+
+	<insert id="signUp">
+		insert into test_member (m_num, m_id, m_pw, m_name, m_tel, m_mail) values (test_seq_member.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, #{m_mail})
+	</insert>
+	
+	<select id="idChk">
+		select count(*) from test_member where m_id = #{m_id}
+	</select>
+
+</mapper>
