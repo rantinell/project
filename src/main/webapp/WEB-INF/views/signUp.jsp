@@ -34,6 +34,26 @@
 <script src="/resources/js/plugins2.js"></script>
 <script src="/resources/js/custom.js"></script>
 
+<script type="text/javascript">
+function passtest() {
+    var p1 = document.getElementById('password-2').value;
+    var p2 = document.getElementById('repassword-2').value;
+    
+    if(p1.length < 6) {
+            alert('입력한 글자가 6글자 이상이어야 합니다.');
+            return false;
+        }
+        
+        if( p1 != p2 ) {
+          alert("비밀번호불일치");
+          return false;
+        } else{
+          alert("비밀번호가 일치합니다");
+          return true;
+        }
+  }
+</script>
+
 </head>
 <body>
 	<div class="buster-light">
@@ -56,44 +76,35 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-sm-12 col-xs-12">
-						<div class="login-content">
+						<div class="signup-content">
 							<h3>sign up</h3>
-							<form method="post" action="#">
+							<form method="post" action="/signUp" name="signupForm">
 								<div class="row">
-									<label for="username-2"> 아이디 <input type="text"
-										name="username" id="username-2"
-										pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+									<label for="username-2"> 아이디 * <input type="text" name="username" id="username-2"required="required" placeholder="사용할 아이디를 입력하세요."/>
 									</label>
 								</div>
 								<div class="row">
-									<label for="password-2"> 비밀번호: <input type="password"
-										name="password" id="password-2" placeholder=""
-										pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-										required="required" />
+									<label for="password-2"> 비밀번호 * <input type="password" name="password" id="password-2" required="required" placeholder="6자리 이상 입력하세요." />
 									</label>
 								</div>
 								<div class="row">
-									<label for="repassword-2"> 비밀번호 확인: <input
-										type="password" name="password" id="repassword-2"
-										placeholder=""
-										pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-										required="required" />
+									<label for="repassword-2"> 비밀번호 확인 * <input type="password" name="password" id="repassword-2" required="required" placeholder="비밀번호를 다시 입력해주세요."/>
 									</label>
 								</div>
 								<div class="row">
-									<label for="name-2"> 이름 <input type="text" name="name"
-										id="name-2" required="required" />
+									<label for="name-2"> 이름 * <input type="text" name="name" id="name-2" required="required" />
 									</label>
 								</div>
 								<div class="row">
-									<label for="email-2"> 이메일: <input type="password"
-										name="email" id="email-2" placeholder=""
-										pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-										required="required" />
+									<label for="tel-2"> 전화번호 * <input type="text" name="tel" id="tel-2" required="required" />
 									</label>
 								</div>
 								<div class="row">
-									<button type="submit">sign up</button>
+									<label for="email-2"> 이메일 * <input type="text" name="email" id="email-2" required="required" />
+									</label>
+								</div>
+								<div class="row">
+									<button type="button" onclick="passtest">sign up</button>
 								</div>
 							</form>
 						</div>

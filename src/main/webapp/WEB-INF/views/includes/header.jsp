@@ -106,39 +106,8 @@ $(document).ready(function(){
 								<li class="it-last"><a href="celebritysingle_light.html">celebrity single</a></li>
 							</ul>
 						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							news <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="bloglist_light.html">blog List</a></li>
-								<li><a href="bloggrid_light.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail_light.html">blog Detail</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							community <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid_light.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist_light.html">user favorite list</a></li>
-								<li><a href="userprofile_light.html">user profile</a></li>
-								<li class="it-last"><a href="userrate_light.html">user rate</a></li>
-							</ul>
-						</li>
 					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
-							</ul>
-						</li>                
+					<ul class="nav navbar-nav flex-child-menu menu-right">          
 						<li><a href="#">Help</a></li>
 						<sec:authorize access="isAnonymous()">
 							<li class="loginLink"><a href="/login">LOG In</a></li>

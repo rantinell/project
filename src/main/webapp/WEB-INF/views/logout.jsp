@@ -44,7 +44,7 @@
 							<h1>Logout Page</h1>
 							<ul class="breadcumb">
 								<li class="active"><a href="/">Home</a></li>
-								<li><span class="ion-ios-arrow-right"></span> login</li>
+								<li><span class="ion-ios-arrow-right"></span> Logout</li>
 							</ul>
 						</div>
 					</div>
@@ -60,16 +60,13 @@
 							<form method="post" action="/logout">
 								<div class="row">
 									<label for="username"> Username: <input type="text"
-										name="username" id="username" placeholder="Hugh Jackman"
-										pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+										name="username" id="username" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
 									<label for="password"> Password: <input type="password"
-										name="password" id="password" placeholder="******"
-										pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-										required="required" />
+										name="password" id="password" required="required" />
 									</label>
 								</div>
 								<div class="row">
@@ -95,23 +92,19 @@
 
 </body>
 <footer>
-<div class="container">
+	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
 				 <a href="index-2.html"><img class="logo" src="/resources/images/logo1.png" alt=""></a>
-				 <p>5th Avenue st, manhattan<br>
-				New York, NY 10001</p>
-				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
 			</div>
 			<div class="flex-child-ft item2">
 				<h4>Resources</h4>
 				<ul>
-					<li><a href="#">About</a></li> 
-					<li><a href="#">Blockbuster</a></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">Forums</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Help Center</a></li>
+					<li><a href="/">Home</a></li> 
+					<li><a href="/board/ranking">Ranking</a></li>
+					<li><a href="/board/nowplaying">Now Playing</a></li>
+					<li><a href="/board/commingsoon">CommingSoon</a></li>
+					<li><a href="/board/recommend">Recommend</a></li>
 				</ul>
 			</div>
 			<div class="flex-child-ft item3">
@@ -126,25 +119,16 @@
 				<h4>Account</h4>
 				<ul>
 					<li><a href="#">My Account</a></li> 
-					<li><a href="#">Watchlist</a></li>	
-					<li><a href="#">Collections</a></li>
-					<li><a href="#">User Guide</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="ft-copyright">
 		<div class="ft-left">
-			<p>
-				<a target="_blank" href="https://www.templateshub.net">Templates
-					Hub</a>
-			</p>
+			<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
 		</div>
 		<div class="backtotop">
-			<p>
-				<a href="#" id="back-to-top">Back to top <i
-					class="ion-ios-arrow-thin-up"></i></a>
-			</p>
+			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
 		</div>
 	</div>
 	
