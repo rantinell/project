@@ -3,7 +3,6 @@ package com.team5.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,8 +79,8 @@ public class CommonController {
 	//아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(MemberVO vo) throws Exception {
-		int result = memberService.idChk(vo);
+	public int idChk(@RequestParam("m_id") String m_id) throws Exception {
+		int result = memberService.idChk(m_id);
 		return result;
 	}
 		
@@ -89,7 +88,7 @@ public class CommonController {
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		log.info("post signUp....");
-		int result = memberService.idChk(vo);
+		int result = memberService.idChk(vo.getM_id());
 		try {
 			if(result == 1) {
 				return "/signUp";

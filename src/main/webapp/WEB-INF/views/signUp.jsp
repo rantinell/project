@@ -37,6 +37,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#submit").on("click", function(){
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}"; 
+		
 		if($("#m_id").val()==""){
 			alert("아이디를 입력해주세요.");
 			$("#m_id").focus();
@@ -74,20 +77,19 @@ $(document).ready(function(){
 })
 
 function fn_idChk(){
-		$.ajax({
-			url : "/idChk",
-			type : "post",
-			dataType : "json",
-			data : {"m_id" : $("#m_id").val()},
-			success : function(data){
-				if(data == 1){
-					alert("중복된 아이디입니다.");
-				}else if(data == 0){
-					$("#idChk").attr("value", "Y");
-					alert("사용가능한 아이디입니다.");
-				}
+	$.ajax({
+		url : '/idChk',
+		type : 'POST',
+		data : {"m_id" : $("#m_id").val()},
+		success : function(result){
+			if(result == 1){
+				alert("중복된 아이디입니다.");
+			} else if(result == 0){
+				$("#idChk").attr("value", "Y");
+				alert("사용가능한 아이디입니다.");
 			}
-		})
+		}
+	});
 }
 	
 </script>

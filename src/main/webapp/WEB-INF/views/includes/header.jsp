@@ -52,7 +52,6 @@ $(document).ready(function(){
 			alert("키워드를 입력하세요");
 			return false;
 		}
-		searchForm.find("input[name='pageNum']").val("1");
 		e.preventDefault();
 		
 		searchForm.submit();
@@ -129,8 +128,6 @@ $(document).ready(function(){
 	    <form id="searchForm" class="searchForm" action="/board/search" method="get">
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색하고 싶은 영화제목을 입력 후 엔터키를 누르세요.">
 	    	<button type="submit" class="btn btn-default" id="searchBtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-	        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-	        <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	    </form>
 	    </div>
 	</div>

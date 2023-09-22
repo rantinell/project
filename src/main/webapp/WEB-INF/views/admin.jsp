@@ -25,48 +25,90 @@
 	<div class="container">
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
-					<form action="#" class="user">
+					<form action="/" class="user" method="post">
 						<h4>01. 영화등록 </h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
-								<label>Username</label>
-								<input type="text" placeholder="edwardkennedy">
+								<label>영화제목</label>
+								<input type="text" name="mi_title" required="required">
 							</div>
 							<div class="col-md-6 form-it">
-								<label>Email Address</label>
-								<input type="text" placeholder="edward@kennedy.com">
+								<label>개봉상태</label>
+								<select name="mi_condition">
+								  <option value="0">상영중</option>
+								  <option value="1">개봉예정</option>
+								</select>
+							</div>
+							<div class="col-md-6 form-it">
+								<label>감독</label>
+								<input type="text" name="md_director">
+							</div>
+							<div class="col-md-6 form-it">
+								<label>출연진</label>
+								<input type="text" name="md_actor">
+							</div>
+							<div class="col-md-6 form-it">
+								<label>소개</label>
+								<textarea name="md_text"></textarea>
+							</div>
+							<div class="col-md-6 form-it">
+								<label>장르</label>
+								<select name="g_num" required>
+								  <option value="1">액션</option>
+								  <option value="2">SF</option>
+								  <option value="3">로맨스</option>
+								  <option value="4">코메디</option>
+								</select>
+							</div>
+							<div class="col-md-6 form-it">
+								<label>런타임</label>
+								<input type="text" name="md_runtime">
+							</div>
+							<div class="col-md-6 form-it">
+								<label>분류등급</label>
+								<input type="text" name="md_grade">
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png">
+							</div>
+						</div>
+						<br>
 						<div class="row">
 							<div class="col-md-2">
 								<input class="submit" type="submit" value="save">
 							</div>
 						</div>	
 					</form>
-					<form action="#" class="password">
-						<h4>02. Change password</h4>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Old Password</label>
-								<input type="text" placeholder="**********">
+					<br>
+					<form action="#" class="memberdelete">
+						<c:forEach items="member" var="member">
+							<h4>02. 회원관리</h4>
+							<div class="row">
+								<div class="col-md-2 form-it">
+									<label>회원 번호</label>
+									<input type="text" value="<c:out value="{member.m_num}"/>" readonly="readonly">
+								</div>
+								<div class="col-md-2 form-it">
+									<label>회원 아이디</label>
+									<input type="text" name="m_id" value="<c:out value="{member.m_num}"/>" readonly="readonly">
+								</div>
+								<div class="col-md-2 form-it">
+									<label>닉네임</label>
+									<input type="text" name="m_nick" value="<c:out value="{member.m_nick}"/>" readonly="readonly">
+								</div>
+								<div class="col-md-3">
+									<label>회원변경</label>
+									<input class="submit modifyUser" type="submit" value="변경" id="modifyUser">
+								</div>
+								<div class="col-md-3">
+									<label>회원삭제</label>
+									<input class="submit deleteUser" type="submit" value="삭제" id="deleteUser">
+								</div>
 							</div>
-						</div>
+						</c:forEach>
 						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>New Password</label>
-								<input type="text" placeholder="***************">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Confirm New Password</label>
-								<input type="text" placeholder="*************** ">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<input class="submit" type="submit" value="change">
-							</div>
 						</div>	
 					</form>
 				</div>
