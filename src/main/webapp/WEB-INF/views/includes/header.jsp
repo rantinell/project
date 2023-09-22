@@ -108,12 +108,15 @@ $(document).ready(function(){
 						</li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">          
-						<li><a href="#">Help</a></li>
 						<sec:authorize access="isAnonymous()">
 							<li class="loginLink"><a href="/login">LOG In</a></li>
 							<li class="btn signupLink"><a href="/signUp">sign up</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
+							<li class="myPage"><a href="/userdetails">My Account</a></li>
+							<sec:authorize access="hasAuthority('3')">
+								<li class="adminLink"><a href="/admin">Admin</a></li>
+							</sec:authorize>
 							<li class="logoutLink"><a href="/logout">LOG Out</a></li>
 						</sec:authorize>	
 					</ul>

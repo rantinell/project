@@ -32,7 +32,12 @@
 <script src="/resources/js/plugins.js"></script>
 <script src="/resources/js/plugins2.js"></script>
 <script src="/resources/js/custom.js"></script>
-
+<!--    <script>
+   	$(".btn-success").on("click", function(e) {
+   		e.preventDefault();
+   		$("form").submit();
+   	});
+   </script> -->
 </head>
 <body>
 	<div class="buster-light">
@@ -76,7 +81,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<button type="submit">Login</button>
+									<button type="submit" class="btn-success">Login</button>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</form>

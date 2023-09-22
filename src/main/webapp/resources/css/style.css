@@ -466,7 +466,7 @@
     width: 83.33333333%;
   }
   .col-md-9 {
-    width: 75%;
+    width: 100%;
   }
   .col-md-8 {
     width: 100%;
@@ -5739,11 +5739,10 @@ ul {
   padding-top: 225px;
 }
 .user-hero .hero-ct h1 {
-  margin-left: -120px;
+  text-align: center;
 }
 .user-hero ul.breadcumb {
-  text-align: left;
-  margin-left: 25.5%;
+  text-align: center;
 }
 @media (max-width: 991px) {
   .user-hero {

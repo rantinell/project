@@ -1,6 +1,9 @@
 package com.team5.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team5.domain.MemberVO;
@@ -18,6 +22,7 @@ import com.team5.service.MemberService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
+@RequestMapping("/")
 @Log4j
 public class CommonController {
 	
@@ -79,34 +84,35 @@ public class CommonController {
 		int result = memberService.idChk(vo);
 		return result;
 	}
-	
-	// 회원가입 post
+		
+	//회원가입 post
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String postSignUp(MemberVO memberVO) throws Exception {
-		log.info("post signUp...");
-		int result = memberService.idChk(memberVO);
+	public String postRegister(MemberVO vo) throws Exception {
+		log.info("post signUp....");
+		int result = memberService.idChk(vo);
 		try {
-			if(result == 1) { // id 중복체크
+			if(result == 1) {
 				return "/signUp";
 			} else if(result == 0) {
-				String passBefore = memberVO.getM_id();
-				String pwd = pwEncoder.encode(passBefore);
-				memberVO.setM_pw(pwd);
-				
-				memberService.signUp(memberVO);
+				memberService.signUp(vo);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
-		return "redirect:/login";
+		return "redirect:/";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/userdetails")
-	public void userdetails() {
-		
+	public void userdetails(Principal principal, Model model) {
+		log.info("마이프로필 창으로 이동");
+    log.info("유저아이디: " + principal.getName());
+    String userid=principal.getName();
+    MemberVO vo = memberService.get(userid);
+    model.addAttribute("member", vo);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAuthority('3')")
 	@GetMapping("/admin")
 	public void admin() {
 		

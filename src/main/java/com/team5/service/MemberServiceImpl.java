@@ -24,9 +24,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int idChk(MemberVO memberVO) {
-		int result = memberMapper.idChk(memberVO);
+	public int idChk(MemberVO vo) {
+		int result = memberMapper.idChk(vo.getM_id());
 		return result;
+	}
+	
+	@Override
+	public MemberVO get(String m_id) {
+		log.info("Read Member...");
+		log.info("m_id: " + m_id);
+		return memberMapper.read(m_id);
 	}
 
 }

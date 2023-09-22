@@ -56,29 +56,10 @@
 				<div class="row">
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
-							<h3>Login</h3>
+							<h3>Logout</h3>
 							<form method="post" action="/logout">
 								<div class="row">
-									<label for="username"> Username: <input type="text"
-										name="username" id="username" required="required" />
-									</label>
-								</div>
-
-								<div class="row">
-									<label for="password"> Password: <input type="password"
-										name="password" id="password" required="required" />
-									</label>
-								</div>
-								<div class="row">
-									<div class="remember">
-										<div>
-											<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
-										</div>
-										<a href="#">Forget password ?</a>
-									</div>
-								</div>
-								<div class="row">
-									<button type="submit" class="btn-success">Login</button>
+									<button type="button" class="btn-success">logout</button>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</form>
@@ -138,11 +119,11 @@
 			$("form").submit();
 		});
 	</script>
-	<c:if test="${param.logout != null }"></c:if>
+	<c:if test="${param.logout != null }">
 	<script>
 		$(document).ready(function() {
 			alert("로그아웃 했습니다.");
 		})
 	</script>
-	
+	</c:if>	
 </footer>

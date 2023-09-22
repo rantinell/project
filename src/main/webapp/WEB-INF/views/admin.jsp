@@ -10,10 +10,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1> Admin Page</h1>
+					<h1>Admin Page</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="/">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Profile</li>
+						<li> <span class="ion-ios-arrow-right"></span>admin</li>
 					</ul>
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
 					<form action="#" class="user">
-						<h4>01. Profile details</h4>
+						<h4>01. 영화등록 </h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Username</label>
@@ -35,32 +35,6 @@
 							<div class="col-md-6 form-it">
 								<label>Email Address</label>
 								<input type="text" placeholder="edward@kennedy.com">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>First Name</label>
-								<input type="text" placeholder="Edward ">
-							</div>
-							<div class="col-md-6 form-it">
-								<label>Last Name</label>
-								<input type="text" placeholder="Kennedy">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Country</label>
-								<select>
-								  <option value="united">United States</option>
-								  <option value="saab">Others</option>
-								</select>
-							</div>
-							<div class="col-md-6 form-it">
-								<label>State</label>
-								<select>
-								  <option value="united">New York</option>
-								  <option value="saab">Others</option>
-								</select>
 							</div>
 						</div>
 						<div class="row">
