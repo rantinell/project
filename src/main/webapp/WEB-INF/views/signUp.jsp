@@ -30,7 +30,6 @@
 
 <!-- Script files -->
 <script src="/resources/js/jquery.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/resources/js/plugins.js"></script>
 <script src="/resources/js/plugins2.js"></script>
 <script src="/resources/js/custom.js"></script>
@@ -72,8 +71,9 @@ $(document).ready(function(){
 			$("#signupForm").submit();
 		}
 	});
-	
-	function fn_idChk(){
+})
+
+function fn_idChk(){
 		$.ajax({
 			url : "/idChk",
 			type : "post",
@@ -88,10 +88,17 @@ $(document).ready(function(){
 				}
 			}
 		})
-	}
-})
+}
 	
-	</script>
+</script>
+<style type="text/css">
+ .idChk {
+ 	width: 20% !important;
+ 	display: block !important;
+ 	margin: auto !important;
+ }
+</style>
+
 
 </head>
 <body>
@@ -121,7 +128,7 @@ $(document).ready(function(){
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
 									</label>
-									<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N" style="width: 20%; display: block; margin: auto">중복확인</button>
+									<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
 								</div>
 								<br>
 								<div class="row">
