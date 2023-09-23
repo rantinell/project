@@ -127,7 +127,7 @@ $(document).ready(function(){
 	    <div class="top-search">
 	    <form id="searchForm" class="searchForm" action="/board/search" method="get">
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색하고 싶은 영화제목을 입력 후 엔터키를 누르세요.">
-	    	<button type="submit" class="btn btn-default" id="searchBtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+	    	<button type="submit" class="btn btn-default" id="searchBtn">&emsp;&emsp;&emsp;</button>
 	    </form>
 	    </div>
 	</div>

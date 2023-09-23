@@ -5,12 +5,12 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class BoardVO {
+public class ReplyVO {
+	private Long c_num;
 	private Long mi_num;
-	private Long g_num;
-	private String mi_title;
-	private int condition;
-	private String thumbnail;
+	private Long m_num;
+	private String c_comment;
+	private int c_point;
 	private Date regDate;
 	private Date updateDate;
 }

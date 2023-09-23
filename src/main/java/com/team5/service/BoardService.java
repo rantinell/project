@@ -9,4 +9,5 @@ public interface BoardService {
 	public void register(BoardVO board);
 	public List<BoardVO> getList(Criteria cri);
 	public int getTotal(Criteria cri);
+	public boolean modify(BoardVO board);
 }
