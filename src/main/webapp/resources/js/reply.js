@@ -28,10 +28,10 @@ var replyService = (function(){
 	
 	function getList(param, callback, errorfn) {
 	
-		var bno = param.bno;
+		var mi_num = param.mi_num;
 		var page = param.page || 1;
 		
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
+		$.getJSON("/replies/pages/" + mi_num + ".json",
 			function(data){
 				if(callback) {
 					callback(data.replyCnt, data.list);
@@ -45,11 +45,11 @@ var replyService = (function(){
 	}
 	
 	
-	function remove(rno, replyer, callback, errorfn) {
+	function remove(c_num, replyer, callback, errorfn) {
 		$.ajax({
 			type : 'delete',
-			url : '/replies/' + rno,
-			data: JSON.stringify({rno:rno, replyer:replyer}),
+			url : '/replies/' + c_num,
+			data: JSON.stringify({c_num:c_num, replyer:replyer}),
 			contentType: "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr) {
 				if(callback) {
@@ -67,11 +67,11 @@ var replyService = (function(){
 	
 	function update(reply, callback, errorfn) {
 	
-		console.log("RNO: " + reply.rno);
+		console.log("c_num: " + reply.c_num);
 		
 		$.ajax({
 			type : 'put',
-			url : '/replies/' + reply.rno,
+			url : '/replies/' + reply.c_num,
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -87,8 +87,8 @@ var replyService = (function(){
 		});
 	}
 	
-	function get(rno, callback, errorfn) {
-		$.get("/replies/" + rno + ".json", function(result) {
+	function get(c_num, callback, errorfn) {
+		$.get("/replies/" + c_num + ".json", function(result) {
 			
 			if(callback) {
 				callback(result);

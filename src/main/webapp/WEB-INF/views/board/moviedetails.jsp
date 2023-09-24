@@ -6,9 +6,11 @@
 
 <%@ include file="../includes/header.jsp" %>
 <style>
+@media (min-width: 992px) {
   .col-md-8 {
-    width: 66.66666667% !important;
+    width: 66.66666667%;
   }
+}
 </style>
 
 <script type="text/javascript" src="/resources/js/reply.js"></script>
@@ -27,13 +29,13 @@
 			operForm.attr("action", "/movie/list").submit();
 		});
 		
-		var bnoValue = '<c:out value="${movie.m_num}"/>';
+		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
 		var replyComment = $(".comment");
 		
 		showList(1);
 		
 		function showList(page){
-			replyService.getList({bno:bnoValue,page:page||1}, function(replyCnt, list){
+			replyService.getList({mi_num:mi_numValue,page:page||1}, function(replyCnt, list){
 				console.log("replyCnt: " + replyCnt);
 				console.log("list: " + list);
 				
@@ -45,16 +47,19 @@
 				
 				var str="";
 				if(list == null || list.length == 0){
-					replyUL.html("");
+					replyComment.html("");
 					return;
 				}
 				for(var i=0, len=list.length||0; i<len; i++) {
-					str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-					str+="<div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
-					str+="<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
-					str+="<p>"+list[i].reply+"</p></li>";
+					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
+					str+="<h3>작성자: " + list[i].replyer +"</h3>";
+					str+="<div class='no-star'></div>"
+					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].replyDate)+"</p>";
+					str+="</div></div>";
+					str+="<p>" + list[i].comment + "</p>";
+					str+="</dive>"
 				}
-				replyUL.html(str);
+				replyComment.html(str);
 				
 				showReplyPage(replyCnt);
 			});
@@ -101,7 +106,7 @@
 			var reply = {
 				reply : modalInputReply.val(),
 				replyer : modalInputReplyer.val(),
-				bno : bnoValue
+				mi_num : mi_numValue
 			}
 			
 			replyService.add(reply, function(result){
@@ -112,16 +117,16 @@
 			});			
 		});
 		
-		replyUL.on("click", "li", function(e){
-			var rno = $(this).data("rno");
+		replyComment.on("click", "li", function(e){
+			var c_num = $(this).data("c_num");
 			
-			replyService.get(rno, function(reply){
+			replyService.get(c_num, function(reply){
 				modalInputReply.val(reply.reply);
 				modalInputReplyDate.closest("div").show();
 				//modalInputReplyer.val(reply.replyer).attr("readonly", "readonly");
 				modalInputReplyer.val(reply.replyer);
 				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
-				modal.data("rno", reply.rno);
+				modal.data("c_num", reply.c_num);
 				modal.find("button[id != 'modalCloseBtn']").hide();
 				modalModBtn.show();
 				modalRemoveBtn.show();
@@ -133,7 +138,7 @@
 		modalModBtn.on("click", function(e){
 			var originalReplyer = modalInputReplyer.val();
 			
-			var reply = {rno:modal.data("rno"),
+			var reply = {c_num:modal.data("c_num"),
 										reply: modalInputReply.val(),
 										replyer: originalReplyer};
 			
@@ -159,9 +164,9 @@
 		});
 		
 		modalRemoveBtn.on("click", function(e){
-			var rno = modal.data("rno");
+			var c_num = modal.data("c_num");
 			
-			console.log("RNO: " + rno);
+			console.log("c_num: " + c_num);
 			console.log("REPLYER: " + replyer);
 			
 			if(!replyer){
@@ -180,7 +185,7 @@
 				return;
 			}
 			
-			replyService.remove(rno, originalReplyer, function(result){
+			replyService.remove(c_num, originalReplyer, function(result){
 				alert(result);
 				modal.modal("hide");
 				showList(pageNum);				
@@ -237,7 +242,6 @@
 		
 	});
 </script>
-
 
     	<div class="buster-light">
 <div class="hero mv-single-hero">
@@ -316,7 +320,7 @@
 						            <div class="row comnent">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
 						            		<p>Tony Stark creates the Ultron Program to protect the world, but when the peacekeeping program becomes hostile, The Avengers go into action to try and defeat a virtually impossible enemy together. Earth's mightiest heroes must come together once again to protect the world from global extinction.</p>
-											<div class="title-hd-sm">
+											<div class="title-hd-sm comment">
 												<h4>User reviews</h4>
 											</div>
 											<!-- movie user review -->
@@ -375,33 +379,35 @@
 							            		<h3>Related Movies To</h3>
 						       	 				<h2>Skyfall: Quantum of Spectre</h2>
 							            	</div>
-							            	<button id="addComment" class="redbtn">Write Review</button>
+							            	<sec:authorize access="isAuthenticated()">
+							            	<button id="addComment" class="redbtn">Add Comment</button>
+							            	</sec:authorize>
 						            	</div>
-						            	<c:forEach items="review">
-										<div class="mv-user-review-item">
-											<div class="user-infor">
-												<div>
-													<h3>작성자: hawaiipierson</h3>
-													<div class="no-star">
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star"></i>
-														<i class="ion-android-star last"></i>
+						            	<div class="comment">
+											<div class="mv-user-review-item">
+												<div class="user-infor">
+													<div>
+														<h3>작성자: hawaiipierson</h3>
+														<div class="no-star">
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star"></i>
+															<i class="ion-android-star last"></i>
+														</div>
+														<p class="time">
+															등록일: 2016년 12월 17일
+														</p>
 													</div>
-													<p class="time">
-														등록일: 2016년 12월 17일
-													</p>
 												</div>
+												<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
 											</div>
-											<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
 										</div>
-										</c:forEach>
 										<div class="topbar-filter">
 											<div class="pagination2">
 												<a class="active" href="#">1</a>
@@ -433,6 +439,9 @@
 </div>
 		</div>
 		
+
+			<!-- Modal 시작  -->
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
   		<div class="modal-content">
@@ -464,7 +473,8 @@
   			
   		</div>
   	</div>
-  </div>		
-		
-		
+  </div>	
+
+<!-- Modal 끝 -->
+					
 <%@ include file="../includes/footer.jsp" %>
