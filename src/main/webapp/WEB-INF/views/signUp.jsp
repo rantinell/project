@@ -37,8 +37,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#submit").on("click", function(){
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}"; 
 		
 		if($("#m_id").val()==""){
 			alert("아이디를 입력해주세요.");
@@ -91,6 +89,8 @@ function fn_idChk(){
 		}
 	});
 }
+
+
 	
 </script>
 <style type="text/css">
@@ -130,7 +130,7 @@ function fn_idChk(){
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
 									</label>
-									<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+									<button class="idChk" type="button" id="idChk" onclick="fn_idChk()" value="N">중복확인</button>
 								</div>
 								<br>
 								<div class="row">

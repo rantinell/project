@@ -443,16 +443,16 @@
 		</div>
 		<div class="content">
 			<div class="form-group">
-				<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
+				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 			<div class="form-group">
-				<label>Reply</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
+				<label>Comment</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
 			</div>
 			<div class="form-group">
-				<label>Replyer</label><input class="form-control" name='replyer' value='replyer' readonly="readonly">
+				<label>Writer</label><input class="form-control" name='replyer' value='replyer' readonly="readonly">
 			</div>
 			<div class="form-group">
-				<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
+				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 		</div>
 		<div class="modal-footer">
