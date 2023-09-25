@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team1.dto.MovieVo;
+import com.team1.dto.Criteria;
 import com.team1.dto.MemberVo;
 import com.team1.mapper.MovieMapper;
 
@@ -37,11 +38,11 @@ public class MovieServieImpl implements MovieService {
 	}
 	
 	@Override
-	public List<MovieVo> getExpectedList(){
+	public List<MovieVo> getCommingList(){
 		
 		log.info("getExpectedList........");
 		
-		return movieMapper.getExpectedList();
+		return movieMapper.getCommingList();
 		
 	}
 
@@ -69,6 +70,20 @@ public class MovieServieImpl implements MovieService {
 //		return movieMapper.getRecommendList();
 //	}
 	
-	
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		log.info("get total count");
+
+		return movieMapper.getTotal(cri);
+	}
+
+	@Override
+	public List<MovieVo> getSearchList(Criteria cri) {
+		
+		log.info("get List with criteria : " + cri);
+		
+		return movieMapper.getSearchList(cri);
+	}
 	
 }
