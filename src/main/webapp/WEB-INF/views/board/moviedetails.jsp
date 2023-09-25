@@ -57,7 +57,7 @@
 					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].replyDate)+"</p>";
 					str+="</div></div>";
 					str+="<p>" + list[i].comment + "</p>";
-					str+="</dive>"
+					str+="</div>"
 				}
 				replyComment.html(str);
 				
@@ -66,7 +66,7 @@
 		}
 		
 		var modal = $(".modal");
-		var modalInputReply = modal.find("input[name='reply']");
+		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
 		var modalInputReplyDate = modal.find("input[name='replyDate']");
 		
@@ -193,7 +193,7 @@
 		});
 		
 		var pageNum = 1;
-		var replyPageFooter = $(".panel-footer");
+		var replyPageFooter = $(".topbar-filter");
 		
 		function showReplyPage(replyCnt){
 			var endNum = Math.ceil(pageNum / 10.0) * 10;
@@ -208,29 +208,29 @@
 				next = true;
 			}
 			
-			var str = "<ul class='pagination pull-right'>";
+			var str = "<div class='pagination2'>";
 			
 			if(prev){
-				str+="<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>Previous</a></li>";
+				str+="<a href='"+(startNum-1)+"'>Previous</a>";
 			}
 			
 			for(var i=startNum; i<=endNum; i++){
 				var active = pageNum == i ? " active" : "";
-				str+="<li class='page-item"+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+				str+="<a class='page-link' href='"+i+"'>"+i+"</a>";
 			}
 			
 			if(next){
-				str+="<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+				str+="<a class='page-link' href='"+(endNum+1)+"'>Next</a>";
 			}
 			
-			str+="</ul>";
+			str+="</div>";
 			
 			console.log(str);
 			
 			replyPageFooter.html(str);
 		}
 		
-		replyPageFooter.on("click", "li a", function(e){
+		replyPageFooter.on("click", "div a", function(e){
 			e.preventDefault();
 			console.log("page click");
 			
@@ -292,21 +292,14 @@
 					<div class="movie-rate">
 						<div class="rate">
 							<i class="ion-android-star"></i>
-							<p><span>8.1</span> /10<br>
-								<span class="rv">56 Reviews</span>
+							<p><span>3.1</span> /5<br>
 							</p>
 						</div>
 						<div class="rate-star">
 							<p>Rate This Movie:  </p>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star-outline"></i>
+							<c:forEach items="movie" var="movie.rating">
+								<i class="ion-ios-star"></i>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -423,9 +416,9 @@
 										<form id='operForm' action="/movie/modify" method="get">
 					 						<input type='hidden' id='m_num' name='m_num' value='<c:out value="${movie.m_num}"/>'>
 					         				<input type='hidden' id="md_num" name="md_num" value='<c:out value="${movie.md_num}"/>'/>
-					 						<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+					 						<%-- <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 					 						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
-					 						<input type='hidden' name="type" value='<c:out value="${cri.type}"/>'/>
+					 						<input type='hidden' name="type" value='<c:out value="${cri.type}"/>'/> --%>
  										</form>
 						            </div>
 						        </div>
@@ -442,37 +435,33 @@
 
 			<!-- Modal 시작  -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  	<div class="modal-dialog">
-  		<div class="modal-content">
+<div class="ui basic modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		
-  			<div class="modal-header">
-  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  				<h4 class="modal-title" id="myModalLabel">Reply Modal</h4>
-  			</div>
-  			<div class="modal-body">
-  				<div class="form-group">
-  					<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
-  				</div>
-  				<div class="form-group">
-  					<label>Reply</label><input class="form-control" name='reply' value='New Repl!!!'>
-  				</div>
-  				<div class="form-group">
-  					<label>Replyer</label><input class="form-control" name='replyer' value='replyer' readonly="readonly">
-  				</div>
-  				<div class="form-group">
-  					<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
-  				</div>
-  			</div>
-  			<div class="modal-footer">
-  				<button id='modalModBtn' type='button' class='btn btn-warning'>Modify</button>
-  				<button id='modalRemoveBtn' type='button' class='btn btn-danger'>Remove</button>
-  				<button id='modalRegisterBtn' type='button' class='btn btn-primary'>Register</button>
-  				<button id='modalCloseBtn' type='button' class='btn btn-default'>Close</button>
-  			</div>
+		<div class="header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="myModalLabel">Comment Modal</h4>
+		</div>
+		<div class="content">
+			<div class="form-group">
+				<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
+			</div>
+			<div class="form-group">
+				<label>Reply</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
+			</div>
+			<div class="form-group">
+				<label>Replyer</label><input class="form-control" name='replyer' value='replyer' readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label>Reply Date</label><input class="form-control" name='replyDate' value=''>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button id='modalModBtn' type='button' class='ui inverted primary button'>Modify</button>
+			<button id='modalRemoveBtn' type='button' class='ui inverted negative button'>Remove</button>
+			<button id='modalRegisterBtn' type='button' class='ui inverted positive button'>Register</button>
+			<button id='modalCloseBtn' type='button' class='ui inverted button'>Close</button>
+		</div>
   			
-  		</div>
-  	</div>
   </div>	
 
 <!-- Modal 끝 -->
