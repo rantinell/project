@@ -2,6 +2,9 @@ package com.team5.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -9,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,12 +80,12 @@ public class CommonController {
 		log.info("signUp....");
 	}
 	
-	//아이디 중복 체크
-	@ResponseBody
+	//아이디 중복 체크, 기존
+	
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(@RequestParam("m_id") String m_id) throws Exception {
+	public @ResponseBody int idChk(String m_id) throws Exception {
 		int result = memberService.idChk(m_id);
-		return result;
+		return result;	
 	}
 		
 	//회원가입 post

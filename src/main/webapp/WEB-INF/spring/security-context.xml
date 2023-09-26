@@ -19,11 +19,11 @@
  
 	<security:http>
 
-		<security:intercept-url pattern="/" access="permitAll" />
+		<!-- <security:intercept-url pattern="/" access="permitAll" /> -->
 
 		<security:intercept-url pattern="/admin" access="hasAuthority('3')" />
 
-		<security:access-denied-handler	ref="customAccessDenied" />
+		<!-- <security:access-denied-handler	ref="customAccessDenied" /> -->
 
 		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccess" />
 

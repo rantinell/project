@@ -61,16 +61,22 @@ function remove(m_id, m_pw, callback, errorfn) {
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>전화번호</label>
-								<input type="text" name=m_tel>
+								<input type="text" name=m_tel value='<c:out value="${member.m_tel}"/>'>
 							</div>
 							<div class="col-md-6 form-it">
 								<label>선호장르</label>
-								<select>
+								<select name= "g_num" value='<c:out value="${member.g_num}"/>'>
 								  <option value="1">액션</option>
 								  <option value="2">SF</option>
 								  <option value="3">로맨스</option>
 								  <option value="4">코메디</option>
 								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>닉네임</label>
+								<input type="text" name=m_nick value='<c:out value="${member.m_nick}"/>'>
 							</div>
 						</div>
 						<div class="row">

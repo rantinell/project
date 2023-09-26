@@ -23,6 +23,8 @@
 <!-- Mobile specific meta -->
 <meta name=viewport content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone-no">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 
 <!-- CSS files -->
 <link rel="stylesheet" href="/resources/css/plugins.css">
@@ -36,62 +38,48 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	//아이디 중복검사
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}"; 
+		$(document).ajaxSend(function(e, xhr, options) { 
+		    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+		  });
+		
+		$('#username-2').keyup(function(){
+			let m_id = $('#username-2').val();
+				
+			$.ajax({
+				url : "/idChk",
+				type : "post",
+				data : {m_id: m_id},
+				dataType : 'json',
+				success : function(result){
+					if(result == 1){
+						$("#id_feedback").html('이미 사용중인 아이디입니다.');
+						$("#id_feedback").attr('color','#dc3545');
+					} else{
+						$("#id_feedback").html('사용할 수 있는 아이디입니다.');
+						$("#id_feedback").attr('color','#2fb380');
+						$("#regist").val('Y')
+					} 
+				},
+				error : function(){
+					alert("서버요청실패");
+				}
+			})
+				 
+		})
+	
 	$("#submit").on("click", function(){
-		
-		if($("#m_id").val()==""){
-			alert("아이디를 입력해주세요.");
-			$("#m_id").focus();
-			return false;
-		}
-		if($("#m_pw").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#m_id").focus();
-			return false;
-		}
-		if($("#m_name").val()==""){
-			alert("성명을 입력해주세요.");
-			$("#m_name").focus();
-			return false;
-		}
-		if($("#m_mail").val()==""){
-			alert("이메일을 입력해주세요.");
-			$("#m_mail").focus();
-			return false;
-		}
-		if($("#m_tel").val()==""){
-			alert("전화번호 입력해주세요.");
-			$("#m_tel").focus();
-			return false;
-		}
-		
-		var idChkVal = $("#idChk").val();
+		var idChkVal = $("#regist").val();
 		if(idChkVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");
+			alert("정보를 다시 입력해주세요.");
 			return false;
 		}else if(idChkVal == "Y"){
 			$("#signupForm").submit();
 		}
 	});
 })
-
-function fn_idChk(){
-	$.ajax({
-		url : '/idChk',
-		type : 'POST',
-		data : {"m_id" : $("#m_id").val()},
-		success : function(result){
-			if(result == 1){
-				alert("중복된 아이디입니다.");
-			} else if(result == 0){
-				$("#idChk").attr("value", "Y");
-				alert("사용가능한 아이디입니다.");
-			}
-		}
-	});
-}
-
-
-	
 </script>
 <style type="text/css">
  .idChk {
@@ -129,8 +117,8 @@ function fn_idChk(){
 							<form method="post" action="/signUp" name="signupForm" id="signupForm">
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
+									<div><font id="id_feedback" size="2"></font></div>
 									</label>
-									<button class="idChk" type="button" id="idChk" onclick="fn_idChk()" value="N">중복확인</button>
 								</div>
 								<br>
 								<div class="row">
@@ -154,7 +142,7 @@ function fn_idChk(){
 									</label>
 								</div>
 								<div class="row">
-									<button type="submit" onclick="passtest">sign up</button>
+									<button id="regist" type="submit" onclick="passtest" value="N">sign up</button>
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								</div>
 							</form>
