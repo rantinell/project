@@ -97,6 +97,7 @@ public class CommonController {
 			if(result == 1) {
 				return "/signUp";
 			} else if(result == 0) {
+				vo.setM_pw(pwEncoder.encode(vo.getM_pw()));
 				memberService.signUp(vo);
 			}
 		} catch (Exception e) {

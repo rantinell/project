@@ -36,6 +36,11 @@
 	<script src="/resources/js/plugins2.js"></script>
 	<script src="/resources/js/custom.js"></script>
 	
+	<!-- sementic ui -->
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<script src="semantic/dist/semantic.min.js"></script>
+	
+	
 <script type="text/javascript">
 $(document).ready(function(){
 	/* $(function() {
@@ -47,6 +52,9 @@ $(document).ready(function(){
 			}
 		});
 	}); */
+	
+	// All your normal JS code goes in here
+    $(".rating").rating();
 
 	var searchForm = $("#searchForm");
 	

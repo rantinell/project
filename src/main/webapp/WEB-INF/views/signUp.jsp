@@ -39,47 +39,48 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	//아이디 중복검사
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}"; 
-		$(document).ajaxSend(function(e, xhr, options) { 
-		    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
-		  });
-		
-		$('#username-2').keyup(function(){
-			let m_id = $('#username-2').val();
-				
-			$.ajax({
-				url : "/idChk",
-				type : "post",
-				data : {m_id: m_id},
-				dataType : 'json',
-				success : function(result){
-					if(result == 1){
-						$("#id_feedback").html('이미 사용중인 아이디입니다.');
-						$("#id_feedback").attr('color','#dc3545');
-					} else{
-						$("#id_feedback").html('사용할 수 있는 아이디입니다.');
-						$("#id_feedback").attr('color','#2fb380');
-						$("#regist").val('Y')
-					} 
-				},
-				error : function(){
-					alert("서버요청실패");
-				}
-			})
-				 
-		})
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}"; 
+	$(document).ajaxSend(function(e, xhr, options) { 
+	    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	  });
 	
-	$("#submit").on("click", function(){
+	$('#username-2').keyup(function(){
+		let m_id = $('#username-2').val();
+			
+		$.ajax({
+			url : "/idChk",
+			type : "post",
+			data : {m_id: m_id},
+			dataType : 'json',
+			success : function(result){
+				if(result == 1){
+					$("#id_feedback").html('이미 사용중인 아이디입니다.');
+					$("#id_feedback").attr('color','#dc3545');
+					$("#regist").val('N')
+				} else{
+					$("#id_feedback").html('사용할 수 있는 아이디입니다.');
+					$("#id_feedback").attr('color','#2fb380');
+					$("#regist").val('Y')
+				} 
+			},
+			error : function(){
+				alert("서버요청실패");
+			}
+		})
+			 
+	})
+})
+$("#submit").on("click", function(){
 		var idChkVal = $("#regist").val();
 		if(idChkVal == "N"){
-			alert("정보를 다시 입력해주세요.");
+			alert("아이디를 다시 입력해주세요.");
 			return false;
-		}else if(idChkVal == "Y"){
+		} else if(idChkVal == "Y"){
 			$("#signupForm").submit();
 		}
-	});
-})
+});
+
 </script>
 <style type="text/css">
  .idChk {
@@ -87,6 +88,8 @@ $(document).ready(function(){
  	display: block !important;
  	margin: auto !important;
  }
+
+ 
 </style>
 
 
@@ -142,7 +145,7 @@ $(document).ready(function(){
 									</label>
 								</div>
 								<div class="row">
-									<button id="regist" type="submit" onclick="passtest" value="N">sign up</button>
+									<button id="regist" type="submit" value="N">sign up</button>
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								</div>
 							</form>

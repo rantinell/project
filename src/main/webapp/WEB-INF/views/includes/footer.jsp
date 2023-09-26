@@ -1,4 +1,4 @@
-<!-- footer section-->
+ <!-- footer section-->
 <footer class="ht-footer">
 	<div class="container">
 		<div class="flex-parent-ft">

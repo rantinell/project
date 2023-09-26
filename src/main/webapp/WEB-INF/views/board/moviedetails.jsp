@@ -11,6 +11,10 @@
     width: 66.66666667%;
   }
 }
+
+.c_point {
+	background-color: white;
+}
 </style>
 
 <script type="text/javascript" src="/resources/js/reply.js"></script>
@@ -19,6 +23,10 @@
 
 	$(document).ready(function(){
 		var operForm = $("#operForm");
+		
+		$('#readonlyRate')
+		  .rating('disable')
+		;
 		
 		$('button[data-oper="modify"]').on("click", function(e){
 			operForm.attr("action", "/movie/modify").submit();
@@ -36,7 +44,6 @@
 		
 		function showList(page){
 			replyService.getList({mi_num:mi_numValue,page:page||1}, function(replyCnt, list){
-				console.log("replyCnt: " + replyCnt);
 				console.log("list: " + list);
 				
 				if(page == -1){
@@ -52,9 +59,9 @@
 				}
 				for(var i=0, len=list.length||0; i<len; i++) {
 					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
-					str+="<h3>작성자: " + list[i].replyer +"</h3>";
-					str+="<div class='no-star'></div>"
-					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].replyDate)+"</p>";
+					str+="<h3>작성자: " + list[i].m_num +"</h3>";
+					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='5'></div></div>"
+					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].c_regdate)+"</p>";
 					str+="</div></div>";
 					str+="<p>" + list[i].comment + "</p>";
 					str+="</div>"
@@ -69,6 +76,7 @@
 		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
 		var modalInputReplyDate = modal.find("input[name='replyDate']");
+		var modalInputRate = modal.find("div[name='c_point']");
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
@@ -292,14 +300,12 @@
 					<div class="movie-rate">
 						<div class="rate">
 							<i class="ion-android-star"></i>
-							<p><span>3.1</span> /5<br>
+							<p><span><c:out value="${movie.mi_total_point}" /></span> /5<br>
 							</p>
 						</div>
 						<div class="rate-star">
 							<p>Rate This Movie:  </p>
-							<c:forEach items="movie" var="movie.rating">
-								<i class="ion-ios-star"></i>
-							</c:forEach>
+							<div class="ui star rating" data-rating="<c:out value="movie.mi_total_point"/>" data-max-rating="5" id="readonlyRate"></div>
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -445,6 +451,9 @@
 			<div class="form-group">
 				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
+			<div class="form-group">
+				<label>Rate (max 5)</label><p><div name="c_point" id="c_point" class="ui star rating" data-rating="5" data-max-rating="5"></div>
+			</div>	
 			<div class="form-group">
 				<label>Comment</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
 			</div>
