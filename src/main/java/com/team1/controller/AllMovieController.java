@@ -95,6 +95,7 @@ public class AllMovieController {
 		return nextPage;
 	}
 
+	//검색 결과 페이지
 	@GetMapping("/search")
 	public String movieSearchList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 
@@ -125,7 +126,7 @@ public class AllMovieController {
 		return nextPage;
 	}
 
-	// 랭크 페이지
+	// 현제 상영 목록 페이지
 	@GetMapping("/now")
 	public String nowPage(Model model) {
 		System.out.println("[AllMovieController] nowPage()");

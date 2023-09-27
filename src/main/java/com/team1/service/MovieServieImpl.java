@@ -85,5 +85,21 @@ public class MovieServieImpl implements MovieService {
 		
 		return movieMapper.getSearchList(cri);
 	}
+
+	@Override
+	public Integer insertMovieDetails(MovieVo movieVo) {
+		
+		log.info("insertMovieDetails........");
+		
+		return movieMapper.insertMovieDetails(movieVo);
+	}
+	
+	@Override
+	public Integer insertMovieInfo(MovieVo movieVo) {
+		
+		log.info("insertMovieInfo........");
+		
+		return movieMapper.insertMovieInfo(movieVo);
+	}
 	
 }

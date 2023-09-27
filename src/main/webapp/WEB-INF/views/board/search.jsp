@@ -28,8 +28,8 @@
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<c:forEach items="${search}" var="movie"> 
                 <div class="movie-item-style-2">    
-                	<%-- <img src="<c:url value="/resources/images/upload/${movie.mi_thumbnail}"/>" style="width: 60%" /> --%>
-                	<img src="<c:url value="/resources/images/uploads/image181.jpg"/>"/>
+                	<img src="<c:url value="/resources/images/uploads/${movie.mi_thumbnail}"/>"/>
+                	<%-- <img src="<c:url value="/resources/images/uploads/image181.jpg" />"/> --%>
                 	<div class="mv-item-infor">                 
 	                    <h6><a href="<c:url  value="/board/movie?id=${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/> <span>(2012)</span></a></h6>
 	                    <p class="rate"><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"/></span> /10</p>

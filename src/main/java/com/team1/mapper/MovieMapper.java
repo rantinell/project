@@ -22,4 +22,7 @@ public interface MovieMapper {
 	public List<MovieVo> getSearchList(Criteria cri);
 	
 	public int getTotal(Criteria cri);
+	
+	public Integer insertMovieDetails(MovieVo movieVo);
+	public Integer insertMovieInfo(MovieVo movieVo);
 }

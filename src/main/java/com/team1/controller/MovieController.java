@@ -11,9 +11,9 @@ public class MovieController {
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index() {
 		
-		System.out.println("[MovieController] index()");
+		System.out.println("[MovieController] main()");
 		
-		String nextPage = "movie/index";
+		String nextPage = "main";
 		
 		return nextPage;
 	}

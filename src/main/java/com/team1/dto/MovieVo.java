@@ -2,6 +2,8 @@ package com.team1.dto;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -25,9 +27,10 @@ public class MovieVo {
 	private Long mi_num;
 //	private long g_num;
 	private String mi_title;
+	private int mi_condition;
 	private float mi_total_point;
-	private String mi_thumbnail;
+	private MultipartFile mi_thumbnail;
 	private Date mi_regDate;
 	private Date mi_updatedate;
-
+	
 }

@@ -29,7 +29,8 @@
 				<div class="flex-wrap-movielist mv-grid-fw">
 					<c:forEach items="${comming}" var="movie">
 						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="/resources/images/uploads/mv1.jpg" alt="">
+							<!-- <img src="/resources/images/uploads/mv1.jpg" alt=""> -->
+							<img src="/resources/images/uploads/${movie.mi_thumbnail}" alt="">
 							<div class="hvr-inner">
 	            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 	            			</div>

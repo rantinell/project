@@ -22,4 +22,8 @@ public interface MovieService {
 
 	public int getTotal(Criteria cri);
 	public List<MovieVo> getSearchList(Criteria cri);
+	
+	//insert
+	public Integer insertMovieDetails(MovieVo movieVo);
+	public Integer insertMovieInfo(MovieVo movieVo);
 }

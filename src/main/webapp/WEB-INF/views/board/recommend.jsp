@@ -28,7 +28,8 @@
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<c:forEach items="${recommend}" var="movie">
 				<div class="movie-item-style-2">
-					<img src="/resources/images/uploads/image181.jpg" alt="">
+					<!-- <img src="/resources/images/uploads/image181.jpg" alt=""> -->
+					<img src="<c:url value="/upload/${movie.mi_thumbnail}"/>"/>
 					<div class="mv-item-infor">
 						<h6><a href="moviesingle_light.html"><c:out value="${movie.mi_title }"/> <span>(2012)</span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"/> </span> /10</p>
