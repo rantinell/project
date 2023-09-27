@@ -100,10 +100,10 @@ $(document).ready(function(){
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">movies<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="/board/ranking" >영화 랭킹</a></li>			
-								<li><a href="/board/nowplaying">상영중</a></li>
-								<li><a href="/board/commingsoon">상영예정</a></li>
-								<li class="it-last"><a href="/board/recommend">추천영화</a></li>
+								<li><a href="/movie/rank" >영화 랭킹</a></li>			
+								<li><a href="/movie/now">상영중</a></li>
+								<li><a href="/movie/comming">상영예정</a></li>
+								<li class="it-last"><a href="/movie/recommend">추천영화</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -126,9 +126,11 @@ $(document).ready(function(){
 	    
 	    <!-- top search form -->
 	    <div class="top-search">
-	    <form id="searchForm" class="searchForm" action="/board/search" method="get">
+	    <form id="searchForm" class="searchForm" action="/movie/search" method="get">
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색하고 싶은 영화제목을 입력 후 엔터키를 누르세요.">
+
 	    	<button type="submit" class="btn btn-default" id="searchBtn">&emsp;&emsp;&emsp;</button>
+
 	    </form>
 	    </div>
 	</div>

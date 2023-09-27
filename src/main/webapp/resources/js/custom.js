@@ -441,6 +441,7 @@ $(function(){
             lightboxprev.attr("title", prev);
         }
     });
+
     // close popup for mobile
     var closebt = $(".close");
    	closebt.on('click', function(e){

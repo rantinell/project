@@ -26,6 +26,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-sm-12 col-xs-12">
+
 			
 			<!-- 반복 시작  -->
 				<c:forEach items="${rankingmovie}" var="rankingmovie"> 
@@ -36,6 +37,7 @@
 	                    <p class="rate"><i class="ion-android-star"></i><span><c:out value="${rankingmovie.mi_total_point}"/></span> /5</p>
 	                    <p class="describe"><c:out value="${rankingmovie.describe}"/></p>
 	                    <p class="run-time"> Run Time: 2h21’    .     <span>심의등급: <c:out value="${rankingmovie.md_grade}"/> </span>    .     <span><c:out value="${rankingmovie.regdate}"/></span></p>
+
 	                </div>
                 </div>
             	</c:forEach>

@@ -469,7 +469,9 @@
     width: 100%;
   }
   .col-md-8 {
+
     width: 100%;
+
   }
   .col-md-7 {
     width: 58.33333333%;
@@ -5657,6 +5659,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
+
 /* 이하 .hero 커스텀 */
 .customhero {
   background-position: center;
@@ -6896,7 +6899,9 @@ p.ceb-single {
   font-weight: 400;
   text-transform: uppercase;
 }
+
 /* .overlay {
+
   background-color: rgba(0, 0, 0, 0.75);
   bottom: 0;
   left: 0;
@@ -7111,6 +7116,7 @@ p.ceb-single {
   border: 1px solid #e1e1e1;
   height: auto;
   background-color: #ffffff;
+
   transform: translate(80%, 0%);
   
 }
@@ -7122,6 +7128,7 @@ p.ceb-single {
   }
 }
  .signup-content h3 {
+
   font-family: 'Dosis', sans-serif;
   font-size: 36px;
   color: #222222;
@@ -7131,11 +7138,13 @@ p.ceb-single {
   text-align: center;
 }
 @media (max-width: 767px) {
+
   .signup-content h3 {
     margin-bottom: 15px;
   }
 }
 .signup-content .remember {
+
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -7150,22 +7159,26 @@ p.ceb-single {
   text-transform: none;
 }
 @media (max-width: 767px) {
+
   .signup-content .remember {
     margin-bottom: 15px;
   }
 }
  .signup-content .remember input[type="checkbox"] {
+
   width: 20px;
   height: 20px;
   border: 1px solid #e1e1e1;
   margin-right: 5px;
   position: relative;
 }
+
 .signup-content .remember span {
   margin-top: 3px;
   position: absolute;
 }
 .signup-content label {
+
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
@@ -7175,26 +7188,33 @@ p.ceb-single {
   margin-bottom: 25px;
 }
 @media (max-width: 767px) {
+
    .signup-content label {
     margin-bottom: 15px;
   }
 }
 .signup-content label input {
+
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
   font-weight: bold;
+
   margin-top: 10px;
   height: 42px;
   border: 1px solid #e1e1e1;
 }
+
  .signup-content label input::-webkit-input-placeholder {
+
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #222222;
   font-weight: bold;
+
 }
  .signup-content button {
+
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #ffffff;
@@ -7208,17 +7228,22 @@ p.ceb-single {
 }
 
  .signup-content p {
+
   color: #222222;
   margin-top: 35px;
   margin-bottom: 20px;
 }
 @media (max-width: 767px) {
+
    .signup-content p {
+
     margin-bottom: 15px;
     margin-top: 15px;
   }
 }
+
  .signup-content .social-btn-2 {
+
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -7226,7 +7251,9 @@ p.ceb-single {
   align-items: center;
   justify-content: space-between;
 }
+
  .signup-content .social-btn-2 a {
+
   width: 50%;
   height: 42px;
   display: -webkit-flex;
@@ -7245,6 +7272,7 @@ p.ceb-single {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
  .signup-content .social-btn-2 a i {
   margin-right: 10px;
 }
@@ -7256,6 +7284,7 @@ p.ceb-single {
   background-color: #00b9ef;
 }
 /* singup content 끝 */
+
 
 .slider {
   background: url('../images/uploads/slider-bg.jpg') no-repeat;
@@ -7517,6 +7546,7 @@ p.ceb-single {
     padding-right: 0;
   }
 }
+
 #status {
   position: relative;
   width: 70px;
@@ -8138,6 +8168,7 @@ header .top-search select {
   text-transform: uppercase;
   color: #ffffff;
 }
+
 header .searchForm {	
   width: 100%;
   border-right: 1px solid #020d18;
@@ -8159,7 +8190,9 @@ header .top-search input::-webkit-input-placeholder {
   color: #abb7c4;
 }
 header .top-search input {
+
  /*  background: url('../images/uploads/topsearch.png') no-repeat right 20px center; */
+
 }
 header #nav-icon1 {
   width: 15px;
