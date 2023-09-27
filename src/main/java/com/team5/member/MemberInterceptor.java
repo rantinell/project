@@ -13,8 +13,8 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		
 		if(session != null) {
-			Object obj = session.getAttribute("loginedMemberVO");
-			if(obj != null)
+			Object object = session.getAttribute("loginedMemberVO");
+			if(object != null)
 				return true;
 		}
 		response.sendRedirect(request.getContextPath()+"/movie/member/loginForm");

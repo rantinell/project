@@ -12,8 +12,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.team5.security.CustomUserDetailsService;
-
 @Component
 public class MemberDAO {
 
@@ -109,13 +107,13 @@ public class MemberDAO {
 		return MemberVOs.size() > 0 ? MemberVOs.get(0) : null;
 	}
 	
-	public int updateMember(MemberVO memberVO) {
+	public int updateMember(MemberVO MemberVO) {
 		System.out.println("updateMember");
-		String sql = "update member set m_name = ?, m_nick = ?, m_tell = ?, m_mail = ? where m_num = ?";
+		String sql = "update member set m_name = ?, m_nick = ?, m_tell = ?, m_mail = ?, m_lev = ? where m_num = ?";
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, memberVO.getM_name(), memberVO.getM_nick(), memberVO.getM_tell(), memberVO.getM_mail(), memberVO.getM_num());
+			result = jdbcTemplate.update(sql, MemberVO.getM_name(), MemberVO.getM_nick(), MemberVO.getM_tell(), MemberVO.getM_mail(), MemberVO.getM_lev());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -135,24 +133,16 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public void setAccount(String m_id) {
-		System.out.println("setAccount");
-		CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
-		customUserDetailsService.loadUserByUsername(m_id);
-	}
-	
-	public int updateAccount(String m_id, String m_lev) {
+	public int updateAccount(Long m_num, String m_lev) {
 		System.out.println("updateAccount");
-		String sql = "update member set m_lev = ? where m_id = ?";
+		String sql = "update member set m_lev = ? where m_num = ?";
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, m_lev, m_id);
+			result = jdbcTemplate.update(sql, m_lev, m_num);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
-		customUserDetailsService.loadUserByUsername(m_id);
 		return result;
 	}
 	

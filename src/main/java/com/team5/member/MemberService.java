@@ -11,15 +11,13 @@ public class MemberService {
 	@Autowired
 	MemberDAO MemberDAO;
 	
-	public int createMember(MemberVO memberVO) {
-		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
+	public int createMember(MemberVO MemberVO) {
+		boolean isMember = MemberDAO.isMember(MemberVO.getM_id());
 		
 		if(!isMember) {
-			int result = MemberDAO.insertMember(memberVO);
-			if(result > 0) {
-				MemberDAO.setAccount(memberVO.getM_id());
+			int result = MemberDAO.insertMember(MemberVO);
+			if(result > 0)
 				return 1; //생성 성공
-			}
 			else
 				return -1; //생성 실패
 		}else {
@@ -27,8 +25,8 @@ public class MemberService {
 		}
 	}
 	
-	public MemberVO login(MemberVO memberVO) {
-		MemberVO loginedMemberVO = MemberDAO.selectMember(memberVO);
+	public MemberVO login(MemberVO MemberVO) {
+		MemberVO loginedMemberVO = MemberDAO.selectMember(MemberVO);
 		
 		if(loginedMemberVO != null)
 			System.out.println("로그인 성공");
@@ -41,16 +39,16 @@ public class MemberService {
 		return MemberDAO.selectMemberByNum(m_num);
 	}
 		
-	public int setAccount(String m_id, String m_lev) {
-		return MemberDAO.updateAccount(m_id, m_lev);
+	public int setAccount(Long m_num, String m_lev) {
+		return MemberDAO.updateAccount(m_num, m_lev);
 	}
 	
 	public int modifyMember(MemberVO memberVO) {
 		return MemberDAO.updateMember(memberVO);
 	}
 	
-	public int updateAccount(String m_id, String m_lev) {
-		return MemberDAO.updateAccount(m_id, m_lev);
+	public int updateAccount(String m_lev, Long m_num) {
+		return MemberDAO.updateAccount(m_num, m_lev);
 	}
 	
 	public int updatePassword(String m_id, String newpw) {
