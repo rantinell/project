@@ -9,7 +9,7 @@
 <!-- movielist_light16:30-->
 <head>
 <!-- Basic need -->
-<title>Open Pediatrics</title>
+<title>Movie</title>
 <meta charset="UTF-8">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -72,14 +72,14 @@
 									<label for="password"> Password: <input type="password" name="password" id="password" required="required" />
 									</label>
 								</div>
-								<div class="row">
+							<!-- 	<div class="row">
 									<div class="remember">
 										<div>
 											<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
 										</div>
 										<a href="#">Forget password ?</a>
 									</div>
-								</div>
+								</div> -->
 								<div class="row">
 									<button type="submit" class="btn-success">Login</button>
 								</div>

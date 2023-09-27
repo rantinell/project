@@ -10,7 +10,7 @@
 <!-- movielist_light16:30-->
 <head>
 <!-- Basic need -->
-<title>Open Pediatrics</title>
+<title>Movie</title>
 <meta charset="UTF-8">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -58,10 +58,12 @@ $(document).ready(function(){
 					$("#id_feedback").html('이미 사용중인 아이디입니다.');
 					$("#id_feedback").attr('color','#dc3545');
 					$("#regist").val('N')
+					$("#regist").attr('disabled', true);
 				} else{
 					$("#id_feedback").html('사용할 수 있는 아이디입니다.');
 					$("#id_feedback").attr('color','#2fb380');
 					$("#regist").val('Y')
+					$("#regist").attr('disabled', false);
 				} 
 			},
 			error : function(){

@@ -37,8 +37,8 @@
 	<script src="/resources/js/custom.js"></script>
 	
 	<!-- sementic ui -->
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/resources/semantic/dist/semantic.min.css">
+	<script src="/resources/semantic/dist/semantic.min.js"></script>
 	
 	
 <script type="text/javascript">
@@ -104,17 +104,6 @@ $(document).ready(function(){
 								<li><a href="/board/nowplaying">상영중</a></li>
 								<li><a href="/board/commingsoon">상영예정</a></li>
 								<li class="it-last"><a href="/board/recommend">추천영화</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01_light.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02_light.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist_light.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle_light.html">celebrity single</a></li>
 							</ul>
 						</li>
 					</ul>

@@ -6,33 +6,33 @@
 <mapper namespace="com.team5.mapper.ReplyMapper">
 
 	<insert id="insert">
-		insert into tbl_reply (rno, bno, reply, replyer)
-		values (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+		insert into test_comment (c_num, mi_num, c_comment, m_num, c_point)
+		values (seq_reply.nextval, #{mi_num}, #{c_comment}, #{m_num}, #{c_point})
 	</insert>
 	
 	<select id="read" resultType="com.team5.domain.ReplyVO">
-		select * from tbl_reply where rno = #{rno}
+		select * from test_comment where c_num = #{c_num}
 	</select>
 	
 	<delete id="delete">
-		delete from tbl_reply where rno = #{rno}
+		delete from test_comment where c_num = #{c_num}
 	</delete>
 
 	<update id="update">
-		update tbl_reply set reply = #{reply}, updatedate = sysdate
-		where rno = #{rno}
+		update test_comment set c_comment = #{c_comment}, updatedate = sysdate, c_point=#{c_point}
+		where c_num = #{c_num}
 	</update>
 
 	<select id="getListWithPaging" resultType="com.team5.domain.ReplyVO">
 		<![CDATA[
-			select rno, bno, reply, replyer, replyDate, updateDate
+			select c_num, mi_num, c_comment, m_num, regDate, updateDate
 			from
 			(
-				select /*+INDEX(tbl_reply idx_reply)*/
-					rownum rn, rno, bno, reply, replyer, replyDate, updateDate
-				from tbl_reply
-				where bno = #{bno}
-				and rno > 0
+				select /*+INDEX(test_comment idx_test_comment)*/
+					rownum rn, c_num, mi_num, c_comment, m_num, regDate, updateDate
+				from test_comment
+				where mi_num = #{mi_num}
+				and c_num > 0
 				and rownum <= #{cri.pageNum} * #{cri.amount}
 			) where rn > (#{cri.pageNum} - 1) * #{cri.amount} 
 		]]>
@@ -40,7 +40,7 @@
 	
 	<select id="getCountByBno" resultType="int">
 		<![CDATA[
-			select count(rno) from tbl_reply where bno = #{bno}
+			select count(c_num) from test_comment where mi_num = #{mi_num}
 		]]>
 	</select>
 	

@@ -115,6 +115,7 @@
 				reply : modalInputReply.val(),
 				replyer : modalInputReplyer.val(),
 				mi_num : mi_numValue
+				c_point: modalInputRate
 			}
 			
 			replyService.add(reply, function(result){
@@ -270,12 +271,8 @@
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
-					<img src="/resources/images/uploads/movie-single.jpg" alt="">
+					<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="">
 					<div class="movie-btn">	
-						<div class="btn-transform transform-vertical red">
-							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
-							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
-						</div>
 						<div class="btn-transform transform-vertical">
 							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
 							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
@@ -286,7 +283,7 @@
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
 				<br>
-					<h1 class="bd-hd">Skyfall: Quantum of Spectre <span>2015</span></h1>
+					<h1 class="bd-hd"><c:out value="${movie.mi_title}"/> <span>2015</span></h1>
 					<div class="social-btn">
 						<sec:authorize access="hasAuthority('3')">
 							<a href="./movieMod" class="parent-btn">영화정보 수정</a>
@@ -319,7 +316,7 @@
 						            <div class="row comnent">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
 						            		<p>Tony Stark creates the Ultron Program to protect the world, but when the peacekeeping program becomes hostile, The Avengers go into action to try and defeat a virtually impossible enemy together. Earth's mightiest heroes must come together once again to protect the world from global extinction.</p>
-											<div class="title-hd-sm comment">
+											<div class="title-hd-sm">
 												<h4>User reviews</h4>
 											</div>
 											<!-- movie user review -->
@@ -346,27 +343,27 @@
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
 						            		<div class="sb-it">
 						            			<h6>감독: </h6>
-						            			<p>Joss Whedon</p>
+						            			<p><c:out value="${movie.md_director}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>배우: </h6>
-						            			<p>Joss Whedon</p>
+						            			<p><c:out value="${movie.md_actor}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>장르: </h6>
-						            			<p>Action</p>
+						            			<p><c:out value="${movie.g_num}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>분류등급:</h6>
-						            			<p>15세</p>
+						            			<p><c:out value="${movie.md_grade}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>개봉여부:</h6>
-						            			<p>상영중</p>
+						            			<p><c:out value="${movie.mi_contition}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>런타임:</h6>
-						            			<p>141 분</p>
+						            			<p><c:out value="${movie.md_runtime}"/></p>
 						            		</div>
 						            	</div>
 						            </div>
@@ -376,13 +373,16 @@
 						            	<div class="rv-hd">
 						            		<div class="div">
 							            		<h3>Related Movies To</h3>
-						       	 				<h2>Skyfall: Quantum of Spectre</h2>
+						       	 				<h2><c:out value="${movie.mi_title}"/></h2>
 							            	</div>
 							            	<sec:authorize access="isAuthenticated()">
 							            	<button id="addComment" class="redbtn">Add Comment</button>
 							            	</sec:authorize>
 						            	</div>
 						            	<div class="comment">
+						            	<!-- 코멘트 리스트 공간  -->
+						            	
+						            	<!-- 위치 확인용 더미 시작 -->
 											<div class="mv-user-review-item">
 												<div class="user-infor">
 													<div>
@@ -406,17 +406,11 @@
 												</div>
 												<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
 											</div>
+										<!-- 위치 확인용 더미 끝 -->	
+											
 										</div>
 										<div class="topbar-filter">
-											<div class="pagination2">
-												<a class="active" href="#">1</a>
-												<a href="#">2</a>
-												<a href="#">3</a>
-												<a href="#">4</a>
-												<a href="#">5</a>
-												<a href="#">6</a>
-												<a href="#"><i class="ion-arrow-right-b"></i></a>
-											</div>
+										<!-- 페이지 버튼  -->
 										</div>	
 										</div>
 										<form id='operForm' action="/movie/modify" method="get">

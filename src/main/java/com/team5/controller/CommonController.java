@@ -93,17 +93,9 @@ public class CommonController {
 	public String postRegister(MemberVO vo) throws Exception {
 		log.info("post signUp....");
 		int result = memberService.idChk(vo.getM_id());
-		try {
-			if(result == 1) {
-				return "/signUp";
-			} else if(result == 0) {
-				vo.setM_pw(pwEncoder.encode(vo.getM_pw()));
-				memberService.signUp(vo);
-			}
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-		return "redirect:/";
+		vo.setM_pw(pwEncoder.encode(vo.getM_pw()));
+		memberService.signUp(vo);
+		return "/";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
