@@ -32,8 +32,12 @@
 		insert into test_member (m_num, m_id, m_pw, m_name, m_tel, m_mail) values (test_seq_member.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, #{m_mail})
 	</insert>
 	
-	<select id="idChk">
+	<select id="idChk" resultType="integer">
 		select count(*) from test_member where m_id = #{m_id}
+	</select>
+	
+	<select id="get" resultType="com.team5.domain.MemberVO">
+		select * from test_member where m_id=${m_id}
 	</select>
 
 </mapper>

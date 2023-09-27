@@ -19,11 +19,17 @@ public class MemberMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
 	
+//	@Test
+//	public void testRead() {
+//		
+//		MemberVO vo = mapper.read("testid49");
+//		log.info(vo);
+//		vo.getAuthList().forEach(authVO -> log.info(authVO));
+//	}
+	
 	@Test
-	public void testRead() {
-		
-		MemberVO vo = mapper.read("testid49");
-		log.info(vo);
-		vo.getAuthList().forEach(authVO -> log.info(authVO));
+	public void testId() {
+		int result = mapper.idChk("testid70");
+		System.out.println(result);
 	}
 }

@@ -19,19 +19,15 @@
  
 	<security:http>
 
-		<security:intercept-url pattern="/sample/all" access="permitAll" />
+		<!-- <security:intercept-url pattern="/" access="permitAll" /> -->
 
-		<security:intercept-url	pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/admin" access="hasAuthority('3')" />
 
-		<security:intercept-url pattern="/sample/manager" access="hasRole('ROLE_MANAGER')" />
-
-		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
-
-		<security:access-denied-handler	ref="customAccessDenied" />
+		<!-- <security:access-denied-handler	ref="customAccessDenied" /> -->
 
 		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccess" />
 
-		<security:logout logout-url="/logout"	invalidate-session="true" />
+		<security:logout logout-url="/logout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
 
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
 

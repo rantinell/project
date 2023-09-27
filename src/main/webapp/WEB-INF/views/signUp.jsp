@@ -10,7 +10,7 @@
 <!-- movielist_light16:30-->
 <head>
 <!-- Basic need -->
-<title>Open Pediatrics</title>
+<title>Movie</title>
 <meta charset="UTF-8">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -23,6 +23,8 @@
 <!-- Mobile specific meta -->
 <meta name=viewport content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone-no">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 
 <!-- CSS files -->
 <link rel="stylesheet" href="/resources/css/plugins.css">
@@ -35,24 +37,63 @@
 <script src="/resources/js/custom.js"></script>
 
 <script type="text/javascript">
-function passtest() {
-    var p1 = document.getElementById('password-2').value;
-    var p2 = document.getElementById('repassword-2').value;
-    
-    if(p1.length < 6) {
-            alert('입력한 글자가 6글자 이상이어야 합니다.');
-            return false;
-        }
-        
-        if( p1 != p2 ) {
-          alert("비밀번호불일치");
-          return false;
-        } else{
-          alert("비밀번호가 일치합니다");
-          return true;
-        }
-  }
+$(document).ready(function(){
+	//아이디 중복검사
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}"; 
+	$(document).ajaxSend(function(e, xhr, options) { 
+	    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	  });
+	
+	$('#username-2').keyup(function(){
+		let m_id = $('#username-2').val();
+			
+		$.ajax({
+			url : "/idChk",
+			type : "post",
+			data : {m_id: m_id},
+			dataType : 'json',
+			success : function(result){
+				if(result == 1){
+					$("#id_feedback").html('이미 사용중인 아이디입니다.');
+					$("#id_feedback").attr('color','#dc3545');
+					$("#regist").val('N')
+					$("#regist").attr('disabled', true);
+				} else{
+					$("#id_feedback").html('사용할 수 있는 아이디입니다.');
+					$("#id_feedback").attr('color','#2fb380');
+					$("#regist").val('Y')
+					$("#regist").attr('disabled', false);
+				} 
+			},
+			error : function(){
+				alert("서버요청실패");
+			}
+		})
+			 
+	})
+})
+$("#submit").on("click", function(){
+		var idChkVal = $("#regist").val();
+		if(idChkVal == "N"){
+			alert("아이디를 다시 입력해주세요.");
+			return false;
+		} else if(idChkVal == "Y"){
+			$("#signupForm").submit();
+		}
+});
+
 </script>
+<style type="text/css">
+ .idChk {
+ 	width: 20% !important;
+ 	display: block !important;
+ 	margin: auto !important;
+ }
+
+ 
+</style>
+
 
 </head>
 <body>
@@ -78,33 +119,36 @@ function passtest() {
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="signup-content">
 							<h3>sign up</h3>
-							<form method="post" action="/signUp" name="signupForm">
+							<form method="post" action="/signUp" name="signupForm" id="signupForm">
 								<div class="row">
-									<label for="username-2"> 아이디 * <input type="text" name="username" id="username-2"required="required" placeholder="사용할 아이디를 입력하세요."/>
+									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
+									<div><font id="id_feedback" size="2"></font></div>
+									</label>
+								</div>
+								<br>
+								<div class="row">
+									<label for="password-2"> 비밀번호 * <input type="password" name="m_pw" id="password-2" required="required" placeholder="비밀번호를 입력하세요." />
 									</label>
 								</div>
 								<div class="row">
-									<label for="password-2"> 비밀번호 * <input type="password" name="password" id="password-2" required="required" placeholder="6자리 이상 입력하세요." />
+									<label for="repassword-2"> 비밀번호 확인 * <input type="password" name="repassword" id="repassword-2" required="required" placeholder="비밀번호를 다시 입력해주세요."/>
 									</label>
 								</div>
 								<div class="row">
-									<label for="repassword-2"> 비밀번호 확인 * <input type="password" name="password" id="repassword-2" required="required" placeholder="비밀번호를 다시 입력해주세요."/>
+									<label for="name-2"> 이름 * <input type="text" name="m_name" id="name-2" required="required" />
 									</label>
 								</div>
 								<div class="row">
-									<label for="name-2"> 이름 * <input type="text" name="name" id="name-2" required="required" />
+									<label for="tel-2"> 전화번호 * <input type="text" name="m_tel" id="tel-2" required="required" />
 									</label>
 								</div>
 								<div class="row">
-									<label for="tel-2"> 전화번호 * <input type="text" name="tel" id="tel-2" required="required" />
+									<label for="email-2"> 이메일 * <input type="text" name="m_mail" id="email-2" required="required" />
 									</label>
 								</div>
 								<div class="row">
-									<label for="email-2"> 이메일 * <input type="text" name="email" id="email-2" required="required" />
-									</label>
-								</div>
-								<div class="row">
-									<button type="button" onclick="passtest">sign up</button>
+									<button id="regist" type="submit" value="N">sign up</button>
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								</div>
 							</form>
 						</div>

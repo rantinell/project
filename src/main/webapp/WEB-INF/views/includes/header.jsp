@@ -15,7 +15,10 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
+	<meta name="_csrf" content="${_csrf.token}">
+	<meta name="_csrf_header" content="${_csrf.headerName}">
 	<link rel="profile" href="#">
+
 
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
@@ -33,6 +36,11 @@
 	<script src="/resources/js/plugins2.js"></script>
 	<script src="/resources/js/custom.js"></script>
 	
+	<!-- sementic ui -->
+	<link rel="stylesheet" type="text/css" href="/resources/semantic/dist/semantic.min.css">
+	<script src="/resources/semantic/dist/semantic.min.js"></script>
+	
+	
 <script type="text/javascript">
 $(document).ready(function(){
 	/* $(function() {
@@ -44,6 +52,9 @@ $(document).ready(function(){
 			}
 		});
 	}); */
+	
+	// All your normal JS code goes in here
+    $(".rating").rating();
 
 	var searchForm = $("#searchForm");
 	
@@ -52,10 +63,10 @@ $(document).ready(function(){
 			alert("키워드를 입력하세요");
 			return false;
 		}
-		searchForm.find("input[name='pageNum']").val("1");
 		e.preventDefault();
 		
 		searchForm.submit();
+	});
 });
 </script>
 
@@ -95,25 +106,17 @@ $(document).ready(function(){
 								<li class="it-last"><a href="/movie/recommend">추천영화</a></li>
 							</ul>
 						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01_light.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02_light.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist_light.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle_light.html">celebrity single</a></li>
-							</ul>
-						</li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">          
-						<li><a href="#">Help</a></li>
 						<sec:authorize access="isAnonymous()">
 							<li class="loginLink"><a href="/login">LOG In</a></li>
 							<li class="btn signupLink"><a href="/signUp">sign up</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
+							<li class="myPage"><a href="/userdetails">My Account</a></li>
+							<sec:authorize access="hasAuthority('3')">
+								<li class="adminLink"><a href="/admin">Admin</a></li>
+							</sec:authorize>
 							<li class="logoutLink"><a href="/logout">LOG Out</a></li>
 						</sec:authorize>	
 					</ul>
@@ -125,9 +128,9 @@ $(document).ready(function(){
 	    <div class="top-search">
 	    <form id="searchForm" class="searchForm" action="/movie/search" method="get">
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색하고 싶은 영화제목을 입력 후 엔터키를 누르세요.">
-	    	<button type="submit" class="btn btn-default" id="searchBtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-	        <%-- <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-	        <input type="hidden" name="amount" value="${pageMaker.cri.amount}"> --%>
+
+	    	<button type="submit" class="btn btn-default" id="searchBtn">&emsp;&emsp;&emsp;</button>
+
 	    </form>
 	    </div>
 	</div>

@@ -26,20 +26,37 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-sm-12 col-xs-12">
-				<c:forEach items="${recommend}" var="movie">
+				
+			<!-- 반복 시작  -->
+			<c:forEach items="recommendmovie">
 				<div class="movie-item-style-2">
-					<!-- <img src="/resources/images/uploads/image181.jpg" alt=""> -->
-					<img src="<c:url value="/upload/${movie.mi_thumbnail}"/>"/>
+					<img src="<c:out value="${recommentmovie.thumbnail}"/>" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle_light.html"><c:out value="${movie.mi_title }"/> <span>(2012)</span></a></h6>
-						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"/> </span> /10</p>
-						<p class="describe"><c:out value="${movie.md_text}"/> Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
-						<p class="run-time"> Run Time: <c:out value="${movie.md_runtime}"/>. <span>상영가 : <c:out value="${movie.md_grade}"/></span>. <span>Release: 1 May 2015</span></p>
-						<p>Director: <a href="#"><c:out value="${movie.md_director}"/> </a></p>
-						<p>Stars: <a href="#"><c:out value="${movie.md_actor}"/> </a></p>
+						<h6><a href="<c:out value="${recommentmovie.mi_nulm}"/>"><c:out value="${recommentmovie.mi_title}"/><span> (2013)  </span></a></h6>
+						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${recommentmovie.mi_total_point}"/></span> /5</p>
+						<p class="describe"><c:out value="${recommentmovie.md_text}"/></p>
+						<p class="run-time"> 런타임: <c:out value="${recommentmovie.md_runtime}"/>’    .     <span>심의등급: <c:out value="${recommentmovie.md_grade}"/> </span></p>
+						<p>Director: <c:out value="${recommentmovie.md_director}"/></p>
+						<p>Stars: <c:out value="${recommentmovie.md_actor}"/></p>
 					</div>
 				</div>
-				</c:forEach>
+			</c:forEach>	
+			<!-- 반복 끝  -->	
+				
+			<!-- 더미 시작  -->	
+				<div class="movie-item-style-2">
+					<img src="/resources/images/uploads/mv5.jpg" alt="">
+					<div class="mv-item-infor">
+						<h6><a href="moviesingle_light.html">skyfall: evil of boss<span> (2013)  </span></a></h6>
+						<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
+						<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span></p>
+						<p>Director: <a href="#">Alan Taylor</a></p>
+						<p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
+					</div>
+				</div>
+			<!-- 더미 끝  -->
+				
 			</div>
 		</div>
 	</div>

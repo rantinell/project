@@ -1,26 +1,18 @@
-<!-- footer section-->
+ <!-- footer section-->
 <footer class="ht-footer">
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="/resources/images/logo1.png" alt=""></a>
+				 <a href="/"><img class="logo" src="/resources/images/logo1.png" alt=""></a>
 			</div>
 			<div class="flex-child-ft item2">
-				<h4>Resources</h4>
+				<h4>Movies</h4>
 				<ul>
 					<li><a href="/">Home</a></li> 
 					<li><a href="/board/ranking">Ranking</a></li>
 					<li><a href="/board/nowplaying">Now Playing</a></li>
 					<li><a href="/board/commingsoon">CommingSoon</a></li>
 					<li><a href="/board/recommend">Recommend</a></li>
-				</ul>
-			</div>
-			<div class="flex-child-ft item3">
-				<h4>Legal</h4>
-				<ul>
-					<li><a href="#">Terms of Use</a></li> 
-					<li><a href="#">Privacy Policy</a></li>	
-					<li><a href="#">Security</a></li>
 				</ul>
 			</div>
 			<div class="flex-child-ft item4">

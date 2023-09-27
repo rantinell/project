@@ -27,19 +27,39 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="flex-wrap-movielist mv-grid-fw">
-					<c:forEach items="${comming}" var="movie">
+
+					
+					<!-- 반복 시작 -->
+					<c:forEach items="commingmovie">
+	            		<div class="movie-item-style-2 movie-item-style-1">
+							<img src="<c:out value="${commingmovie.thumbnail}"/>" alt="">
+							<div class="hvr-inner">
+	            				<a  href="<c:out value="${commingmovie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="<c:out value="${commingmovie.mi_num}"/>"><c:out value="${commingmovie.mi_title}"/></a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span><c:out value="${commingmovie.mi_total_point}"/></span> /5</p>
+							</div>
+						</div>	
+					</c:forEach>	
+					<!-- 반복 끝 -->
+					
+					<!-- 더미 시작 -->					
 						<div class="movie-item-style-2 movie-item-style-1">
-							<!-- <img src="/resources/images/uploads/mv1.jpg" alt=""> -->
-							<img src="/resources/images/uploads/${movie.mi_thumbnail}" alt="">
+							<img src="/resources/images/uploads/mv2.jpg" alt="">
+
 							<div class="hvr-inner">
 	            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 	            			</div>
 							<div class="mv-item-infor">
-								<h6><a href="#"><c:out value="${movie.mi_title }"></c:out></a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"></c:out> </span> /10</p>
+
+								<h6><a href="#">into the wild</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>2.8</span> /5</p>
 							</div>
-						</div>					
-					</c:forEach>
+						</div>
+					<!-- 더미 끝 -->	
+					
+
 				</div>		
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.team5.domain.BoardVO;
 import com.team5.domain.Criteria;
@@ -34,6 +35,14 @@ public class BoardServiceImpl implements BoardService {
 	public int getTotal(Criteria cri) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Transactional
+	@Override
+	public boolean modify(BoardVO board) {
+		// TODO Auto-generated method stub
+		log.info("modify........................" + board);
+		return false;
 	}
 
 }
