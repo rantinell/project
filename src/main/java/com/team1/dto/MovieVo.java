@@ -32,5 +32,6 @@ public class MovieVo {
 	private MultipartFile mi_thumbnail;
 	private Date mi_regDate;
 	private Date mi_updatedate;
+//	private String fileName = mi_thumbnail.getOriginalFilename();
 	
 }

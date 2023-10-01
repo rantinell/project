@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.team1.dto.AttachFileDTO;
 import com.team1.dto.MovieVo;
 import com.team1.service.MovieService;
 
@@ -67,6 +66,7 @@ public class UploadController {
 		log.info(movieVo.getMd_runtime());
 		log.info(movieVo.getMd_actor());
 		log.info(movieVo.getMi_thumbnail());
+//		log.info(movieVo.getFileName());
 
 		String uploadFolder = "C:\\springMVC_STS\\project\\project\\src\\main\\webapp\\resources\\images\\poster";
 
@@ -82,8 +82,8 @@ public class UploadController {
 			log.error(e.getMessage());
 		}
 
-//		service.insertMovieInfo(movieVo);
-//		service.insertMovieDetails(movieVo);
+		service.insertMovieInfo(movieVo);
+		service.insertMovieDetails(movieVo);
 
 		return "redirect:/movie";
 	}

@@ -67,7 +67,7 @@
 
 	<insert id="insertMovieInfo">
 		insert into test_movie_info(mi_num, mi_title, mi_condition, g_num, mi_thumbnail)
-			   values(test_seq_movie.nextval, #{mi_title}, #{mi_condition}, #{g_num}, #{mi_thumbnail})
+			   values(test_seq_movie.nextval, #{mi_title}, #{fileName}, #{g_num}, #{mi_thumbnail})
 	</insert>
 		
 	<insert id="insertMovieDetails">
