@@ -108,7 +108,7 @@ public class MovieServieImpl implements MovieService {
 	
 	
 	
-	//수정씨 추가부분
+	//영현씨 추가부분
 //	@Setter(onMethod_ = @Autowired)
 //	private MovieMapper movieMapper;
 	

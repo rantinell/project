@@ -12,7 +12,7 @@
 				<div class="hero-ct">
 					<h1>Admin Page</h1>
 					<ul class="breadcumb">
-						<li class="active"><a href="/">Home</a></li>
+						<li class="active"><a href="/movie">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>admin</li>
 					</ul>
 				</div>
@@ -32,7 +32,7 @@
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
 					<div class="tab-content">
-						<form action="/" class="tab active" method="post" id="movieRegist">
+						<form action="/movie/insertMovie" class="tab active" method="post" id="movieRegist" enctype="multipart/form-data">
 							<h4>01. 영화등록 </h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
@@ -78,7 +78,8 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png">
+									<!-- <input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png"> -->
+									<input type="file" name="fileName" accept="image/gif, image/jpeg, image/png, image/jpg" multiple>
 								</div>
 							</div>
 							<br>

@@ -17,8 +17,7 @@ public interface MovieRepository  {
 
     void deleteByMovieId(Long movieId);
     
-    //랭크 리스트도 필요한 rk
-    
+    //랭크 리스트도 필요한 rk 
     List<MovieDTO> getRankList();  
 
 

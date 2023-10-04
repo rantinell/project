@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.team1.dto.MovieVo;
 import com.team1.dto.PageDTO;
 import com.team1.dto.Criteria;
-import com.team1.dto.MemberVo;
-import com.team1.service.MemberService;
+import com.team1.dto.MemberVO;
 import com.team1.service.MovieService;
 
 import lombok.extern.log4j.Log4j;
@@ -31,9 +30,6 @@ public class AllMovieController {
 
 	@Autowired
 	private MovieService service;
-
-	@Autowired
-	private MemberService memberService;
 
 	// 랭크 페이지
 	@GetMapping("/rank")
@@ -76,11 +72,11 @@ public class AllMovieController {
 
 	// 추천영화 페이지
 	@GetMapping("/recommend")
-	public String recommendPage(MemberVo member, Model model) {
+	public String recommendPage(MemberVO member, Model model) {
 		System.out.println("[AllMovieController] RecommendPage()");
 
-		List<MovieVo> list = service.getRecommendList(2);
-//		List<MovieVo> list = service.getRecommendList(member.getG_num());
+//		List<MovieVo> list = service.getRecommendList(2);
+		List<MovieVo> list = service.getRecommendList(member.getG_num());
 
 		model.addAttribute("recommend", list);
 

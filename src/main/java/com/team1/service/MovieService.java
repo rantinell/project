@@ -6,9 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team1.dto.MovieVo;
-import com.team1.dto.MovieDTO;
 import com.team1.dto.Criteria;
-import com.team1.dto.MemberVo;
 
 public interface MovieService {
 	
@@ -31,24 +29,24 @@ public interface MovieService {
 	public Integer insertMovieDetails(MovieVo movieVo);
 	public Integer insertMovieInfo(MovieVo movieVo);
 	
-	//수정씨 추가부분
-	public List<MovieDTO> getMovieList();
+	//영현씨 추가부분
+	public List<MovieVo> getMovieList();
 	
-//	List<MovieDTO> getRankList();
+//	List<MovieVo> getRankList();
 	
-	List<MovieDTO> getAllMovieList();
+	List<MovieVo> getAllMovieList();
 	
-	List<MovieDTO> getMovieListByCategory(String category);	
+	List<MovieVo> getMovieListByCategory(String category);	
 	
-	List<MovieDTO> getMovieListByFilter(Map<String, List<String>> filter);		
+	List<MovieVo> getMovieListByFilter(Map<String, List<String>> filter);		
 	 
-	List<MovieDTO> getMovieById(String MovieId);
+	List<MovieVo> getMovieById(String MovieId);
 	
-	List<MovieDTO> setNewMovie(MovieDTO movieDTO);
+	List<MovieVo> setNewMovie(MovieVo movieVo);
 	
-	List<MovieDTO> setUpdateMovie(MovieDTO movieDTO);
+	List<MovieVo> setUpdateMovie(MovieVo movieVo);
 	
-	List<MovieDTO> setDeleteMovie(String movieID);
+	List<MovieVo> setDeleteMovie(String movieID);
 
-	List<MovieDTO> getScreeningList();
+	List<MovieVo> getScreeningList();
 }

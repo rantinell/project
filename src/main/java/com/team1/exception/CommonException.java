@@ -1,4 +1,4 @@
-package com.team2.movie.exception;
+package com.team1.exception;
 
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
