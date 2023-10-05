@@ -82,6 +82,9 @@
 								</div> -->
 								<div class="row">
 									<button type="submit" class="btn-success">Login</button>
+								</div><br>
+								<div class="row">
+									<a href="/signUp" >SignUp</a>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</form>
