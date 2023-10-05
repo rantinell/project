@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.team1.dto.MovieVo;
 import com.team1.dto.Criteria;
-import com.team1.dto.MemberVo;
 import com.team1.mapper.MovieMapper;
-import com.team1.dto.MovieDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,6 +17,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
+@Primary
 public class MovieServieImpl implements MovieService {
 	
 	@Setter(onMethod_ = @Autowired)
@@ -113,7 +113,7 @@ public class MovieServieImpl implements MovieService {
 //	private MovieMapper movieMapper;
 	
 	@Override
-	public List<MovieDTO> getAllMovieList() {
+	public List<MovieVo> getAllMovieList() {
 		// TODO Auto-generated method stub
 		
 		log.info("getAllMovieList.....");
@@ -135,7 +135,7 @@ public class MovieServieImpl implements MovieService {
 	
 
 	@Override
-	public List<MovieDTO> getMovieListByCategory(String category) {
+	public List<MovieVo> getMovieListByCategory(String category) {
 		// TODO Auto-generated method stub
 		
 		log.info("category.....");
@@ -145,7 +145,7 @@ public class MovieServieImpl implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> getMovieListByFilter(Map<String, List<String>> filter) {
+	public List<MovieVo> getMovieListByFilter(Map<String, List<String>> filter) {
 		// TODO Auto-generated method stub
 		
 		log.info("getMovieListByFilter.....");
@@ -156,7 +156,7 @@ public class MovieServieImpl implements MovieService {
 	
 
 	@Override
-	public List<MovieDTO> getMovieList() {
+	public List<MovieVo> getMovieList() {
 		// TODO Auto-generated method stub
 		
 		log.info("getMovieList.....");
@@ -166,7 +166,7 @@ public class MovieServieImpl implements MovieService {
 
 
 	@Override
-	public List<MovieDTO> getMovieById(String movieId) {
+	public List<MovieVo> getMovieById(String movieId) {
 		// TODO Auto-generated method stub
 		
 		log.info("getMovieById.....");
@@ -176,7 +176,7 @@ public class MovieServieImpl implements MovieService {
 	
 	// 내가 필요한 부분이 아닌거 같음
 	@Override
-	public List<MovieDTO> setNewMovie(MovieDTO movieDTO) {
+	public List<MovieVo> setNewMovie(MovieVo movieVo) {
 		// TODO Auto-generated method stub
 		log.info("setNewMovie.....");
 		
@@ -185,7 +185,7 @@ public class MovieServieImpl implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> setUpdateMovie(MovieDTO movieDTO) {
+	public List<MovieVo> setUpdateMovie(MovieVo movieVo) {
 		// TODO Auto-generated method stub
 		log.info("setUpdateMovie.....");
 		
@@ -193,7 +193,7 @@ public class MovieServieImpl implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> setDeleteMovie(String movieID) {
+	public List<MovieVo> setDeleteMovie(String movieID) {
 		// TODO Auto-generated method stub
 		log.info("setDeleteMovie.....");
 		
@@ -202,7 +202,7 @@ public class MovieServieImpl implements MovieService {
 
 
 	@Override
-	public List<MovieDTO> getScreeningList() {
+	public List<MovieVo> getScreeningList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -6,19 +6,20 @@
 						http://www.springframework.org/schema/security/spring-security.xsd
 						http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="customAccessDenied" class="com.team1.security.CustomAccessDeniedHandler" ></bean>
+	
+	<bean id="customLoginSuccess" class="com.team1.security.CustomLoginSuccessHandler" ></bean>
 
-	<bean id="customAccessDenied" class="com.team1.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess" class="com.team1.security.CustomLoginSuccessHandler"></bean>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" ></bean>
 
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-
-	<bean id="customUserDetailsService" class="com.team1.security.CustomUserDetailsService"></bean>
+	<bean id="customUserDetailsService" class="com.team1.security.CustomUserDetailsService" ></bean>
 
  
 	<security:http>
 
 		<!-- <security:intercept-url pattern="/movie/home" access="permitAll" /> -->
-		<security:intercept-url pattern="/movie" access="permitAll" />
+		<security:intercept-url pattern="/movie/home" access="permitAll" />
 
 		<!-- <security:intercept-url	pattern="/movie/member/home" access="hasRole('ROLE_MEMBER')" /> -->
 		<security:intercept-url	pattern="/movie/member" access="hasRole('ROLE_MEMBER')" />
@@ -27,7 +28,7 @@
 
 		<security:intercept-url pattern="/movie/admin" access="hasRole('ROLE_ADMIN')" />
 
-		<security:access-denied-handler	ref="CustomAccessDeniedHandler" />
+	<!-- 	<security:access-denied-handler	ref="customAccessDeniedHandler" /> -->
 
 		<security:form-login login-page="/customLogin"/>
 

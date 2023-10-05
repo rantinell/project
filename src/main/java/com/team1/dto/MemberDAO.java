@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.team5.security.CustomUserDetailsService;
+import com.team1.security.CustomUserDetailsService;
 
 @Component
 public class MemberDAO {

@@ -34,19 +34,20 @@ public interface MovieService {
 	
 //	List<MovieVo> getRankList();
 	
-	List<MovieVo> getAllMovieList();
+	public List<MovieVo> getAllMovieList();
 	
-	List<MovieVo> getMovieListByCategory(String category);	
+	public List<MovieVo> getMovieListByCategory(String category);	
 	
-	List<MovieVo> getMovieListByFilter(Map<String, List<String>> filter);		
+	public List<MovieVo> getMovieListByFilter(Map<String, List<String>> filter);		
 	 
-	List<MovieVo> getMovieById(String MovieId);
+	public List<MovieVo> getMovieById(String MovieId);
 	
-	List<MovieVo> setNewMovie(MovieVo movieVo);
+	public List<MovieVo> setNewMovie(MovieVo movieVo);
 	
-	List<MovieVo> setUpdateMovie(MovieVo movieVo);
+	public List<MovieVo> setUpdateMovie(MovieVo movieVo);
 	
-	List<MovieVo> setDeleteMovie(String movieID);
+	public List<MovieVo> setDeleteMovie(String movieID);
 
-	List<MovieVo> getScreeningList();
+	public List<MovieVo> getScreeningList();
+	
 }

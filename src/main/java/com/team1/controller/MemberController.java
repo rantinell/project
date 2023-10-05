@@ -16,36 +16,41 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/movie/member")
+@RequestMapping("/movie/*")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
 	
 	@GetMapping("/createMemberForm")
-	public void createMemberForm() {
+	public String createMemberForm() {
 		log.info("create member.....");
+		return "signUp";
 	}
 	
-	@PostMapping("/createMember")
+	@PostMapping(value = "/signUp")
 	public String createMember(MemberVO memberVO) {
-		String nextPage = "movie/member/loginForm";
+		log.info("signUp");
+		String nextPage = "movie/loginForm";
 		
 		int result = memberService.createMember(memberVO);
-		if(result<0)
-			nextPage = "create_member_failed";
+		log.info(result);
+		if(result<0) {
+			nextPage = "movie/sigeUp";
+		}
 		
 		return nextPage;
 	}
 	
 	@GetMapping("/loginForm")
-	public void loginForm() {
+	public String loginForm() {
 		log.info("login.....");
+		return "login";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping(value = "/login")
 	public String Longin(MemberVO memberVO, HttpSession session) {
-		String nextPage="movie/member/home";
+		String nextPage="movie/member";
 		MemberVO loginedMemberVO = memberService.login(memberVO);
 		
 		if(loginedMemberVO == null) {
@@ -57,21 +62,28 @@ public class MemberController {
 		return nextPage;
 	}
 	
+	@GetMapping("/home")
+	public String home() {
+		log.info("movie home");
+		return "main";
+	}
+	
 	@GetMapping("/memberInfo")
-	public void memberInfo(HttpSession session) {
+	public String memberInfo(HttpSession session) {
 		log.info("member info.....");
 		MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
+		return "userdetails";
 	}
 	
-	@GetMapping("/modifyMemberForm")
-	public void modifyMemberForm(HttpSession session) {		
-		log.info("modify member.....");
-		MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
-	}
+	/* userdetails 페이지에서 정보 수정
+	 * @GetMapping("/modifyMemberForm") public void modifyMemberForm(HttpSession
+	 * session) { log.info("modify member....."); MemberVO loginedMemberVO =
+	 * (MemberVO) session.getAttribute("loginedMemberVO"); }
+	 */
 	
-	@PostMapping("/modifyMember")
+	@PostMapping("/memberInfo")
 	public String modifyMember(MemberVO memberVO, HttpSession session) {
-		String nextPage = "movie/member/memberInfo";
+		String nextPage = "userdetails";
 		
 		int result = memberService.modifyMember(memberVO);
 		
@@ -80,9 +92,10 @@ public class MemberController {
 			
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
-		}else {
+		}else { 
 			nextPage = "movie/member/modifyFailed";
-		}
+			}
+			 
 		return nextPage;
 	}
 	

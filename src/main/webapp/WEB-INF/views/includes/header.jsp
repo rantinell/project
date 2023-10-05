@@ -109,8 +109,8 @@ $(document).ready(function(){
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">          
 						<sec:authorize access="isAnonymous()">
-							<li class="loginLink"><a href="/login">LOG In</a></li>
-							<li class="btn signupLink"><a href="/signUp">sign up</a></li>
+							<li class="loginLink"><a href="/movie/loginForm">LOG In</a></li>
+							<li class="btn signupLink"><a href="/movie/createMemberForm">sign up</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 							<li class="myPage"><a href="/userdetails">My Account</a></li>

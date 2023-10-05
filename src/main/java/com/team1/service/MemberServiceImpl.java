@@ -1,13 +1,15 @@
 package com.team1.service;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import com.team1.controller.MemberController;
 import com.team1.dto.MemberDAO;
 import com.team1.dto.MemberVO;
 
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
@@ -15,6 +17,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int createMember(MemberVO memberVO) {
+		log.info("create member:");
 		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
 
 		if(!isMember) {
@@ -33,7 +36,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO login(MemberVO memberVO) {
 		MemberVO loginedMemberVO = MemberDAO.selectMember(memberVO);
-
+		log.info(memberVO);
 		if(loginedMemberVO != null)
 			System.out.println("로그인 성공");
 		else

@@ -61,9 +61,9 @@
 		</if>
 	</select>
 	
-	<select id="getMemberList" resultType="com.team1.dto.MemberVo">
+	<!-- <select id="getMemberList" resultType="com.team1.dto.MemberVo">
 		select * from test_member
-	</select>
+	</select> -->
 
 	<insert id="insertMovieInfo">
 		insert into test_movie_info(mi_num, mi_title, mi_condition, g_num, mi_thumbnail)
@@ -74,45 +74,5 @@
 		insert into test_movie_details(md_num, mi_num, g_num, md_director, md_actor, md_text, md_runtime, md_grade)
 			   values(test_seq.nextval, test_seq_movie.currval, #{g_num}, #{md_director}, #{md_actor}, #{md_text}, #{md_runtime}, #{md_grade})
 	</insert>
-	
-	
-	<!-- 영현씨 추가 -->
-	<select id="getMovieList" resultType="com.team1.dto.MemberVo">
 
-		select * from test_movie_details details
-		full outer join test_movie_info info on details.mi_num = info.mi_num
-		full outer join test_movie_genre genre on info.g_num = genre.g_num
-		where info.mi_condition = 0
-
-	</select>
-
-	<select id="getRankList" resultType="com.team1.dto.MemberVo">
-
-		select * from test_movie_details details
-		full outer join test_movie_info info on details.mi_num = info.mi_num
-		full outer join test_movie_genre genre on info.g_num = genre.g_num
-		where info.mi_condition = 0
-		order by info.mi_total_point desc
-	
-	</select>
-
-
-	<select id="getCommingList"	resultType="com.team1.dto.MemberVo">
-
-		select * from test_movie_details details
-		full outer join test_movie_info info on details.mi_num = info.mi_num
-		full outer join test_movie_genre genre on info.g_num = genre.g_num
-		where info.mi_condition = 1
-
-	</select>
-
-	<select id="getRecommendList" resultType="com.team1.dto.MemberVo">
-
-		select * from test_movie_details details
-		full outer join test_movie_info info on details.mi_num = info.mi_num
-		full outer join test_movie_genre genre on info.g_num = genre.g_num
-		where genre.g_num = #{g_num}
-		order by info.mi_total_point desc
-		
-	</select>
 </mapper>

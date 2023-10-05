@@ -29,14 +29,14 @@ import lombok.extern.log4j.Log4j;
 public class AllMovieController {
 
 	@Autowired
-	private MovieService service;
+	private MovieService movieService;
 
 	// 랭크 페이지
 	@GetMapping("/rank")
 	public String rankPage(Model model) {
 		System.out.println("[AllMovieController] RackPage()");
 
-		List<MovieVo> list = service.getRankList();
+		List<MovieVo> list = movieService.getRankList();
 
 		model.addAttribute("rank", list);
 
@@ -55,7 +55,7 @@ public class AllMovieController {
 	public String commingPage(Model model) {
 		System.out.println("[AllMovieController] commingPage()");
 
-		List<MovieVo> list = service.getCommingList();
+		List<MovieVo> list = movieService.getCommingList();
 
 		model.addAttribute("comming", list);
 
@@ -75,8 +75,8 @@ public class AllMovieController {
 	public String recommendPage(MemberVO member, Model model) {
 		System.out.println("[AllMovieController] RecommendPage()");
 
-//		List<MovieVo> list = service.getRecommendList(2);
-		List<MovieVo> list = service.getRecommendList(member.getG_num());
+//		List<MovieVo> list = movieService.getRecommendList(2);
+		List<MovieVo> list = movieService.getRecommendList(member.getG_num());
 
 		model.addAttribute("recommend", list);
 
@@ -97,14 +97,14 @@ public class AllMovieController {
 
 		log.info("[AllMoviecontroller] movieSearchList()");
 
-		model.addAttribute("search", service.getSearchList(cri));
+		model.addAttribute("search", movieService.getSearchList(cri));
 
-		List<MovieVo> list = service.getSearchList(cri);
+		List<MovieVo> list = movieService.getSearchList(cri);
 		for (MovieVo movieVo : list) {
 			log.info(movieVo);
 		}
 
-		int total = service.getTotal(cri);
+		int total = movieService.getTotal(cri);
 		log.info("total : " + total);
 
 //		PageDTO pageMaker = new PageDTO(cri, 5);
@@ -127,7 +127,7 @@ public class AllMovieController {
 	public String nowPage(Model model) {
 		System.out.println("[AllMovieController] nowPage()");
 
-		List<MovieVo> list = service.getMovieList();
+		List<MovieVo> list = movieService.getMovieList();
 
 		model.addAttribute("now", list);
 

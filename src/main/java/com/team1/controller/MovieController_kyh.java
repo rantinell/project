@@ -27,20 +27,29 @@ import com.team1.dto.MovieVo;
 import com.team1.exception.CategoryException;
 import com.team1.service.MovieService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
-//@RequestMapping("/movie")
+@RequestMapping("/movie")
+@Log4j
 public class MovieController_kyh {
 
     @Autowired
     private MovieService movieService;  
 
-    @GetMapping()
+    //랭킹
+    @GetMapping
     public String requestMovieList(Model model) { 
         List<MovieVo> list = movieService.getAllMovieList();
+        
+        for(MovieVo mVo : list) {
+        	log.info(mVo);
+        }
         model.addAttribute("movieList", list);  
-        return "movies"; 
+        return "main"; 
     } 
 
+    //현재 상형중
     @GetMapping("/all")  
     public ModelAndView requestAllMovies() {
         ModelAndView modelAndView = new ModelAndView();  
@@ -50,54 +59,58 @@ public class MovieController_kyh {
         return modelAndView; 
     }
     
-    @GetMapping("/{category}") 
-    public String requestMoviesByCategory(@PathVariable("category") String movieCategory, Model model) {  
-        List<MovieVo> moviesByCategory =movieService.getMovieListByCategory(movieCategory);  
-        
-        if (moviesByCategory == null || moviesByCategory.isEmpty()) {
-            throw new CategoryException();
-        }
-        
-        model.addAttribute("movieList", moviesByCategory);  
-        return "movies";   
-    }
+	/*
+	 * @GetMapping("/{category}") public String
+	 * requestMoviesByCategory(@PathVariable("category") String movieCategory, Model
+	 * model) { List<MovieVo> moviesByCategory
+	 * =movieService.getMovieListByCategory(movieCategory);
+	 * 
+	 * if (moviesByCategory == null || moviesByCategory.isEmpty()) { throw new
+	 * CategoryException(); }
+	 * 
+	 * model.addAttribute("movieList", moviesByCategory); return "movies"; }
+	 */
     
-    @GetMapping("/filter/{movieFilter}")
-    public String requestMoviesByFilter(
-    @MatrixVariable(pathVar="movieFilter") Map<String,List<String>> movieFilter, 
-    Model model) {
-        List<MovieVo> moviesByFilter = movieService.getMovieListByFilter(movieFilter);
-        model.addAttribute("movieList", moviesByFilter);
-        return "movies";
-    }
     
-    @GetMapping("/movie")
-    public String requestMovieById(@RequestParam("id") String movieId, Model model) {  
-    	List<MovieVo> movieById = movieService.getMovieById(movieId);
-        model.addAttribute("movie", movieById );
-        return "movie";
-    }
+	/*
+	 * @GetMapping("/filter/{movieFilter}") public String requestMoviesByFilter(
+	 * 
+	 * @MatrixVariable(pathVar="movieFilter") Map<String,List<String>> movieFilter,
+	 * Model model) { List<MovieVo> moviesByFilter =
+	 * movieService.getMovieListByFilter(movieFilter);
+	 * model.addAttribute("movieList", moviesByFilter); return "movies"; }
+	 */
+    
+    
+	/*
+	 * @GetMapping("/movie") public String requestMovieById(@RequestParam("id")
+	 * String movieId, Model model) { List<MovieVo> movieById =
+	 * movieService.getMovieById(movieId); model.addAttribute("movie", movieById );
+	 * return "movie"; }
+	 */
 
+    //영화등록
     @GetMapping("/add")  
     public String requestAddMovieForm(@ModelAttribute("NewMovie") MovieVo movieVo) {  
         return "addMovie";
     }  
-
+    
     @ModelAttribute  
     public void addAttributes(Model model) { 
         model.addAttribute("addTitle", "신규 영화 등록");  
     }
     
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-    	
-    	//binder.setValidator(unitsInStockValidator);  // 생성한 unitsInStockValidator 설정
-//    	 binder.setValidator(movieValidator);  
-        binder.setAllowedFields("movieId","name","unitPrice","author", "description", 
-        "publisher","category","unitsInStock","totalPages", "releaseDate", "condition", "movieImage"); 
-    }
+	/*
+	 * @InitBinder public void initBinder(WebDataBinder binder) {
+	 * 
+	 * //binder.setValidator(unitsInStockValidator); // 생성한 unitsInStockValidator 설정
+	 * //binder.setValidator(movieValidator);
+	 * binder.setAllowedFields("movieId","name","unitPrice","author", "description",
+	 * "publisher","category","unitsInStock","totalPages", "releaseDate",
+	 * "condition", "movieImage"); }
+	 */
     
-    
+    //영화 업데이트(보류)
     @GetMapping("/update")  
     public String getUpdateMovieForm(@ModelAttribute("updateMovie") MovieVo movieVo, @RequestParam("id") String movieId, Model model) {
     	List<MovieVo> movieById = movieService.getMovieById(movieId);
@@ -105,7 +118,7 @@ public class MovieController_kyh {
         return "updateForm";
     }  
  
-    
+    //영화 업데이트 삭제(보류)
     @RequestMapping(value = "/delete") 
     public String getDeleteMovieForm(Model model, @RequestParam("id") String movieId) {
     	movieService.setDeleteMovie(movieId);
