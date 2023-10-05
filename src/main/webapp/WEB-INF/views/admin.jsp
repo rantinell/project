@@ -12,7 +12,7 @@
 				<div class="hero-ct">
 					<h1>Admin Page</h1>
 					<ul class="breadcumb">
-						<li class="active"><a href="/movie">Home</a></li>
+						<li class="active"><a href="/">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>admin</li>
 					</ul>
 				</div>
@@ -32,7 +32,7 @@
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
 					<div class="tab-content">
-						<form action="/movie/insertMovie" class="tab active" method="post" id="movieRegist" enctype="multipart/form-data">
+						<form action="/" class="tab active" method="post" id="movieRegist">
 							<h4>01. 영화등록 </h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
@@ -78,8 +78,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<!-- <input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png"> -->
-									<input type="file" name="fileName" accept="image/gif, image/jpeg, image/png, image/jpg" multiple>
+									<input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png">
 								</div>
 							</div>
 							<br>
@@ -91,7 +90,7 @@
 						</form>
 				
 						<form action="#" class="userManagement tab" id="userManagement">
-							<c:forEach items="member" var="member">
+							<c:forEach items="member">
 								<h4>02. 회원관리</h4>
 								<div class="row">
 									<div class="col-md-2 form-it">
@@ -104,13 +103,17 @@
 									</div>
 									<div class="col-md-2 form-it">
 										<label>닉네임</label>
-										<input type="text" name="m_nick" value="<c:out value="{member.m_nick}"/>" readonly="readonly">
+										<input type="text" name="m_nick" value="<c:out value="{member.m_nick}"/>">
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2 form-it">
+										<label>회원등급</label>
+										<input type="text" name="m_lev" value="<c:out value="{member.m_lev}"/>">
+									</div>
+									<div class="col-md-2">
 										<label>회원변경</label>
 										<input class="submit modifyUser" type="submit" value="변경" id="modifyUser">
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<label>회원삭제</label>
 										<input class="submit deleteUser" type="submit" value="삭제" id="deleteUser">
 									</div>
