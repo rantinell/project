@@ -31,16 +31,16 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 		log.warn("ROLE NAMES: "+roleNames);
 		if(roleNames.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/movie/admin");
+			response.sendRedirect("/smaple/admin");
 			return;
 		}
 		if(roleNames.contains("ROLE_MANAGER")) {
-			response.sendRedirect("/movie/manager");
+			response.sendRedirect("/sample/manager");
 			return;
 		}
 		if(roleNames.contains("ROLE_MEMBER")) {
 //			response.sendRedirect("/movie/member/home");
-			response.sendRedirect("/movie");
+			response.sendRedirect("/sample/member");
 			return;
 		}
 		response.sendRedirect("/");

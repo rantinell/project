@@ -16,5 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="m_name" column="m_name"/>
 		<result property="m_lev" column="m_lev"/>
 	</resultMap>
+	
+	<select id="isMember" resultType = "boolean">
+		select if(count(*) = 1, 1, 0) from test_member where m_id = #{m_id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into test_member(m_num, m_id, m_pw, m_name, m_tel, m_mail, g_num)
+		values (test_seq_member.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, #{m_mail}, #{g_num})
+	</insert>
 
 </mapper>

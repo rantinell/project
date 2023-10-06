@@ -12,7 +12,7 @@
   }
 }
 
-.c_point {
+#c_point {
 	background-color: white;
 }
 </style>
@@ -23,6 +23,19 @@
 
 	$(document).ready(function(){
 		var operForm = $("#operForm");
+		
+		function getRating() {
+		    var currentRating = $('.c_point').rating('get rating');
+		}
+
+		// Add javascript here
+		$('.c_point')
+		    .rating({
+		        onRate: getRating
+		    });
+
+		getRating();
+		
 		
 		$('#readonlyRate')
 		  .rating('disable')
@@ -76,7 +89,8 @@
 		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
 		var modalInputReplyDate = modal.find("input[name='replyDate']");
-		var modalInputRate = modal.find("div[name='c_point']");
+		//var modalInputRate = $('.ui.rating');
+		var modalInputRate = getRating();
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
@@ -96,7 +110,6 @@
 			modalInputReplyDate.closest("div").hide();
 			modal.find("button[id != 'modalCloseBtn']").hide();
 			modalRegisterBtn.show();
-			//modalInputReplyer.removeAttr("readonly");
 			modal.modal("show");
 		});
 		
@@ -112,9 +125,9 @@
 		
 		modalRegisterBtn.on("click", function(e){
 			var reply = {
-				reply : modalInputReply.val(),
-				replyer : modalInputReplyer.val(),
-				mi_num : mi_numValue
+				c_comment : modalInputReply.val(),
+				m_id : modalInputReplyer.val(),
+				mi_num : mi_numValue,
 				c_point: modalInputRate
 			}
 			
@@ -132,8 +145,8 @@
 			replyService.get(c_num, function(reply){
 				modalInputReply.val(reply.reply);
 				modalInputReplyDate.closest("div").show();
-				//modalInputReplyer.val(reply.replyer).attr("readonly", "readonly");
 				modalInputReplyer.val(reply.replyer);
+				modalInputRate.rating({initialRating: reply.c_point , maxRating: 5});
 				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
 				modal.data("c_num", reply.c_num);
 				modal.find("button[id != 'modalCloseBtn']").hide();
@@ -149,6 +162,7 @@
 			
 			var reply = {c_num:modal.data("c_num"),
 										reply: modalInputReply.val(),
+										c_point: $('.ui.rating').rating('get rating'),
 										replyer: originalReplyer};
 			
 			if(!replyer){
@@ -446,7 +460,7 @@
 				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 			<div class="form-group">
-				<label>Rate (max 5)</label><p><div name="c_point" id="c_point" class="ui star rating" data-rating="5" data-max-rating="5"></div>
+				<label>Rate (max 5)</label><p><div name="c_point" id="c_point" class="ui massive star rating" data-max-rating="5"></div>
 			</div>	
 			<div class="form-group">
 				<label>Comment</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
@@ -458,7 +472,7 @@
 				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 		</div>
-		<div class="modal-footer">
+		<div class="actions">
 			<button id='modalModBtn' type='button' class='ui inverted primary button'>Modify</button>
 			<button id='modalRemoveBtn' type='button' class='ui inverted negative button'>Remove</button>
 			<button id='modalRegisterBtn' type='button' class='ui inverted positive button'>Register</button>

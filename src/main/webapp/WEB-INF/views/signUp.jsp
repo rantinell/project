@@ -105,7 +105,7 @@ $("#submit").on("click", function(){
 						<div class="hero-ct">
 							<h1>Sign Up Page</h1>
 							<ul class="breadcumb">
-								<li class="active"><a href="/">Home</a></li>
+								<li class="active"><a href="/movie">Home</a></li>
 								<li><span class="ion-ios-arrow-right"></span> sign up</li>
 							</ul>
 						</div>
@@ -119,7 +119,7 @@ $("#submit").on("click", function(){
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="signup-content">
 							<h3>sign up</h3>
-							<form method="post" action="/movie/loginForm" name="signupForm" id="signupForm">
+							<form method="post" action="/movie/signUp" name="signupForm" id="signupForm">
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
 									<div><font id="id_feedback" size="2"></font></div>
@@ -147,7 +147,11 @@ $("#submit").on("click", function(){
 									</label>
 								</div>
 								<div class="row">
-									<button id="regist" type="submit" value="N">sign up</button>
+									<label for="genre-2"> 선호장르 * <input type="text" name="g_num" id="genre-2" required="required" />
+									</label>
+								</div>
+								<div class="row">
+									<button id="regist" type="submit">sign up</button>
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								</div>
 							</form>

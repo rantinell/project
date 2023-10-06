@@ -23,7 +23,7 @@ public class MemberDAO {
 	
 	public boolean isMember(String m_id) {
 		System.out.println("isMember");
-		String sql = "select count(*) from member where m_id = ?";
+		String sql = "select count(*) from test_member where m_id = ?";
 		
 		int result = jdbcTemplate.queryForObject(sql, Integer.class, m_id);
 		System.out.println(result);
@@ -32,13 +32,16 @@ public class MemberDAO {
 	
 	public int insertMember(MemberVO MemberVO) {
 		System.out.println("insertMember");
-		String sql = "insert into member(m_num, m_id, m_pw, m_name, m_tell"
-				+ "m_mail, m_lev) values (seq_mem, ?, ?, ?, ?, ?, ?)";
+//		String sql = "insert into member(m_num, m_id, m_pw, m_name, m_tel"
+//				+ "m_mail, m_lev) values (seq_mem, ?, ?, ?, ?, ?, ?)";
+		
+		String sql = "insert into test_member(m_num, m_id, m_pw, m_name, m_tel, m_mail, g_num) " + 
+					 "values (test_seq_member.nextval, ?, ?, ?, ?, ?, ?)";
 		
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tell(), MemberVO.getM_mail());
+			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail(), MemberVO.getG_num());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,7 +50,7 @@ public class MemberDAO {
 	
 	public MemberVO selectMember(MemberVO memberVO) {
 		System.out.println("selectMember");
-		String sql = "select * from member where m_id = ?";
+		String sql = "select * from test_member where m_id = ?";
 		
 		List<MemberVO> MemberVOs = new ArrayList<MemberVO>();
 		
@@ -61,7 +64,7 @@ public class MemberDAO {
 					memberVO.setM_id(rs.getString("m_id"));
 					memberVO.setM_pw(rs.getString("m_pw"));
 					memberVO.setM_name(rs.getString("m_name"));
-					memberVO.setM_tell(rs.getString("m_tell"));
+					memberVO.setM_tel(rs.getString("m_tel"));
 					memberVO.setM_mail(rs.getString("m_mail"));
 					memberVO.setM_lev(rs.getString("m_lev"));
 					
@@ -79,7 +82,7 @@ public class MemberDAO {
 	
 	public MemberVO selectMemberByNum(Long m_num) {
 		System.out.println("selectMember_num");
-		String sql = "select * from member where m_num = ?";
+		String sql = "select * from test_member where m_num = ?";
 		
 		List<MemberVO> MemberVOs = new ArrayList<MemberVO>();
 		
@@ -92,7 +95,7 @@ public class MemberDAO {
 					memberVO.setM_id(rs.getString("m_id"));
 					memberVO.setM_pw(rs.getString("m_pw"));
 					memberVO.setM_name(rs.getString("m_name"));
-					memberVO.setM_tell(rs.getString("m_tell"));
+					memberVO.setM_tel(rs.getString("m_tel"));
 					memberVO.setM_mail(rs.getString("m_mail"));
 					memberVO.setM_lev(rs.getString("m_lev"));
 					
@@ -108,11 +111,11 @@ public class MemberDAO {
 
 	public int updateMember(MemberVO memberVO) {
 		System.out.println("updateMember");
-		String sql = "update member set m_name = ?, m_nick = ?, m_tell = ?, m_mail = ? where m_num = ?";
+		String sql = "update test_member set m_name = ?, m_nick = ?, m_tel = ?, m_mail = ? where m_num = ?";
 		int result = -1;
 
 		try {
-			result = jdbcTemplate.update(sql, memberVO.getM_name(), memberVO.getM_nick(), memberVO.getM_tell(), memberVO.getM_mail(), memberVO.getM_num());
+			result = jdbcTemplate.update(sql, memberVO.getM_name(), memberVO.getM_nick(), memberVO.getM_tel(), memberVO.getM_mail(), memberVO.getM_num());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -121,7 +124,7 @@ public class MemberDAO {
 	
 	public int updatePassword(String m_id, String newPw) {
 		System.out.println("updatePassword");
-		String sql = "update member set m_pw = ? where m_id = ?";
+		String sql = "update test_member set m_pw = ? where m_id = ?";
 		int result = -1;
 		
 		try {
@@ -140,7 +143,7 @@ public class MemberDAO {
 
 	public int updateAccount(String m_id, String m_lev) {
 		System.out.println("updateAccount");
-		String sql = "update member set m_lev = ? where m_id = ?";
+		String sql = "update test_member set m_lev = ? where m_id = ?";
 		int result = -1;
 
 		try {

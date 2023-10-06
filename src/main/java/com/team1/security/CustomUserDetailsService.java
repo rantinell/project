@@ -26,18 +26,18 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 		log.warn("Load User By UserName: "+username);
 		MemberVO vo = memberMapper.read(username);
-
+		log.info(vo);
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		if(vo.getM_lev()=="1") {
+		if(vo.getM_lev().equals("1")) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
-		}else if(vo.getM_lev()=="2") {
+		}else if(vo.getM_lev().equals("2")) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-		}else if(vo.getM_lev()=="3") {
+		}else{
 			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}
-
+		log.info(authorities);
 		vo.setAuthList(authorities);
-
+		log.info(vo.getAuthList());
 		return vo == null ? null : new CustomUser(vo);
 	}
 }

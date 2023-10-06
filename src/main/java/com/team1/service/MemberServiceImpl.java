@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 //import com.team1.controller.MemberController;
 import com.team1.dto.MemberDAO;
 import com.team1.dto.MemberVO;
+import com.team1.mapper.MemberMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -14,14 +15,20 @@ import lombok.extern.log4j.Log4j;
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDAO MemberDAO;
+	
+	@Autowired
+	MemberMapper mapper;
 
 	@Override
 	public int createMember(MemberVO memberVO) {
-		log.info("create member:");
-		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
+		
+		log.info("create member:" + memberVO);
+//		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
+		boolean isMember = mapper.isMember(memberVO.getM_id());
 
 		if(!isMember) {
-			int result = MemberDAO.insertMember(memberVO);
+//			int result = MemberDAO.insertMember(memberVO);
+			int result = mapper.insertMember(memberVO);
 			if(result > 0) {
 				MemberDAO.setAccount(memberVO.getM_id());
 				return 1; //생성 성공

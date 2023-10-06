@@ -48,7 +48,7 @@
 						<div class="hero-ct">
 							<h1>Login Page</h1>
 							<ul class="breadcumb">
-								<li class="active"><a href="/">Home</a></li>
+								<li class="active"><a href="/movie">Home</a></li>
 								<li><span class="ion-ios-arrow-right"></span> login</li>
 							</ul>
 						</div>
@@ -62,14 +62,14 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
 							<h3>Login</h3>
-							<form method="post" action="/movie">
+							<form method="post" action="/movie/login">
 								<div class="row">
-									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
+									<label for="username"> ID: <input type="text" name="m_id" id="username" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
-									<label for="password"> Password: <input type="password" name="password" id="password" required="required" />
+									<label for="password"> Password: <input type="password" name="m_pw" id="password" required="required" />
 									</label>
 								</div>
 							<!-- 	<div class="row">
@@ -84,7 +84,7 @@
 									<button type="submit" class="btn-success">Login</button>
 								</div><br>
 								<div class="row">
-									<a href="/signUp" >SignUp</a>
+									<a href="/movie/createMemberForm" >SignUp</a>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</form>

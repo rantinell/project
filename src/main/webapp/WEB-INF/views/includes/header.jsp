@@ -115,9 +115,9 @@ $(document).ready(function(){
 						<sec:authorize access="isAuthenticated()">
 							<li class="myPage"><a href="/userdetails">My Account</a></li>
 							<sec:authorize access="hasAuthority('3')">
-								<li class="adminLink"><a href="/admin">Admin</a></li>
+								<li class="adminLink"><a href="/movie/admin">Admin</a></li>
 							</sec:authorize>
-							<li class="logoutLink"><a href="/logout">LOG Out</a></li>
+							<li class="logoutLink"><a href="/movie/logout">LOG Out</a></li>
 						</sec:authorize>	
 					</ul>
 				</div>
