@@ -26,11 +26,11 @@ public interface MovieMapper {
 	//영현씨 추가부분
 	public List<MovieVo> getMovieList_dto();
 	
-	public List<MovieVo> getcategory();
+//	public List<MovieVo> getcategory();
 
 	public List<MovieVo> getMovieById();
 
-	public List<MovieVo> getMovieListByFilter();
+//	public List<MovieVo> getMovieListByFilter();
 
 	public List<MovieVo> setNewMovie();
 

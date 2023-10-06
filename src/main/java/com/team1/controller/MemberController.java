@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team1.dto.MemberVO;
 import com.team1.service.MemberService;
@@ -42,7 +43,8 @@ public class MemberController {
 		return nextPage;
 	}
 	
-	@GetMapping("/loginForm")
+//	@GetMapping(value = "/loginForm")
+	@RequestMapping(value = "/loginForm", method = {RequestMethod.POST, RequestMethod.GET})
 	public String loginForm() {
 		log.info("login.....");
 		return "login";
@@ -50,7 +52,7 @@ public class MemberController {
 	
 	@PostMapping(value = "/login")
 	public String Longin(MemberVO memberVO, HttpSession session) {
-		String nextPage="movie/member";
+		String nextPage="login";
 		MemberVO loginedMemberVO = memberService.login(memberVO);
 		
 		if(loginedMemberVO == null) {

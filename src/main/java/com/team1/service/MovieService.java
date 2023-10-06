@@ -13,7 +13,7 @@ public interface MovieService {
 //	public MovieVo getMovie(Long md_num);
 //	public Test getTest(Long id);
 	
-//	public List<MovieVo> getMovieList();
+	public List<MovieVo> getMovieList();
 	
 	public List<MovieVo> getRankList();
 	
@@ -28,26 +28,5 @@ public interface MovieService {
 	//insert
 	public Integer insertMovieDetails(MovieVo movieVo);
 	public Integer insertMovieInfo(MovieVo movieVo);
-	
-	//영현씨 추가부분
-	public List<MovieVo> getMovieList();
-	
-//	List<MovieVo> getRankList();
-	
-	public List<MovieVo> getAllMovieList();
-	
-	public List<MovieVo> getMovieListByCategory(String category);	
-	
-	public List<MovieVo> getMovieListByFilter(Map<String, List<String>> filter);		
-	 
-	public List<MovieVo> getMovieById(String MovieId);
-	
-	public List<MovieVo> setNewMovie(MovieVo movieVo);
-	
-	public List<MovieVo> setUpdateMovie(MovieVo movieVo);
-	
-	public List<MovieVo> setDeleteMovie(String movieID);
-
-	public List<MovieVo> getScreeningList();
 	
 }

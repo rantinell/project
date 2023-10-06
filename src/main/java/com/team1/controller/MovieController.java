@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/movie")
 public class MovieController {
 	
-	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String index() {
 		
 		System.out.println("[MovieController] main()");

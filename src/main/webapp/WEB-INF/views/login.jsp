@@ -62,7 +62,7 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
 							<h3>Login</h3>
-							<form method="post" action="/login">
+							<form method="post" action="/movie">
 								<div class="row">
 									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
 									</label>

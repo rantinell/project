@@ -119,7 +119,7 @@ $("#submit").on("click", function(){
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="signup-content">
 							<h3>sign up</h3>
-							<form method="post" action="/movie/signUp" name="signupForm" id="signupForm">
+							<form method="post" action="/movie/loginForm" name="signupForm" id="signupForm">
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
 									<div><font id="id_feedback" size="2"></font></div>
