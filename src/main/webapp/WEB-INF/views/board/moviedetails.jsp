@@ -47,7 +47,7 @@
 		
 		$('button[data-oper="list"]').on("click", function(e){
 			operForm.find("#m_num").remove();
-			operForm.attr("action", "/movie/list").submit();
+			operForm.attr("action", '/movie/"${movie.mi_num}"').submit();
 		});
 		
 		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
@@ -283,6 +283,7 @@
 <div class="page-single movie-single movie_single">
 	<div class="container">
 		<div class="row ipad-width2">
+		
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
 					<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="">
@@ -440,6 +441,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
+	
 	private Long c_num;
 	private Long mi_num;
 	private Long m_num;
@@ -13,6 +14,7 @@ public class ReplyVO {
 	private int c_point;
 	private Date regDate;
 	private Date updateDate;
-	// 임시
+
+	// 회원 아이디
 	private String m_id;
 }
