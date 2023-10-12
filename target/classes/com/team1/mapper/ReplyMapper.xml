@@ -45,11 +45,9 @@
 	</select>
 	
 	<select id="getMovieDetails" resultType="com.team1.dto.ReplyVO">
-		select * from test_movie_details details
-         			 full outer join test_movie_info info on details.mi_num = info.mi_num
-         			 full outer join test_movie_genre genre on info.g_num = genre.g_num
-                     inner join test_comment on info.mi_num = test_comment.mi_num
-                     where details.mi_num = #{mi_num}
+		select * from test_comment comments
+                inner join test_member member on comments.m_num = member.m_num
+                where comments.mi_num = #{mi_num}
 	</select>
 	
 </mapper>

@@ -78,7 +78,8 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png" multiple>
+									<!-- <input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png" multiple> -->
+									<input type="file" name="fileName" accept="image/gif, image/jpeg, image/png" multiple>
 								</div>
 							</div>
 							<br>

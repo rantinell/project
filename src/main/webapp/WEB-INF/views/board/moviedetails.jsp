@@ -56,7 +56,7 @@
 		showList(1);
 		
 		function showList(page){
-			replyService.getList({mi_num:mi_numValue,page:page||1}, function(replyCnt, list){
+			replyService.getList({mi_num:mi_numValue, page:page||1}, function(replyCnt, list){
 				console.log("list: " + list);
 				
 				if(page == -1){
@@ -286,7 +286,7 @@
 		
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
-					<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="">
+					<img src="<c:url value="/resources/images/uploads/${movie.mi_thumbnail}"/>">
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical">
 							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
@@ -374,7 +374,7 @@
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>개봉여부:</h6>
-						            			<p><c:out value="${movie.mi_contition}"/></p>
+						            			<p><c:out value="${movie.mi_condition}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>런타임:</h6>
@@ -387,13 +387,14 @@
 						           <div class="row">
 						            	<div class="rv-hd">
 						            		<div class="div">
-							            		<h3>Related Movies To</h3>
-						       	 				<h2><c:out value="${movie.mi_title}"/></h2>
+						            			<h3>Related Movies To</h3>
+							            		<h2><c:out value="${movie.mi_title}" /></h2>
 							            	</div>
 							            	<sec:authorize access="isAuthenticated()">
 							            	<button id="addComment" class="redbtn">Add Comment</button>
 							            	</sec:authorize>
 						            	</div>
+						            	<c:forEach items="${comment}" var="comment">
 						            	<div class="comment">
 						            	<!-- 코멘트 리스트 공간  -->
 						            	
@@ -401,7 +402,7 @@
 											<div class="mv-user-review-item">
 												<div class="user-infor">
 													<div>
-														<h3>작성자: hawaiipierson</h3>
+														<h3>작성자: <c:out value="${comment.m_id}" /></h3>
 														<div class="no-star">
 															<i class="ion-android-star"></i>
 															<i class="ion-android-star"></i>
@@ -415,21 +416,22 @@
 															<i class="ion-android-star last"></i>
 														</div>
 														<p class="time">
-															등록일: 2016년 12월 17일
+															등록일: <c:out value="${comment.c_regdate}" />
 														</p>
 													</div>
 												</div>
-												<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
+												<p><c:out value="${comment.c_comment}" /></p>
 											</div>
 										<!-- 위치 확인용 더미 끝 -->	
 											
 										</div>
+										</c:forEach>
 										<div class="topbar-filter">
 										<!-- 페이지 버튼  -->
 										</div>	
 										</div>
 										<form id='operForm' action="/movie/modify" method="get">
-					 						<input type='hidden' id='m_num' name='m_num' value='<c:out value="${movie.m_num}"/>'>
+					 						<%-- <input type='hidden' id='m_num' name='m_num' value='<c:out value="${comment.m_num}"/>'> --%>
 					         				<input type='hidden' id="md_num" name="md_num" value='<c:out value="${movie.md_num}"/>'/>
 					 						<%-- <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 					 						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>

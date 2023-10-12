@@ -65,12 +65,14 @@ public class UploadController {
 		log.info(movieVo.getG_num());
 		log.info(movieVo.getMd_runtime());
 		log.info(movieVo.getMd_actor());
-		log.info(movieVo.getMi_thumbnail());
-//		log.info(movieVo.getFileName());
+//		log.info(movieVo.getMi_thumbnail());
+		log.info(movieVo.getFileName());
 
-		String uploadFolder = "C:\\springMVC_STS\\project\\project\\src\\main\\webapp\\resources\\images\\poster";
+		String uploadFolder = "C:\\Users\\sdedu\\git\\project\\src\\main\\webapp\\resources\\images\\poster";
 
-		MultipartFile multipartFile = movieVo.getMi_thumbnail();
+		
+		
+		MultipartFile multipartFile = movieVo.getFileName();
 
 		log.info("file name : " + multipartFile.getOriginalFilename());
 		log.info("file size : " + multipartFile.getSize());
@@ -82,7 +84,9 @@ public class UploadController {
 			log.error(e.getMessage());
 		}
 
+		log.info("insertMovieInfo....");
 		service.insertMovieInfo(movieVo);
+		log.info("insertMovieDetails....");
 		service.insertMovieDetails(movieVo);
 
 		return "redirect:/movie";

@@ -89,7 +89,7 @@ public class MovieServieImpl implements MovieService {
 	}
 
 	@Override
-	public Integer insertMovieDetails(MovieVo movieVo) {
+	public MovieVo insertMovieDetails(MovieVo movieVo) {
 		
 		log.info("insertMovieDetails........");
 		
@@ -97,13 +97,22 @@ public class MovieServieImpl implements MovieService {
 	}
 	
 	@Override
-	public Integer insertMovieInfo(MovieVo movieVo) {
+	public MovieVo insertMovieInfo(MovieVo movieVo) {
 		
 		log.info("insertMovieInfo........");
-		String fileName = movieVo.getMi_thumbnail().getOriginalFilename();
+		String originFileName = movieVo.getFileName().getOriginalFilename();
+		log.info(originFileName);
 		
 		
-		return movieMapper.insertMovieInfo(movieVo, fileName);
+		return movieMapper.insertMovieInfo(movieVo, originFileName);
+	}
+
+	@Override
+	public MovieVo getMovieDetails(Long mi_num) {
+
+		log.info("getMovieDetails.......");
+		
+		return movieMapper.getMovieDetails(mi_num);
 	}
 	
 

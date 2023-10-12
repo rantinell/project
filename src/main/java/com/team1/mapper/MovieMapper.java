@@ -20,8 +20,10 @@ public interface MovieMapper {
 	
 	public int getTotal(Criteria cri);
 	
-	public Integer insertMovieDetails(MovieVo movieVo);
-	public Integer insertMovieInfo(MovieVo movieVo, String fileName);
+	public MovieVo insertMovieDetails(MovieVo movieVo);
+	public MovieVo insertMovieInfo(MovieVo movieVo, String originFileName);
+	
+	public MovieVo getMovieDetails(Long mi_num);
 	
 	//영현씨 추가부분
 	public List<MovieVo> getMovieList_dto();
@@ -37,4 +39,6 @@ public interface MovieMapper {
 	public List<MovieVo> setUpdateMovie();
 
 	public List<MovieVo> setDeleteMovie();
+
+	
 }
