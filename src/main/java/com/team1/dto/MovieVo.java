@@ -29,9 +29,9 @@ public class MovieVo {
 	private String mi_title;
 	private int mi_condition;
 	private float mi_total_point;
-	private MultipartFile mi_thumbnail;
+	private String mi_thumbnail;
 	private Date mi_regDate;
 	private Date mi_updatedate;
-//	private String fileName = mi_thumbnail.getOriginalFilename();
+	private MultipartFile fileName;
 	
 }

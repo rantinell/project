@@ -38,7 +38,7 @@ public class AllMovieController {
 
 		List<MovieVo> list = movieService.getRankList();
 
-		model.addAttribute("rank", list);
+		model.addAttribute("rankingmovie", list);
 
 //		 나중에 주석처리 
 		for (MovieVo movieVo : list) {

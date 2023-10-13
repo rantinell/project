@@ -32,7 +32,7 @@
 	    		<!-- 위치 확인용 더미 (실제 컨트롤러에서 받아올시 삭제! 이하 더미 동일)  -->
 	    		<div class="movie-item">
 	    			<div class="mv-img">
-	    				<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="" width="285" height="437">
+	    				<img src="<c:url value="/resources/images/uploads/${movie.mi_thumbnail}"/>" alt="" width="285" height="437">
 	    			</div>
 	    			<div class="title-in">
 	    				<div class="cate">
@@ -67,7 +67,7 @@
 			<div class="col-md-8">
 				<div class="title-hd">
 					<h2>in theater</h2>
-					<a href="/board/nowplaying" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+					<a href="/movie/now" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
 				</div>
 				<div class="tabs">
 					<ul class="tab-links">                        
@@ -78,18 +78,18 @@
 				            	<div class="slick-multiItem">
 				            	
 				            		<!-- 슬라이드 반복 시작 -->
-				            		<c:forEach items="movie">
+				            		<c:forEach items="${now}" var="now">
 				            		<div class="slide-it">
 				            			<div class="movie-item">
 					            			<div class="mv-img">
-					            				<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="" width="185" height="284">
+					            				<img src="<c:url value="/resources/images/uploads/${now.mi_thumbnail}"/>" alt="" width="185" height="284">
 					            			</div>
 					            			<div class="hvr-inner">
-					            				<a  href=<c:out value="${movie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a href="<c:out value="${now.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="<c:out value="${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/></a></h6>
-					            				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_totla_point}"/></span> /5</p>
+					            				<h6><a href="<c:out value="${now.mi_num}"/>"><c:out value="${now.mi_title}"/></a></h6>
+					            				<p><i class="ion-android-star"></i><span><c:out value="${now.mi_total_point}"/></span> /10</p>
 					            			</div>
 					            		</div>
 				            		</div>
@@ -148,7 +148,7 @@
 				</div>
 				<div class="title-hd">
 					<h2>CommingSoon</h2>
-					<a href="/board/commingsoon" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+					<a href="/movie/comming" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
 				</div>
 				<div class="tabs">
 					<ul class="tab-links">                        
@@ -159,18 +159,18 @@
 				            	<div class="slick-multiItem">
 				            		
 								<!-- 슬라이드 반복 시작 -->
-								<c:forEach items="movie">
+								<c:forEach items="${comming}" var="comming">
 				            		<div class="slide-it">
 				            			<div class="movie-item">
 					            			<div class="mv-img">
-					            				<img src="<c:out value="${movie.thumbnail} "/>" alt="" width="185" height="284">
+					            				<img src="<c:url value="/resources/images/uploads/${comming.mi_thumbnail}"/>" alt="" width="185" height="284">
 					            			</div>
 					            			<div class="hvr-inner">
-					            				<a  href="<c:out value="${movie.mi_num }"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a  href="<c:out value="${comming.mi_num }"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="<c:out value="${movie.mi_num }"/>">Die hard</a></h6>
-					            				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point }"/></span> /5</p>
+					            				<h6><a href="<c:out value="${comming.mi_num }"/>">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span><c:out value="${comming.mi_total_point }"/></span> /5</p>
 					            			</div>
 					            		</div>
 				            		</div>
