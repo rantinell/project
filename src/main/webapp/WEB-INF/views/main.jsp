@@ -10,20 +10,20 @@
 <div class="slider movie-items">
 	<div class="container">
 		<div class="row">
-	    	<div  class="slick-multiItemSlider">
+	    	<div class="slick-multiItemSlider">
 	    	
 	    	<!-- 슬라이드 반복 시작 -->
-	    		<c:forEach items="${movie}" var="movie">
+	    		<c:forEach items="${rankingmovie}" var="movie">
 	    		<div class="movie-item">
 	    			<div class="mv-img">
-	    				<img src="<c:out value="${movie.mi_thumbnail}"/>" alt="" width="285" height="437">
+	    				<img src="<c:url value="/resources/images/uploads/${movie.mi_thumbnail}"/>" alt="" width="285" height="437">
 	    			</div>
 	    			<div class="title-in">
 	    				<div class="cate">
 	    					<span class="green">comedy</span>
 	    				</div>
 	    				<h6><a href="<c:out value="${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/></a></h6>
-	    				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point} }"></c:out></span> /5</p>
+	    				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"></c:out></span> /5</p>
 	    			</div>
 	    		</div>
 	    		</c:forEach>
@@ -85,7 +85,7 @@
 					            				<img src="<c:url value="/resources/images/uploads/${now.mi_thumbnail}"/>" alt="" width="185" height="284">
 					            			</div>
 					            			<div class="hvr-inner">
-					            				<a href="<c:out value="${now.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a href="<c:out value="/reply/${now.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
 					            				<h6><a href="<c:out value="${now.mi_num}"/>"><c:out value="${now.mi_title}"/></a></h6>

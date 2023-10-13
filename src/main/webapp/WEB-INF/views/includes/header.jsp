@@ -1,3 +1,4 @@
+<%@ page import="com.team1.dto.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -37,8 +38,8 @@
 	<script src="/resources/js/custom.js"></script>
 	
 	<!-- sementic ui -->
-	<link rel="stylesheet" type="text/css" href="/resources/semantic/dist/semantic.min.css">
-	<script src="/resources/semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/resources/rating/rating.min.css">
+	<script src="/resources/rating/rating.min.js"></script>
 	
 	
 <script type="text/javascript">
@@ -71,6 +72,9 @@ $(document).ready(function(){
 </script>
 
 </head>
+<%
+MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
+%>
 <body>
 <!-- BEGIN | Header -->
 <header class="ht-header">
@@ -95,7 +99,7 @@ $(document).ready(function(){
 							<a href="#page-top"></a>
 						</li>
 						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" href="/">Home </a>
+							<a class="btn btn-default dropdown-toggle lv1" href="/main">Home </a>
 						</li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">movies<i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -107,18 +111,28 @@ $(document).ready(function(){
 							</ul>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">          
-						<sec:authorize access="isAnonymous()">
-							<li class="loginLink"><a href="/movie/loginForm">LOG In</a></li>
-							<li class="btn signupLink"><a href="/movie/createMemberForm">sign up</a></li>
-						</sec:authorize>
+					<ul class="nav navbar-nav flex-child-menu menu-right">
+						<%-- <%
+							MemberVO loginedMemberVo = (MemberVO) session.getAttribute("loginedMemberVo");
+							if (loginedMemberVo != null) {
+							%> --%>
 						<sec:authorize access="isAuthenticated()">
-							<li class="myPage"><a href="/userdetails">My Account</a></li>
+							<li class="myPage"><a href="/movie/memberInfo">My Account</a></li>
 							<sec:authorize access="hasAuthority('3')">
 								<li class="adminLink"><a href="/movie/admin">Admin</a></li>
 							</sec:authorize>
 							<li class="logoutLink"><a href="/movie/logout">LOG Out</a></li>
-						</sec:authorize>	
+						</sec:authorize>
+						<%-- <%
+							} else {
+							%> --%>
+							<sec:authorize access="isAnonymous()">
+							<li class="loginLink"><a href="/movie/member/loginForm">LOG In</a></li>
+							<li class="btn signupLink"><a href="/movie/member/createMemberForm">sign up</a></li>
+							</sec:authorize>
+						<%-- <%
+							}
+							%>	 --%>
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->

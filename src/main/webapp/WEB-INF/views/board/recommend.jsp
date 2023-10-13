@@ -30,9 +30,9 @@
 			<!-- 반복 시작  -->
 			<c:forEach items="recommendmovie">
 				<div class="movie-item-style-2">
-					<img src="<c:out value="${recommentmovie.thumbnail}"/>" alt="">
+					<img src="<c:out value="${recommentmovie.mi_thumbnail}"/>" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="<c:out value="${recommentmovie.mi_nulm}"/>"><c:out value="${recommentmovie.mi_title}"/><span> (2013)  </span></a></h6>
+						<h6><a href="<c:out value="${recommentmovie.mi_num}"/>"><c:out value="${recommentmovie.mi_title}"/><span> (2013)  </span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${recommentmovie.mi_total_point}"/></span> /5</p>
 						<p class="describe"><c:out value="${recommentmovie.md_text}"/></p>
 						<p class="run-time"> 런타임: <c:out value="${recommentmovie.md_runtime}"/>’    .     <span>심의등급: <c:out value="${recommentmovie.md_grade}"/> </span></p>

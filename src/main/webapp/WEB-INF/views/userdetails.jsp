@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
      
 <%@ include file="includes/header.jsp"%>
 
 <script type="text/javascript">
-function remove(m_id, m_pw, callback, errorfn) {
+/* function remove(m_id, m_pw, callback, errorfn) {
 	$.ajax({
 		type : 'delete',
 		url : '/삭제url /' + m_id,
@@ -23,17 +23,23 @@ function remove(m_id, m_pw, callback, errorfn) {
 		}
 	});	
 }
-
+ */
 </script>
+<c:set var ="m_id" value="${loginedMemberVO.m_id}" /> 
   
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1><c:out value="${member.m_id}"/> 's profile</h1>
+					<%-- <% out.print("<h1>"+"${loginedMemberVO.m_id}"+ "'s profile</h1>"); %> --%>
+					<%-- <h1>${m_id}'s profile</h1> --%>
+					<sec:authorize access="isAuthenticated()">
+					<h1>로그인한 사람만 보입니다.</h1>
+					<h1>${m_id}'s profile</h1>
+					</sec:authorize>
 					<ul class="breadcumb">
-						<li class="active"><a href="/">Home</a></li>
+						<li class="active"><a href="/movie">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>Profile</li>
 					</ul>
 				</div>
@@ -55,17 +61,17 @@ function remove(m_id, m_pw, callback, errorfn) {
 							</div>
 							<div class="col-md-6 form-it">
 								<label>이메일</label>
-								<input type="text" name=m_mail value='<c:out value="${member.m_mail}"/>'>
+								<input type="text" name=m_mail value='<c:out value="${loginedMemberVO.m_mail}"/>'>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>전화번호</label>
-								<input type="text" name=m_tel value='<c:out value="${member.m_tel}"/>'>
+								<input type="text" name=m_tel value='<c:out value="${loginedMemberVO.m_tel}"/>'>
 							</div>
 							<div class="col-md-6 form-it">
 								<label>선호장르</label>
-								<select name= "g_num" value='<c:out value="${member.g_num}"/>'>
+								<select name= "g_num" value='<c:out value="${loginedMemberVO.g_num}"/>'>
 								  <option value="1">액션</option>
 								  <option value="2">SF</option>
 								  <option value="3">로맨스</option>
@@ -76,7 +82,7 @@ function remove(m_id, m_pw, callback, errorfn) {
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>닉네임</label>
-								<input type="text" name=m_nick value='<c:out value="${member.m_nick}"/>'>
+								<input type="text" name=m_nick value='<c:out value="${loginedMemberVO.m_nick}"/>'>
 							</div>
 						</div>
 						<div class="row">

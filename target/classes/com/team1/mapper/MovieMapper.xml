@@ -75,14 +75,14 @@
 		select * from test_member
 	</select> -->
 
-	<insert id="insertMovieInfo" parameterType="com.team1.dto.MovieVo">
+	<insert id="insertMovieInfo">
 	<![CDATA[
 		insert into test_movie_info(mi_num, g_num, mi_title, mi_condition, mi_thumbnail)
 			   values(test_seq_movie.nextval, #{g_num}, #{mi_title}, #{mi_condition}, #{originFileName})
 	]]>
 	</insert>
 		
-	<insert id="insertMovieDetails" parameterType="com.team1.dto.MovieVo">
+	<insert id="insertMovieDetails">
 		insert into test_movie_details(md_num, mi_num, g_num, md_director, md_actor, md_text, md_runtime, md_grade)
 			   values(test_seq.nextval, test_seq_movie.currval, #{g_num}, #{md_director}, #{md_actor}, #{md_text}, #{md_runtime}, #{md_grade})
 	</insert>

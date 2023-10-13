@@ -22,15 +22,17 @@
 		<security:intercept-url pattern="/movie/home" access="permitAll" />
 
 		<!-- <security:intercept-url	pattern="/movie/member/home" access="hasRole('ROLE_MEMBER')" /> -->
-		<security:intercept-url	pattern="/movie/member" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url	pattern="/movie/home" access="hasRole('ROLE_MEMBER')" />
 
-		<security:intercept-url pattern="/movie/manager" access="hasRole('ROLE_MANAGER')" />
+		<!-- <security:intercept-url pattern="/movie/manager" access="hasRole('ROLE_MANAGER')" /> -->
+		<security:intercept-url pattern="/movie/home" access="hasRole('ROLE_MANAGER')" />
 
-		<security:intercept-url pattern="/movie/admin" access="hasRole('ROLE_ADMIN')" />
+		<!-- <security:intercept-url pattern="/movie/admin" access="hasRole('ROLE_ADMIN')" /> -->
+		<security:intercept-url pattern="/movie/home" access="hasRole('ROLE_ADMIN')" />
 
 	<!-- 	<security:access-denied-handler	ref="customAccessDeniedHandler" /> -->
 
-		<security:form-login login-page="/customLogin"/>
+		<security:form-login login-page="/movie/member/loginForm"/>
 
 		<security:access-denied-handler ref="customAccessDenied"/>
 

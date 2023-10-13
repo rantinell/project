@@ -3,9 +3,9 @@ package com.team1.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping(value = "/movie/*", method = RequestMethod.GET)
+@RequestMapping("/movie/member/*")
 public class MemberController {
 	
 	@Autowired
@@ -30,12 +30,9 @@ public class MemberController {
 		return "signUp";
 	}
 	
-	@PostMapping("/signUp")
-//	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String createMember(@ModelAttribute MemberVO memberVO) {
+	@PostMapping(value = "/signUp")
+	public String createMember(MemberVO memberVO) {
 		log.info("signUp");
-		log.info("m_id : " + memberVO.getM_id());
-		
 		String nextPage = "movie/loginForm";
 		
 		int result = memberService.createMember(memberVO);
@@ -47,20 +44,22 @@ public class MemberController {
 		return nextPage;
 	}
 	
-	@GetMapping(value = "/loginForm")
-//	@RequestMapping(value = "/loginForm", method = {RequestMethod.POST, RequestMethod.GET})
+//	@GetMapping(value = "/loginForm")
+	@RequestMapping(value = "/loginForm", method = {RequestMethod.POST, RequestMethod.GET})
 	public String loginForm() {
 		log.info("login.....");
-		return "login";
+		return "/login";
 	}
 	
 	@PostMapping(value = "/login")
 	public String Longin(MemberVO memberVO, HttpSession session) {
-		String nextPage="redirect:/movie";
+		String nextPage="/movie";
 		MemberVO loginedMemberVO = memberService.login(memberVO);
 		
+		log.info("logindata : " + loginedMemberVO);
+		
 		if(loginedMemberVO == null) {
-			nextPage = "login";
+			nextPage = "/loginForm";
 		}else {
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
@@ -74,6 +73,7 @@ public class MemberController {
 		return "main";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/memberInfo")
 	public String memberInfo(HttpSession session) {
 		log.info("member info.....");
@@ -105,16 +105,18 @@ public class MemberController {
 		return nextPage;
 	}
 	
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		log.info("logout.....");
+//		String nextPage = "redirect:/";
+//		
+//		session.removeAttribute("loginedMemberVO");
+//		
+//		return nextPage;
+//	}
+	
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public void logout(HttpSession session) {
 		log.info("logout.....");
-		String nextPage = "redirect:/";
-		
-		session.removeAttribute("loginedMemberVO");
-		
-		return nextPage;
 	}
-	
-	
-	
 }

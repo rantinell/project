@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.team1.dto.MemberVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
@@ -62,14 +63,14 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
 							<h3>Login</h3>
-							<form method="post" action="/movie/login">
+							<form method="post" action="/login">
 								<div class="row">
-									<label for="username"> ID: <input type="text" name="m_id" id="username" required="required" />
+									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
-									<label for="password"> Password: <input type="password" name="m_pw" id="password" required="required" />
+									<label for="password"> Password: <input type="password" name="password" id="password" required="required" />
 									</label>
 								</div>
 							<!-- 	<div class="row">
@@ -84,7 +85,7 @@
 									<button type="submit" class="btn-success">Login</button>
 								</div><br>
 								<div class="row">
-									<a href="/movie/createMemberForm" >SignUp</a>
+									<a href="/signUp" >SignUp</a>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</form>
@@ -106,25 +107,17 @@
 			<div class="flex-child-ft item2">
 				<h4>Resources</h4>
 				<ul>
-					<li><a href="/">Home</a></li> 
-					<li><a href="/board/ranking">Ranking</a></li>
-					<li><a href="/board/nowplaying">Now Playing</a></li>
-					<li><a href="/board/commingsoon">CommingSoon</a></li>
-					<li><a href="/board/recommend">Recommend</a></li>
-				</ul>
-			</div>
-			<div class="flex-child-ft item3">
-				<h4>Legal</h4>
-				<ul>
-					<li><a href="#">Terms of Use</a></li> 
-					<li><a href="#">Privacy Policy</a></li>	
-					<li><a href="#">Security</a></li>
+					<li><a href="/movie">Home</a></li> 
+					<li><a href="/movie/ranking">Ranking</a></li>
+					<li><a href="/movie/nowplaying">Now Playing</a></li>
+					<li><a href="/movie/commingsoon">CommingSoon</a></li>
+					<li><a href="/movie/recommend">Recommend</a></li>
 				</ul>
 			</div>
 			<div class="flex-child-ft item4">
 				<h4>Account</h4>
 				<ul>
-					<li><a href="#">My Account</a></li> 
+					<li><a href="/movie/memberInfo">My Account</a></li> 
 				</ul>
 			</div>
 		</div>

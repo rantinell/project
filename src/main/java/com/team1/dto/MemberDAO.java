@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,8 @@ public class MemberDAO {
 	JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	//PasswordEncoder passwordEncoder;
+	BCryptPasswordEncoder passwordEncoder;
 	
 	public boolean isMember(String m_id) {
 		System.out.println("isMember");
@@ -32,16 +34,13 @@ public class MemberDAO {
 	
 	public int insertMember(MemberVO MemberVO) {
 		System.out.println("insertMember");
-//		String sql = "insert into member(m_num, m_id, m_pw, m_name, m_tel"
-//				+ "m_mail, m_lev) values (seq_mem, ?, ?, ?, ?, ?, ?)";
-		
-		String sql = "insert into test_member(m_num, m_id, m_pw, m_name, m_tel, m_mail, g_num) " + 
-					 "values (test_seq_member.nextval, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into test_member(m_num, m_id, m_pw, m_name, m_tel"
+				+ "m_mail, m_lev) values (test_seq_member, ?, ?, ?, ?, ?, ?)";
 		
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail(), MemberVO.getG_num());
+			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

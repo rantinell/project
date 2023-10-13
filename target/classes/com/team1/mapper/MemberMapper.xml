@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team1.mapper.MemberMapper">
 	<select id="read" resultMap="memberMap">
-		select m_num, m_nick, m_pw, m_name, m_mail, m_tell, g_num, m_lev
-		from member	where m_id = #{m_id}
+		select m_num, m_id, m_nick, m_pw, m_name, m_mail, m_tel, g_num, m_lev
+		from test_member	where m_id = #{m_id}
 	</select>
 
 	<resultMap type = "com.team1.dto.MemberVO" id = "memberMap">
@@ -16,14 +16,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="m_name" column="m_name"/>
 		<result property="m_lev" column="m_lev"/>
 	</resultMap>
-	
-	<select id="isMember" resultType = "boolean">
-		select if(count(*) = 1, 1, 0) from test_member where m_id = #{m_id}
-	</select>
-	
-	<insert id="insertMember">
-		insert into test_member(m_num, m_id, m_pw, m_name, m_tel, m_mail, g_num)
-		values (test_seq_member.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, #{m_mail}, #{g_num})
-	</insert>
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.team1.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int createMember(MemberVO memberVO) {
 		
+		log.info(memberVO.getM_id());
+		
 		log.info("create member:" + memberVO);
 //		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
-		boolean isMember = mapper.isMember(memberVO.getM_id());
+		int isMember = mapper.isMember(memberVO.getM_id());
 
-		if(!isMember) {
+		if(isMember == 0) {
 //			int result = MemberDAO.insertMember(memberVO);
 			int result = mapper.insertMember(memberVO);
 			if(result > 0) {
@@ -74,5 +78,27 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int updatePassword(String m_id, String newpw) {
 		return MemberDAO.updatePassword(m_id, newpw);
+	}
+	
+	//테스트
+	@Override
+	public void signUp(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		log.info("register........................" + memberVO);
+		mapper.signUp(memberVO);
+		
+	}
+	
+	@Override
+	public int idChk(String m_id) {
+		int result = mapper.idChk(m_id);
+		return result;
+	}
+	
+	@Override
+	public MemberVO get(String m_id) {
+		log.info("Read Member...");
+		log.info("m_id: " + m_id);
+		return mapper.read_test(m_id);
 	}
 }

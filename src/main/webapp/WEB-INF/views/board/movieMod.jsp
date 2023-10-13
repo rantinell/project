@@ -25,7 +25,7 @@
 	<div class="container">
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
-					<form action="/" class="user" method="post">
+					<form action="/" class="user" method="post" enctype="multipart/form-data">
 						<h4>01. 영화등록 </h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
@@ -71,7 +71,8 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
-								<input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png">
+								<!-- <input type="file" name="mi_thumbnail" accept="image/gif, image/jpeg, image/png" multiple> -->
+								<input type="file" name="fileName" accept="image/gif, image/jpeg, image/png" multiple>
 							</div>
 						</div>
 						<br>

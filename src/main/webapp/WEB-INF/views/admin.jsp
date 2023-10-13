@@ -12,7 +12,7 @@
 				<div class="hero-ct">
 					<h1>Admin Page</h1>
 					<ul class="breadcumb">
-						<li class="active"><a href="/">Home</a></li>
+						<li class="active"><a href="/movie">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>admin</li>
 					</ul>
 				</div>

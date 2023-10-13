@@ -12,8 +12,8 @@ public class ReplyVO {
 	private Long m_num;
 	private String c_comment;
 	private int c_point;
-	private Date regDate;
-	private Date updateDate;
+	private Date c_regdate;
+	private Date c_updatedate;
 
 	// 회원 아이디
 	private String m_id;

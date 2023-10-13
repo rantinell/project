@@ -19,4 +19,8 @@ public interface MemberService {
 	public int updatePassword(String m_id, String newpw);
 
 
+	//테스트
+	public void signUp(MemberVO vo);
+	public int idChk(String m_id);
+	public MemberVO get(String m_id);
 }
