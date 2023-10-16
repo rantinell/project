@@ -34,13 +34,13 @@ public class MemberDAO {
 	
 	public int insertMember(MemberVO MemberVO) {
 		System.out.println("insertMember");
-		String sql = "insert into test_member(m_num, m_id, m_pw, m_name, m_tel"
-				+ "m_mail, m_lev) values (test_seq_member, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into test_member(m_num, m_id, m_pw, m_name, m_tel, m_mail, g_num)"
+					 + " values (test_seq_member.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail());
+			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail(), MemberVO.getG_num());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,6 +65,7 @@ public class MemberDAO {
 					memberVO.setM_name(rs.getString("m_name"));
 					memberVO.setM_tel(rs.getString("m_tel"));
 					memberVO.setM_mail(rs.getString("m_mail"));
+					memberVO.setG_num(rs.getInt("g_num"));
 					memberVO.setM_lev(rs.getString("m_lev"));
 					
 					return memberVO;

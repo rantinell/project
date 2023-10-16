@@ -22,13 +22,13 @@
 		<security:intercept-url pattern="/movie/home" access="permitAll" />
 
 		<!-- <security:intercept-url	pattern="/movie/member/home" access="hasRole('ROLE_MEMBER')" /> -->
-		<security:intercept-url	pattern="/movie/home" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url	pattern="/movie/member" access="hasRole('ROLE_MEMBER')" />
 
 		<!-- <security:intercept-url pattern="/movie/manager" access="hasRole('ROLE_MANAGER')" /> -->
-		<security:intercept-url pattern="/movie/home" access="hasRole('ROLE_MANAGER')" />
+		<!-- <security:intercept-url pattern="/movie/member" access="hasRole('ROLE_MANAGER')" /> -->
 
 		<!-- <security:intercept-url pattern="/movie/admin" access="hasRole('ROLE_ADMIN')" /> -->
-		<security:intercept-url pattern="/movie/home" access="hasRole('ROLE_ADMIN')" />
+		<!-- <security:intercept-url pattern="/movie/member" access="hasRole('ROLE_ADMIN')" /> -->
 
 	<!-- 	<security:access-denied-handler	ref="customAccessDeniedHandler" /> -->
 
@@ -36,7 +36,7 @@
 
 		<security:access-denied-handler ref="customAccessDenied"/>
 
-		<security:csrf disabled="true"/>
+		<!-- <security:csrf disabled="true"/> -->
 
 		<security:logout logout-url="/customLogout"	invalidate-session="true" />
 

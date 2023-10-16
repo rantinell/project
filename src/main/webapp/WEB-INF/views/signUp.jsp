@@ -37,7 +37,7 @@
 <script src="/resources/js/custom.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
+/* $(document).ready(function(){
 	//아이디 중복검사
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}"; 
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	$('#username-2').keyup(function(){
 		let m_id = $('#username-2').val();
 			
-		$.ajax({
+/* 		$.ajax({
 			url : "/idChk",
 			type : "post",
 			data : {m_id: m_id},
@@ -65,14 +65,14 @@ $(document).ready(function(){
 					$("#regist").val('Y')
 					$("#regist").attr('disabled', false);
 				} 
-			},
-			error : function(){
-				alert("서버요청실패");
 			}
-		})
+			/*, error : function(){
+				alert("서버요청실패");
+			} *//*
+		}) */
 			 
 	})
-})
+}) */
 $("#submit").on("click", function(){
 		var idChkVal = $("#regist").val();
 		if(idChkVal == "N"){
@@ -150,6 +150,7 @@ $("#submit").on("click", function(){
 									<label for="genre-2"> 선호장르 * <input type="text" name="g_num" id="genre-2" required="required" />
 									</label>
 								</div>
+								
 								<div class="row">
 									<button id="regist" type="submit">sign up</button>
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

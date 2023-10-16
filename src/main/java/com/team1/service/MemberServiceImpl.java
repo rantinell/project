@@ -10,15 +10,16 @@ import com.team1.dto.MemberDAO;
 import com.team1.dto.MemberVO;
 import com.team1.mapper.MemberMapper;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
 public class MemberServiceImpl implements MemberService{
-	@Autowired
+	@Setter(onMethod_ = @Autowired)
 	MemberDAO MemberDAO;
 	
-	@Autowired
+	@Setter(onMethod_ = @Autowired)
 	MemberMapper mapper;
 
 	@Override
@@ -27,12 +28,12 @@ public class MemberServiceImpl implements MemberService{
 		log.info(memberVO.getM_id());
 		
 		log.info("create member:" + memberVO);
-//		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
-		int isMember = mapper.isMember(memberVO.getM_id());
+		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
+//		int isMember = mapper.isMember(memberVO.getM_id());
 
-		if(isMember == 0) {
-//			int result = MemberDAO.insertMember(memberVO);
-			int result = mapper.insertMember(memberVO);
+		if(!isMember) {
+			int result = MemberDAO.insertMember(memberVO);
+//			int result = mapper.insertMember(memberVO);
 			if(result > 0) {
 				MemberDAO.setAccount(memberVO.getM_id());
 				return 1; //생성 성공
@@ -48,10 +49,13 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO memberVO) {
 		MemberVO loginedMemberVO = MemberDAO.selectMember(memberVO);
 		log.info(memberVO);
-		if(loginedMemberVO != null)
+		if(loginedMemberVO != null) {
+			MemberDAO.setAccount(loginedMemberVO.getM_id());
+			log.info("로그인 성공");
 			System.out.println("로그인 성공");
-		else
+		}else {
 			System.out.println("로그인 실패");
+		}
 		return loginedMemberVO;
 	}
 	
@@ -81,24 +85,24 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//테스트
-	@Override
-	public void signUp(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		log.info("register........................" + memberVO);
-		mapper.signUp(memberVO);
-		
-	}
-	
-	@Override
-	public int idChk(String m_id) {
-		int result = mapper.idChk(m_id);
-		return result;
-	}
-	
-	@Override
-	public MemberVO get(String m_id) {
-		log.info("Read Member...");
-		log.info("m_id: " + m_id);
-		return mapper.read_test(m_id);
-	}
+//	@Override
+//	public void signUp(MemberVO memberVO) {
+//		// TODO Auto-generated method stub
+//		log.info("register........................" + memberVO);
+//		mapper.signUp(memberVO);
+//		
+//	}
+//	
+//	@Override
+//	public int idChk(String m_id) {
+//		int result = mapper.idChk(m_id);
+//		return result;
+//	}
+//	
+//	@Override
+//	public MemberVO get(String m_id) {
+//		log.info("Read Member...");
+//		log.info("m_id: " + m_id);
+//		return mapper.read(m_id);
+//	}
 }

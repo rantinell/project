@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	<mybatis-spring:scan base-package="com.firstspring.web.mapper" />
+	<!-- <mybatis-spring:scan base-package="com.firstspring.web.mapper" /> -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -37,8 +37,7 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="mapperLocations"
-			value="classpath*:/mapper/*Mapper.xml" />
+		<!-- <property name="mapperLocations" value="classpath:com/team1/mapper/*.xml" /> -->
 	</bean>
 
 	<bean id="transactionManager"
@@ -52,7 +51,7 @@
 	</bean>
 
 	<tx:annotation-driven />
-	<mybatis-spring:scan base-package="com.team1.*" />
+	<mybatis-spring:scan base-package="com.team1.mapper" />
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan	base-package="com.team1.*"></context:component-scan>
 	<!-- <context:component-scan	base-package="com.team1.security"></context:component-scan> -->

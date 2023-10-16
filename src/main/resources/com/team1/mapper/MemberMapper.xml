@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.team1.mapper.MemberMapper">
 	<select id="read" resultMap="memberMap">
 		select m_num, m_id, m_nick, m_pw, m_name, m_mail, m_tel, g_num, m_lev
-		from test_member	where m_id = #{m_id}
+		from test_member where m_id = #{m_id}
 	</select>
 
 	<resultMap type = "com.team1.dto.MemberVO" id = "memberMap">
@@ -14,6 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="m_pw" column="m_pw"/>
 		<result property="m_nick" column="m_nick"/>
 		<result property="m_name" column="m_name"/>
+		<result property="m_tel" column="m_tel"/>
+		<result property="m_mail" column="m_mail"/>
+		<result property="g_num" column="g_num"/>
 		<result property="m_lev" column="m_lev"/>
 	</resultMap>
 

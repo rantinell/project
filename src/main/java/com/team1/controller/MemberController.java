@@ -18,10 +18,11 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/movie/member/*")
+@RequestMapping("/movie/member")
 public class MemberController {
 	
 	@Autowired
+//	MemberService memberService;
 	MemberService memberService;
 	
 	@GetMapping("/createMemberForm")
@@ -32,10 +33,17 @@ public class MemberController {
 	
 	@PostMapping(value = "/signUp")
 	public String createMember(MemberVO memberVO) {
-		log.info("signUp");
+		log.info("signUp....");
 		String nextPage = "movie/loginForm";
 		
+		log.info("memberData1 : " + memberVO);
+		
+//		int result = memberService.createMember(memberVO);
 		int result = memberService.createMember(memberVO);
+		
+		log.info("memberData2 : " + memberVO);
+		log.info("result : " + result);
+		
 		log.info(result);
 		if(result<0) {
 			nextPage = "movie/sigeUp";
@@ -67,11 +75,11 @@ public class MemberController {
 		return nextPage;
 	}
 	
-	@GetMapping("/home")
-	public String home() {
-		log.info("movie home");
-		return "main";
-	}
+//	@GetMapping("/home")
+//	public String home() {
+//		log.info("movie home");
+//		return "main";
+//	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/memberInfo")
