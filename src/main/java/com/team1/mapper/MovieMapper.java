@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.team1.dto.MovieVo;
 import com.team1.dto.Criteria;
+import com.team1.dto.MemberVO;
 
 public interface MovieMapper {
 	
@@ -24,21 +25,5 @@ public interface MovieMapper {
 	public MovieVo insertMovieInfo(MovieVo movieVo, String originFileName);
 	
 	public MovieVo getMovieDetails(Long mi_num);
-	
-	//영현씨 추가부분
-	public List<MovieVo> getMovieList_dto();
-	
-//	public List<MovieVo> getcategory();
-
-	public List<MovieVo> getMovieById();
-
-//	public List<MovieVo> getMovieListByFilter();
-
-	public List<MovieVo> setNewMovie();
-
-	public List<MovieVo> setUpdateMovie();
-
-	public List<MovieVo> setDeleteMovie();
-
 	
 }

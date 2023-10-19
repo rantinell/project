@@ -40,7 +40,7 @@ public class MemberDAO {
 		int result = -1;
 		
 		try {
-			result = jdbcTemplate.update(sql, MemberVO.getM_id(), MemberVO.getM_pw(), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail(), MemberVO.getG_num());
+			result = jdbcTemplate.update(sql, MemberVO.getM_id(), passwordEncoder.encode(MemberVO.getM_pw()), MemberVO.getM_name(), MemberVO.getM_tel(), MemberVO.getM_mail(), MemberVO.getG_num());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,7 +60,9 @@ public class MemberDAO {
 				public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 					MemberVO memberVO = new MemberVO();
 					
+					memberVO.setM_num(rs.getLong("m_num"));
 					memberVO.setM_id(rs.getString("m_id"));
+					memberVO.setM_nick(rs.getString("m_nick"));
 					memberVO.setM_pw(rs.getString("m_pw"));
 					memberVO.setM_name(rs.getString("m_name"));
 					memberVO.setM_tel(rs.getString("m_tel"));
@@ -140,7 +142,7 @@ public class MemberDAO {
 		CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
 		customUserDetailsService.loadUserByUsername(m_id);
 	}
-
+	
 	public int updateAccount(String m_id, String m_lev) {
 		System.out.println("updateAccount");
 		String sql = "update test_member set m_lev = ? where m_id = ?";

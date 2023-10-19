@@ -99,7 +99,7 @@ MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
 							<a href="#page-top"></a>
 						</li>
 						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" href="/main">Home </a>
+							<a class="btn btn-default dropdown-toggle lv1" href="/movie">Home </a>
 						</li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">movies<i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -117,11 +117,11 @@ MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
 							if (loginedMemberVo != null) {
 							%> --%>
 						<sec:authorize access="isAuthenticated()">
-							<li class="myPage"><a href="/movie/memberInfo">My Account</a></li>
-							<sec:authorize access="hasAuthority('3')">
-								<li class="adminLink"><a href="/movie/admin">Admin</a></li>
+							<li class="myPage"><a href="/movie/member/memberInfo">My Account</a></li>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<li class="adminLink"><a href="/movie/member/admin">Admin</a></li>
 							</sec:authorize>
-							<li class="logoutLink"><a href="/movie/logout">LOG Out</a></li>
+							<li class="logoutLink"><a href="/movie/member/logout">LOG Out</a></li>
 						</sec:authorize>
 						<%-- <%
 							} else {

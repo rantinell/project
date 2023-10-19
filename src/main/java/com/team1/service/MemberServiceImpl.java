@@ -3,6 +3,7 @@ package com.team1.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 //import com.team1.controller.MemberController;
@@ -13,8 +14,9 @@ import com.team1.mapper.MemberMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Service
+//@Component
+@Log4j
 public class MemberServiceImpl implements MemberService{
 	@Setter(onMethod_ = @Autowired)
 	MemberDAO MemberDAO;
@@ -29,13 +31,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		log.info("create member:" + memberVO);
 		boolean isMember = MemberDAO.isMember(memberVO.getM_id());
-//		int isMember = mapper.isMember(memberVO.getM_id());
 
 		if(!isMember) {
 			int result = MemberDAO.insertMember(memberVO);
-//			int result = mapper.insertMember(memberVO);
 			if(result > 0) {
-				MemberDAO.setAccount(memberVO.getM_id());
+//				MemberDAO.setAccount(memberVO.getM_id());
 				return 1; //생성 성공
 			}
 			else
@@ -48,9 +48,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO login(MemberVO memberVO) {
 		MemberVO loginedMemberVO = MemberDAO.selectMember(memberVO);
-		log.info(memberVO);
+		
+		log.info("memberServiceImpl login : " + loginedMemberVO);
+		
 		if(loginedMemberVO != null) {
-			MemberDAO.setAccount(loginedMemberVO.getM_id());
+			MemberDAO.setAccount(memberVO.getM_id());
 			log.info("로그인 성공");
 			System.out.println("로그인 성공");
 		}else {

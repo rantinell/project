@@ -21,11 +21,13 @@
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<!-- <level value="info" /> -->
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<!-- <level value="info" /> -->
+		<level value="DEBUG" />
 	</logger>
 
 	<logger name="org.springframework.web">

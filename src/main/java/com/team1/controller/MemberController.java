@@ -34,7 +34,7 @@ public class MemberController {
 	@PostMapping(value = "/signUp")
 	public String createMember(MemberVO memberVO) {
 		log.info("signUp....");
-		String nextPage = "movie/loginForm";
+		String nextPage = "redirect:/movie/member/loginForm";
 		
 		log.info("memberData1 : " + memberVO);
 		
@@ -46,7 +46,7 @@ public class MemberController {
 		
 		log.info(result);
 		if(result<0) {
-			nextPage = "movie/sigeUp";
+			nextPage = "redirect:/movie/member/sigeUp";
 		}
 		
 		return nextPage;
@@ -61,13 +61,13 @@ public class MemberController {
 	
 	@PostMapping(value = "/login")
 	public String Longin(MemberVO memberVO, HttpSession session) {
-		String nextPage="/movie";
+		String nextPage="redirect:/movie";
 		MemberVO loginedMemberVO = memberService.login(memberVO);
 		
 		log.info("logindata : " + loginedMemberVO);
 		
 		if(loginedMemberVO == null) {
-			nextPage = "/loginForm";
+			nextPage = "redirect:/movie/member/loginForm";
 		}else {
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);

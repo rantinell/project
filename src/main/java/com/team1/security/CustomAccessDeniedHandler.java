@@ -13,16 +13,15 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-	
+
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-			log.error("Access Denied Handler");
-			log.error("Redirect....");
-			response.sendRedirect("/accessError");
-		
-		
+		log.error("Access Denied Handler");
+		log.error("Redirect....");
+		response.sendRedirect("/resources/views/accessError");
+
 	}
 
 }

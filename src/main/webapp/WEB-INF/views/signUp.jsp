@@ -37,7 +37,7 @@
 <script src="/resources/js/custom.js"></script>
 
 <script type="text/javascript">
-/* $(document).ready(function(){
+/*  $(document).ready(function(){
 	//아이디 중복검사
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}"; 
@@ -48,7 +48,7 @@
 	$('#username-2').keyup(function(){
 		let m_id = $('#username-2').val();
 			
-/* 		$.ajax({
+ 		$.ajax({
 			url : "/idChk",
 			type : "post",
 			data : {m_id: m_id},
@@ -66,13 +66,13 @@
 					$("#regist").attr('disabled', false);
 				} 
 			}
-			/*, error : function(){
+			, error : function(){
 				alert("서버요청실패");
-			} *//*
-		}) */
+			} 
+		}) 
 			 
 	})
-}) */
+})
 $("#submit").on("click", function(){
 		var idChkVal = $("#regist").val();
 		if(idChkVal == "N"){
@@ -81,7 +81,17 @@ $("#submit").on("click", function(){
 		} else if(idChkVal == "Y"){
 			$("#signupForm").submit();
 		}
-});
+}); */
+
+function pwCheck(){
+    if($('#password-2').val() == $('#repassword-2').val()){
+        $('#pwConfirm').text('비밀번호 일치').css('color', 'green')
+        $("#regist").attr('disabled', false);
+    }else{
+        $('#pwConfirm').text('비밀번호 불일치').css('color', 'red')
+        $("#regist").attr('disabled', true);
+    }
+}
 
 </script>
 <style type="text/css">
@@ -121,17 +131,18 @@ $("#submit").on("click", function(){
 							<h3>sign up</h3>
 							<form method="post" action="/movie/member/signUp" name="signupForm" id="signupForm">
 								<div class="row">
-									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off" placeholder="사용할 아이디를 입력하세요."/>
-									<div><font id="id_feedback" size="2"></font></div>
+									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off"  placeholder="사용할 아이디를 입력하세요."/>
+									<!-- <div><font id="id_feedback" size="2"></font></div> -->
 									</label>
 								</div>
 								<br>
 								<div class="row">
-									<label for="password-2"> 비밀번호 * <input type="password" name="m_pw" id="password-2" required="required" placeholder="비밀번호를 입력하세요." />
+									<label for="password-2"> 비밀번호 * <input type="password" name="m_pw" id="password-2" required="required" oninput="pwCheck()" placeholder="비밀번호를 입력하세요." />
 									</label>
 								</div>
 								<div class="row">
-									<label for="repassword-2"> 비밀번호 확인 * <input type="password" name="repassword" id="repassword-2" required="required" placeholder="비밀번호를 다시 입력해주세요."/>
+									<label for="repassword-2"> 비밀번호 확인 * <input type="password" name="repassword" id="repassword-2" required="required" oninput="pwCheck()" placeholder="비밀번호를 다시 입력해주세요."/>
+									<span id="pwConfirm"></span>
 									</label>
 								</div>
 								<div class="row">
@@ -147,7 +158,13 @@ $("#submit").on("click", function(){
 									</label>
 								</div>
 								<div class="row">
-									<label for="genre-2"> 선호장르 * <input type="text" name="g_num" id="genre-2" required="required" />
+									<label for="genre-2"> 선호장르 *
+									<select name= "g_num">
+									  <option value="1">액션</option>
+									  <option value="2">SF</option>
+									  <option value="3">로맨스</option>
+									  <option value="4">코메디</option>
+									</select>
 									</label>
 								</div>
 								
