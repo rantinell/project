@@ -119,7 +119,7 @@ MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
 						<sec:authorize access="isAuthenticated()">
 							<li class="myPage"><a href="/movie/member/memberInfo">My Account</a></li>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<li class="adminLink"><a href="/movie/member/admin">Admin</a></li>
+								<li class="adminLink"><a href="/movie/insert">Admin</a></li>
 							</sec:authorize>
 							<li class="logoutLink"><a href="/movie/member/logout">LOG Out</a></li>
 						</sec:authorize>

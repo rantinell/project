@@ -14,7 +14,7 @@ public interface MovieMapper {
 	
 	public List<MovieVo> getCommingList();
 
-	public List<MovieVo> getRecommendList();
+//	public List<MovieVo> getRecommendList();
 	public List<MovieVo> getRecommendList(int g_num);
 	
 	public List<MovieVo> getSearchList(Criteria cri);

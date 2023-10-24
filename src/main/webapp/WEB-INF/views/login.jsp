@@ -63,14 +63,14 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
 							<h3>Login</h3>
-							<form method="post" action="/movie/member/login">
+							<form method="post" action="/login">
 								<div class="row">
-									<label for="username"> ID: <input type="text" name="m_id" id="username" required="required" />
+									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
 									</label>
 								</div>
 
 								<div class="row">
-									<label for="password"> Password: <input type="password" name="m_pw" id="password" required="required" />
+									<label for="password"> Password: <input type="password" name="password" id="password" required="required" />
 									</label>
 								</div>
 							<!-- 	<div class="row">

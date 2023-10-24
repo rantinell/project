@@ -57,7 +57,7 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="login-content">
 							<h3>Logout</h3>
-							<form method="post" action="/logout">
+							<form method="post" action="/movie/member/logout">
 								<div class="row">
 									<button type="button" class="btn-success">logout</button>
 								</div>

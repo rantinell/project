@@ -25,19 +25,12 @@
 }
  */
 </script>
-<c:set var ="m_id" value="${loginedMemberVO.m_id}" /> 
-  
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<%-- <% out.print("<h1>"+"${loginedMemberVO.m_id}"+ "'s profile</h1>"); %> --%>
-					<%-- <h1>${m_id}'s profile</h1> --%>
-					<sec:authorize access="isAuthenticated()">
-					<h1>로그인한 사람만 보입니다.</h1>
-					<h1>${m_id}'s profile</h1>
-					</sec:authorize>
+					<h1>${member.m_id}'s profile</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="/movie">Home</a></li>
 						<li> <span class="ion-ios-arrow-right"></span>Profile</li>
@@ -51,8 +44,8 @@
 <div class="page-single">
 	<div class="container">
 			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="form-style-1 user-pro" action="#">
-					<form action="#" class="user">
+				<div class="form-style-1 user-pro">
+					<form action="movie/member/memberInfo" class="user">
 						<h4>01. 프로필 정보</h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
@@ -61,17 +54,17 @@
 							</div>
 							<div class="col-md-6 form-it">
 								<label>이메일</label>
-								<input type="text" name=m_mail value='<c:out value="${loginedMemberVO.m_mail}"/>'>
+								<input type="text" name=m_mail value='<c:out value="${member.m_mail}"/>'>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>전화번호</label>
-								<input type="text" name=m_tel value='<c:out value="${loginedMemberVO.m_tel}"/>'>
+								<input type="text" name=m_tel value='<c:out value="${member.m_tel}"/>'>
 							</div>
 							<div class="col-md-6 form-it">
 								<label>선호장르</label>
-								<select name= "g_num" value='<c:out value="${loginedMemberVO.g_num}"/>'>
+								<select name= "g_num" value='<c:out value="${member.g_num}"/>'>
 								  <option value="1">액션</option>
 								  <option value="2">SF</option>
 								  <option value="3">로맨스</option>
@@ -82,7 +75,28 @@
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>닉네임</label>
-								<input type="text" name=m_nick value='<c:out value="${loginedMemberVO.m_nick}"/>'>
+								<input type="text" name=m_nick value='<c:out value="${member.m_nick}"/>'>
+							</div>
+						</div>
+						<br>
+						<hr>
+						<h4>02. 비밀번호 변경</h4>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>이전 비밀번호</label>
+								<input type="text" name="m_pwx" placeholder="**********">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>새 비밀번호</label>
+								<input type="text" name="m_pw" placeholder="***************">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>새 비밀번호 확인</label>
+								<input type="text" name="rm_pw" placeholder="*************** ">
 							</div>
 						</div>
 						<div class="row">
@@ -91,7 +105,7 @@
 							</div>
 						</div>	
 					</form>
-					<form action="#" class="password">
+					<!-- <form action="#" class="password">
 						<h4>02. 비밀번호 변경</h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
@@ -116,7 +130,7 @@
 								<input class="submit" type="submit" value="change">
 							</div>
 						</div>
-					</form>
+					</form> -->
 				</div>
 				<div class="form-style-1 user-pro">
 					<div class="row">
@@ -144,7 +158,7 @@
   			<div class="modal-body">
   				<div class="form-group">
   					<label>비밀번호 입력</label>
-  					<input class="form-control" name='reply' value='New Repl!!!' name="m_pw">
+  					<input class="form-control" name='reply' value='New Reply!!!' name="m_pw">
   				</div>
   			</div>
   			<sec:authorize access=""></sec:authorize>

@@ -48,13 +48,13 @@ public class MovieServieImpl implements MovieService {
 		
 	}
 
-	@Override
-	public List<MovieVo> getRecommendList() {
-		
-		log.info("getRecommendList............");
-		
-		return movieMapper.getRecommendList();
-	}
+//	@Override
+//	public List<MovieVo> getRecommendList() {
+//		
+//		log.info("getRecommendList............");
+//		
+//		return movieMapper.getRecommendList();
+//	}
 	
 	@Override
 	public List<MovieVo> getRecommendList(int g_num) {

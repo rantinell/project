@@ -19,7 +19,7 @@ public interface MovieService {
 	
 	public List<MovieVo> getCommingList();
 	
-	public List<MovieVo> getRecommendList();
+//	public List<MovieVo> getRecommendList();
 	public List<MovieVo> getRecommendList(int g_num);
 
 	public int getTotal(Criteria cri);

@@ -28,7 +28,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="flex-wrap-movielist mv-grid-fw">
 						<!-- 반복 시작 -->
-					<c:forEach items="playingmovie">
+					<c:forEach items="${now}" var="playingmovie">
 	            		<div class="movie-item-style-2 movie-item-style-1">
 							<img src="<c:out value="${playingmovie.thumbnail}"/>" alt="">
 							<div class="hvr-inner">

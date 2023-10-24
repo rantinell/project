@@ -37,7 +37,7 @@
 <script src="/resources/js/custom.js"></script>
 
 <script type="text/javascript">
-/*  $(document).ready(function(){
+  $(document).ready(function(){
 	//아이디 중복검사
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}"; 
@@ -49,7 +49,7 @@
 		let m_id = $('#username-2').val();
 			
  		$.ajax({
-			url : "/idChk",
+			url : "/movie/member/idChk",
 			type : "post",
 			data : {m_id: m_id},
 			dataType : 'json',
@@ -81,7 +81,7 @@ $("#submit").on("click", function(){
 		} else if(idChkVal == "Y"){
 			$("#signupForm").submit();
 		}
-}); */
+});
 
 function pwCheck(){
     if($('#password-2').val() == $('#repassword-2').val()){
@@ -132,7 +132,7 @@ function pwCheck(){
 							<form method="post" action="/movie/member/signUp" name="signupForm" id="signupForm">
 								<div class="row">
 									<label for="username-2"> 아이디 * <input type="text" name="m_id" id="username-2" required="required" autocomplete="off"  placeholder="사용할 아이디를 입력하세요."/>
-									<!-- <div><font id="id_feedback" size="2"></font></div> -->
+									<div><font id="id_feedback" size="2"></font></div>
 									</label>
 								</div>
 								<br>

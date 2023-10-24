@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<!-- <mybatis-spring:scan base-package="com.firstspring.web.mapper" /> -->
-	<mybatis-spring:scan base-package="com.team1.mapper" />
+	<!-- <mybatis-spring:scan base-package="com.team1.mapper" /> -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -34,9 +34,8 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<bean id="transactionManager"
@@ -44,21 +43,21 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-	<bean id="jdbc Template"
-		class="org.springframework.jdbc.core.JdbcTemplate">
+	<bean id="jdbc Template" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<context:component-scan	base-package="com.team1.*" />
+	
 
 	<tx:annotation-driven />
-	<!-- <mybatis-spring:scan base-package="com.team1.mapper" /> -->
+	<mybatis-spring:scan base-package="com.team1.mapper" />
 	<!-- <mybatis-spring:scan base-package="com.team1.*" /> -->
-	<!-- <context:annotation-config></context:annotation-config> -->
+	<context:component-scan	base-package="com.team1.*" />
+	<context:annotation-config></context:annotation-config>
 	<!-- <context:component-scan	base-package="com.team1.*" /> -->
 	<!-- <context:component-scan base-package="com.team1.aop"></context:component-scan> 
 		<context:component-scan base-package="org.team1.task"></context:component-scan> -->
-	<!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<task:annotation-driven />
 
 </beans>

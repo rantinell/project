@@ -1,14 +1,19 @@
 package com.team1.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team1.dto.MemberVO;
 import com.team1.service.MemberService;
@@ -22,8 +27,11 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	@Autowired
-//	MemberService memberService;
 	MemberService memberService;
+	
+	// 추가
+	@Autowired
+	BCryptPasswordEncoder pwEncoder;
 	
 	@GetMapping("/createMemberForm")
 	public String createMemberForm() {
@@ -31,43 +39,57 @@ public class MemberController {
 		return "signUp";
 	}
 	
+	// 추가
+	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	public @ResponseBody int idChk(String m_id) throws Exception {
+		int result = memberService.idChk(m_id);
+		return result;	
+	}
+	
+	
 	@PostMapping(value = "/signUp")
 	public String createMember(MemberVO memberVO) {
 		log.info("signUp....");
-		String nextPage = "redirect:/movie/member/loginForm";
-		
-		log.info("memberData1 : " + memberVO);
-		
+//		String nextPage = "/movie/member/login";
+//		
+//		log.info("memberData1 : " + memberVO);
+//		
+////		int result = memberService.createMember(memberVO);
 //		int result = memberService.createMember(memberVO);
-		int result = memberService.createMember(memberVO);
-		
-		log.info("memberData2 : " + memberVO);
-		log.info("result : " + result);
-		
-		log.info(result);
-		if(result<0) {
-			nextPage = "redirect:/movie/member/sigeUp";
-		}
-		
-		return nextPage;
+//		
+//		log.info("memberData2 : " + memberVO);
+//		log.info("result : " + result);
+//		
+//		log.info(result);
+//		if(result<0) {
+//			nextPage = "/movie/member/sigeUp";
+//		}
+//		
+//		return nextPage;
+		log.info("post signUp....");
+		int result = memberService.idChk(memberVO.getM_id());
+		memberVO.setM_pw(pwEncoder.encode(memberVO.getM_pw()));
+		memberService.signUp(memberVO);
+		return "main";
 	}
 	
 //	@GetMapping(value = "/loginForm")
-	@RequestMapping(value = "/loginForm", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/loginForm", method = {RequestMethod.GET})
 	public String loginForm() {
 		log.info("login.....");
 		return "/login";
 	}
 	
 	@PostMapping(value = "/login")
+//	@RequestMapping(value = "/login", method= {RequestMethod.GET, RequestMethod.POST})
 	public String Longin(MemberVO memberVO, HttpSession session) {
-		String nextPage="redirect:/movie";
+		String nextPage="/movie";
 		MemberVO loginedMemberVO = memberService.login(memberVO);
 		
-		log.info("logindata : " + loginedMemberVO);
+		log.warn("logindata : " + loginedMemberVO);
 		
 		if(loginedMemberVO == null) {
-			nextPage = "redirect:/movie/member/loginForm";
+			nextPage = "/loginForm";
 		}else {
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
@@ -83,9 +105,11 @@ public class MemberController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/memberInfo")
-	public String memberInfo(HttpSession session) {
+	public String memberInfo(Principal principal, Model model) {
 		log.info("member info.....");
-		MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
+		String userid=principal.getName();
+    MemberVO vo = memberService.get(userid);
+    model.addAttribute("member", vo);
 		return "userdetails";
 	}
 	
@@ -124,7 +148,26 @@ public class MemberController {
 //	}
 	
 	@GetMapping("/logout")
-	public void logout(HttpSession session) {
+	public String logout() {
 		log.info("logout.....");
+		
+		return "/logout";
+	}
+	
+	@PostMapping("/logout")
+	public String logoutPost(HttpSession session) {
+		log.info("post logout");
+		
+		session.removeAttribute("loginedMemberVO");
+		session.invalidate();
+		
+		return "redirect:/movie";
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/admin")
+	public String adminpage() {
+		log.info("admin page...");
+		return "/admin";
 	}
 }

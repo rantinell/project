@@ -54,7 +54,7 @@ public class MemberDAO {
 		List<MemberVO> MemberVOs = new ArrayList<MemberVO>();
 		
 		try {
-			MemberVOs = jdbcTemplate.query(sql,  new RowMapper<MemberVO>() {
+			MemberVOs = jdbcTemplate.query(sql, new RowMapper<MemberVO>() {
 				
 				@Override
 				public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -81,6 +81,36 @@ public class MemberDAO {
 		}
 		return MemberVOs.size() > 0 ? MemberVOs.get(0) : null;
 	}
+	
+	/*
+	 * public MemberVO selectMember(String m_id) {
+	 * System.out.println("selectMember"); String sql =
+	 * "select * from test_member where m_id = ?";
+	 * 
+	 * List<MemberVO> MemberVOs = new ArrayList<MemberVO>(); MemberVO memberVO = new
+	 * MemberVO();
+	 * 
+	 * try { MemberVOs = jdbcTemplate.query(sql, new RowMapper<MemberVO>() {
+	 * 
+	 * @Override public MemberVO mapRow(ResultSet rs, int rowNum) throws
+	 * SQLException {
+	 * 
+	 * memberVO.setM_num(rs.getLong("m_num"));
+	 * memberVO.setM_id(rs.getString("m_id"));
+	 * memberVO.setM_nick(rs.getString("m_nick"));
+	 * memberVO.setM_pw(rs.getString("m_pw"));
+	 * memberVO.setM_name(rs.getString("m_name"));
+	 * memberVO.setM_tel(rs.getString("m_tel"));
+	 * memberVO.setM_mail(rs.getString("m_mail"));
+	 * memberVO.setG_num(rs.getInt("g_num"));
+	 * memberVO.setM_lev(rs.getString("m_lev"));
+	 * 
+	 * return memberVO; } }, m_id);
+	 * 
+	 * if(!passwordEncoder.matches(memberVO.getM_pw(), MemberVOs.get(0).getM_pw()))
+	 * MemberVOs.clear(); }catch(Exception e) { e.printStackTrace(); } return
+	 * MemberVOs == null ? MemberVOs.get(0) : null; }
+	 */
 	
 	public MemberVO selectMemberByNum(Long m_num) {
 		System.out.println("selectMember_num");
