@@ -4,6 +4,9 @@ package com.team1.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,18 +24,20 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomUserDetailsService implements UserDetailsService{
-	@Setter(onMethod_ = @Autowired)
-	private MemberMapper memberMapper;
+	@Setter(onMethod_ = {@Autowired})
+	private MemberMapper mapper;
 	
-	MemberDAO mdao = new MemberDAO();
-	
+	HttpServletRequest request;
+	HttpSession session;
+
 	@Override
 	public UserDetails loadUserByUsername(String m_id) throws UsernameNotFoundException{
 		
 		log.warn("Load User By UserName: " + m_id);
 		System.out.println("Load User By UserName: " + m_id);
-		MemberVO vo = memberMapper.read(m_id);
-					
+		
+		MemberVO vo = mapper.read(m_id);
+		
 		System.out.println("UserDetail : " + vo);
 		log.warn("UserDetails : " + vo);
 		

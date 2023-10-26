@@ -6,7 +6,8 @@ public interface MemberService {
 
 	public int createMember(MemberVO memberVO);
 
-	public MemberVO login(MemberVO memberVO);
+//	public MemberVO login(MemberVO memberVO);
+	public MemberVO login(String m_id);
 
 	public MemberVO getMemberByNum(Long m_num);
 

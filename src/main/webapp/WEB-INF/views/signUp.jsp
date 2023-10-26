@@ -66,9 +66,9 @@
 					$("#regist").attr('disabled', false);
 				} 
 			}
-			, error : function(){
+			/* , error : function(){
 				alert("서버요청실패");
-			} 
+			}  */
 		}) 
 			 
 	})

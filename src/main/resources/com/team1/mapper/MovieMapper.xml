@@ -39,7 +39,10 @@
 				full outer join test_movie_genre genre on info.g_num = genre.g_num
 				where genre.g_num = #{g_num}
 				order by info.mi_total_point desc
-			
+	</select>
+	
+	<select id="getGnum" resultType="com.team1.dto.MemberVO">
+		select * from test_member where m_id = #{m_id}
 	</select>
 	
 	<select id="getSearchList" resultType="com.team1.dto.MovieVo">
@@ -71,18 +74,15 @@
 		</if>
 	</select>
 	
-	<!-- <select id="getMemberList" resultType="com.team1.dto.MemberVo">
-		select * from test_member
-	</select> -->
 
-	<insert id="insertMovieInfo">
-	<![CDATA[
+	<insert id="insertMovieInfo" parameterType="com.team1.dto.MovieVo">
+
 		insert into test_movie_info(mi_num, g_num, mi_title, mi_condition, mi_thumbnail)
-			   values(test_seq_movie.nextval, #{g_num}, #{mi_title}, #{mi_condition}, #{originFileName})
-	]]>
+			   values(test_seq_movie.nextval, #{g_num}, #{mi_title}, #{mi_condition}, #{mi_thumbnail})
+
 	</insert>
 		
-	<insert id="insertMovieDetails">
+	<insert id="insertMovieDetails" parameterType="com.team1.dto.MovieVo">
 		insert into test_movie_details(md_num, mi_num, g_num, md_director, md_actor, md_text, md_runtime, md_grade)
 			   values(test_seq.nextval, test_seq_movie.currval, #{g_num}, #{md_director}, #{md_actor}, #{md_text}, #{md_runtime}, #{md_grade})
 	</insert>

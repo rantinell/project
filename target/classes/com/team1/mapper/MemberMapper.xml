@@ -3,11 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team1.mapper.MemberMapper">
+	<select id="read_test" resultMap="memberMap_test">
+		select m_num, m_id, m_nick, m_pw, m_name, m_mail, m_tel, g_num, mem.m_lev
+		from test_member mem
+		left outer join test_auth auth on mem.m_lev = auth.m_lev
+		where mem.m_id = #{m_id}
+	</select>
+
 	<select id="read" resultMap="memberMap">
 		select m_num, m_id, m_nick, m_pw, m_name, m_mail, m_tel, g_num, m_lev
 		from test_member where m_id = #{m_id}
 	</select>
-
+	
 	<resultMap type = "com.team1.dto.MemberVO" id = "memberMap">
 		<result property="m_num" column="m_num"/>
 		<result property="m_id" column="m_id"/>
@@ -18,6 +25,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="m_mail" column="m_mail"/>
 		<result property="g_num" column="g_num"/>
 		<result property="m_lev" column="m_lev"/>
+	</resultMap>
+
+	<resultMap type = "com.team1.dto.MemberVO" id = "memberMap_test">
+		<id property="m_id" column="m_id"/>
+		<result property="m_num" column="m_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="m_pw" column="m_pw"/>
+		<result property="m_nick" column="m_nick"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_tel" column="m_tel"/>
+		<result property="m_mail" column="m_mail"/>
+		<result property="g_num" column="g_num"/>
+		<result property="m_lev" column="m_lev"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="com.team1.dto.AuthVO" id="authMap">
+		<result property="m_lev" column="m_lev"/>
+		<result property="auth" column="auth"/>	
 	</resultMap>
 	
 	<select id="get" resultType="com.team1.dto.MemberVO">

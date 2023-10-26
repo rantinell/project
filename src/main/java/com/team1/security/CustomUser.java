@@ -22,6 +22,7 @@ public class CustomUser extends User{
 
 	public CustomUser(MemberVO vo) {
 		super(vo.getM_id(), vo.getM_pw(), vo.getAuthList());
+		System.out.println("customuser : " + vo);
 		this.member = vo;
 	}
 	

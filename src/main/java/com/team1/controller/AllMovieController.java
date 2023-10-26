@@ -1,5 +1,6 @@
 package com.team1.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +68,15 @@ public class AllMovieController {
 
 	// 추천영화 페이지
 	@GetMapping("/recommend")
-	public String recommendPage(@ModelAttribute("member") MemberVO member, Model model) {
-		System.out.println(member);
+	public String recommendPage(Model model, Principal principal) {
 		System.out.println("[AllMovieController] RecommendPage()");
-
-//		List<MovieVo> list = movieService.getRecommendList(2);
+		
+		String id = principal.getName();
+		System.out.println("recommendPage id : " + id);
+		
+		MemberVO member = movieService.getGnum(id);
+		System.out.println(member);
+		
 		log.info("선호장르 번호 : " + member.getG_num());
 		List<MovieVo> list = movieService.getRecommendList(member.getG_num());
 

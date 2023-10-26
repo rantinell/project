@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.team1.dto.MovieVo;
 import com.team1.dto.Criteria;
+import com.team1.dto.MemberVO;
 import com.team1.mapper.MovieMapper;
 
 import lombok.Setter;
@@ -48,20 +49,18 @@ public class MovieServieImpl implements MovieService {
 		
 	}
 
-//	@Override
-//	public List<MovieVo> getRecommendList() {
-//		
-//		log.info("getRecommendList............");
-//		
-//		return movieMapper.getRecommendList();
-//	}
-	
 	@Override
 	public List<MovieVo> getRecommendList(int g_num) {
 		
 		log.info("getRecommendList............");
 		
 		return movieMapper.getRecommendList(g_num);
+	}
+	
+	@Override
+	public MemberVO getGnum(String m_id) {
+		log.info("get genre......");
+		return movieMapper.getGnum(m_id);
 	}
 	
 //	@Override
@@ -89,22 +88,25 @@ public class MovieServieImpl implements MovieService {
 	}
 
 	@Override
-	public MovieVo insertMovieDetails(MovieVo movieVo) {
+	public void insertMovieDetails(MovieVo movieVo) {
 		
 		log.info("insertMovieDetails........");
 		
-		return movieMapper.insertMovieDetails(movieVo);
+		movieMapper.insertMovieDetails(movieVo);
 	}
 	
 	@Override
-	public MovieVo insertMovieInfo(MovieVo movieVo) {
+	public void insertMovieInfo(MovieVo movieVo) {
 		
-		log.info("insertMovieInfo........");
-		String originFileName = movieVo.getFileName().getOriginalFilename();
-		log.info(originFileName);
+		log.info("service insertMovieInfo........");
+		System.out.println("service insertMovieInfo........");
 		
+		String oriFileName = movieVo.getFileName().getOriginalFilename();
+		movieVo.setMi_thumbnail(oriFileName);
 		
-		return movieMapper.insertMovieInfo(movieVo, originFileName);
+		System.out.println(oriFileName);
+		System.out.println(movieVo);
+		movieMapper.insertMovieInfo(movieVo);
 	}
 
 	@Override
@@ -114,6 +116,7 @@ public class MovieServieImpl implements MovieService {
 		
 		return movieMapper.getMovieDetails(mi_num);
 	}
+
 	
 
 }

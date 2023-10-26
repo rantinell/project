@@ -30,7 +30,7 @@
 						<!-- 반복 시작 -->
 					<c:forEach items="${now}" var="playingmovie">
 	            		<div class="movie-item-style-2 movie-item-style-1">
-							<img src="<c:out value="${playingmovie.thumbnail}"/>" alt="">
+							<img src="<c:out value="${playingmovie.mi_thumbnail}"/>" alt="">
 							<div class="hvr-inner">
 	            				<a  href="<c:out value="${playingmovie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 	            			</div>

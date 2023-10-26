@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.team1.dto.MovieVo;
 import com.team1.dto.Criteria;
+import com.team1.dto.MemberVO;
 
 public interface MovieService {
 	
@@ -26,9 +27,11 @@ public interface MovieService {
 	public List<MovieVo> getSearchList(Criteria cri);
 	
 	//insert
-	public MovieVo insertMovieDetails(MovieVo movieVo);
-	public MovieVo insertMovieInfo(MovieVo movieVo);
+	public void insertMovieDetails(MovieVo movieVo);
+	public void insertMovieInfo(MovieVo movieVo);
 
 	public MovieVo getMovieDetails(Long mi_num);
+
+	public MemberVO getGnum(String m_id);
 	
 }

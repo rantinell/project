@@ -114,12 +114,12 @@ MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<%-- <%
 							MemberVO loginedMemberVo = (MemberVO) session.getAttribute("loginedMemberVo");
-							if (loginedMemberVo != null) {
+							/* if (loginedMemberVo != null) { */
 							%> --%>
 						<sec:authorize access="isAuthenticated()">
 							<li class="myPage"><a href="/movie/member/memberInfo">My Account</a></li>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<li class="adminLink"><a href="/movie/insert">Admin</a></li>
+								<li class="adminLink"><a href="/movie/upload/insert">Admin</a></li>
 							</sec:authorize>
 							<li class="logoutLink"><a href="/movie/member/logout">LOG Out</a></li>
 						</sec:authorize>

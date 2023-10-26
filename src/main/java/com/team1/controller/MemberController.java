@@ -2,6 +2,7 @@ package com.team1.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,17 +82,24 @@ public class MemberController {
 		return "/login";
 	}
 	
-	@PostMapping(value = "/login")
+//	@PostMapping(value = "/login")
 //	@RequestMapping(value = "/login", method= {RequestMethod.GET, RequestMethod.POST})
-	public String Longin(MemberVO memberVO, HttpSession session) {
+	public String Longin(@ModelAttribute("username") String m_id,
+						 @ModelAttribute("password") String m_pw,
+						 HttpSession session, HttpServletRequest request) {
 		String nextPage="/movie";
-		MemberVO loginedMemberVO = memberService.login(memberVO);
+
+		System.out.println("logindata1 : " + m_id + "||" + m_pw);
 		
+		MemberVO loginedMemberVO = memberService.login(m_id);
+		
+		System.out.println("logindata2 : " + loginedMemberVO);
 		log.warn("logindata : " + loginedMemberVO);
 		
 		if(loginedMemberVO == null) {
 			nextPage = "/loginForm";
 		}else {
+			session = request.getSession();
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
 		}
@@ -164,7 +173,7 @@ public class MemberController {
 		return "redirect:/movie";
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public String adminpage() {
 		log.info("admin page...");

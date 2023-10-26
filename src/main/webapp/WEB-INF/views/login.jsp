@@ -64,6 +64,7 @@
 						<div class="login-content">
 							<h3>Login</h3>
 							<form method="post" action="/login">
+							<!-- <form method="post" action="/movie/member/login"> -->
 								<div class="row">
 									<label for="username"> ID: <input type="text" name="username" id="username" required="required" />
 									</label>

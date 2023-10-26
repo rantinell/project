@@ -21,9 +21,11 @@ public interface MovieMapper {
 	
 	public int getTotal(Criteria cri);
 	
-	public MovieVo insertMovieDetails(MovieVo movieVo);
-	public MovieVo insertMovieInfo(MovieVo movieVo, String originFileName);
+	public void insertMovieDetails(MovieVo movieVo);
+	public void insertMovieInfo(MovieVo movieVo);
 	
 	public MovieVo getMovieDetails(Long mi_num);
+
+	public MemberVO getGnum(String m_id);
 	
 }

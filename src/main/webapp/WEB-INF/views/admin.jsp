@@ -32,7 +32,7 @@
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="#">
 					<div class="tab-content">
-						<form action="/movie/insertMovie" class="tab active" method="post" id="movieRegist" enctype="multipart/form-data">
+						<form action="/movie/upload/insertMovie" class="tab active" method="post" id="movieRegist" enctype="multipart/form-data">
 							<h4>01. 영화등록 </h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
@@ -86,6 +86,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<input class="submit" type="submit" value="save">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								</div>
 							</div>	
 						</form>
