@@ -290,7 +290,7 @@
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical">
 							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
-							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+							<div><a href="http://www.cgv.co.kr/ticket/" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 						</div>
 					</div>
 				</div>
@@ -312,12 +312,12 @@
 					<div class="movie-rate">
 						<div class="rate">
 							<i class="ion-android-star"></i>
-							<p><span><c:out value="${movie.mi_total_point}" /></span> /5<br>
+							<p><span><c:out value="${movie.mi_total_point}" /></span> /10<br>
 							</p>
 						</div>
 						<div class="rate-star">
 							<p>Rate This Movie:  </p>
-							<div class="ui star rating" data-rating="<c:out value="movie.mi_total_point"/>" data-max-rating="5" id="readonlyRate"></div>
+							<div class="ui star rating" data-rating="<c:out value="${movie.mi_total_point}"/>" data-max-rating="5" id="readonlyRate"></div>
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -338,15 +338,9 @@
 											<div class="mv-user-review-item">
 												<h3>작성자: hawaiipierson</h3>
 												<div class="no-star">
+													<c:forEach begin="1" end="${movie.mi_total_point}">
 													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
-													<i class="ion-android-star"></i>
+													</c:forEach>
 													<i class="ion-android-star last"></i>
 												</div>
 												<p class="time">
@@ -366,7 +360,7 @@
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>장르: </h6>
-						            			<p><c:out value="${movie.g_num}"/></p>
+						            			<p><c:out value="${movie.genre}"/></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>분류등급:</h6>
@@ -374,7 +368,12 @@
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>개봉여부:</h6>
-						            			<p><c:out value="${movie.mi_condition}"/></p>
+						            			<c:if test="${movie.mi_condition == 1}">
+						            				<p>상영중</p>
+						            			</c:if>
+						            			<c:if test="${movie.mi_condition == 0}">
+						            				<p>상영 예정</p>
+						            			</c:if>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>런타임:</h6>
@@ -404,16 +403,14 @@
 													<div>
 														<h3>작성자: <c:out value="${comment.m_id}" /></h3>
 														<div class="no-star">
+															<c:forEach begin="1" end="${comment.c_point}">
 															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
-															<i class="ion-android-star"></i>
+															</c:forEach>
+															<c:if test="${comment.c_point != 10}">
+															<c:forEach begin="${comment.c_point + 1}" end="10">
 															<i class="ion-android-star last"></i>
+															</c:forEach>
+															</c:if>
 														</div>
 														<p class="time">
 															등록일: <c:out value="${comment.c_regdate}" />

@@ -1,5 +1,6 @@
 package com.team1.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class ReplyController {
 	
 	//코멘트 가져오기
 	@GetMapping(value = "/{mi_num}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public String movieDetails(@PathVariable("mi_num") Long mi_num, Model model, MovieVo movieVo) {
+	public String movieDetails(@PathVariable("mi_num") Long mi_num, Model model, MovieVo movieVo, Principal principal) {
 		System.out.println("[ReplyController] movieDetails()");
 		String nextPage = "board/moviedetails";
 		

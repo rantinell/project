@@ -67,8 +67,8 @@ public class UploadController {
 //		log.info(movieVo.getMi_thumbnail());
 		log.info("filename : " +movieVo.getFileName());
 
-		String uploadFolder = "C:\\Users\\sdedu\\git\\project\\src\\main\\webapp\\resources\\images\\poster";
-
+//		String uploadFolder = "C:\\Users\\sdedu\\git\\project\\src\\main\\webapp\\resources\\images\\poster";
+		String uploadFolder = "C:\\poster";
 		
 		
 		MultipartFile multipartFile = movieVo.getFileName();
@@ -78,6 +78,9 @@ public class UploadController {
 
 		File SaveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
 		try {
+			if(SaveFile.exists() == false) {
+				SaveFile.mkdirs();
+			}
 			multipartFile.transferTo(SaveFile);
 		} catch (Exception e) {
 			log.error(e.getMessage());

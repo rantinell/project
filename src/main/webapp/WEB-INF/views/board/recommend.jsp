@@ -32,7 +32,7 @@
 				<div class="movie-item-style-2">
 					<img src="<c:out value="/resources/images/uploads/${recommend.mi_thumbnail}"/>" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="<c:out value="${recommend.mi_num}"/>"><c:out value="${recommend.mi_title}"/><span> (2013)  </span></a></h6>
+						<h6><a href="<c:out value="/movie/reply/${recommend.mi_num}"/>"><c:out value="${recommend.mi_title}"/><span> (2013)  </span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${recommend.mi_total_point}"/></span> /5</p>
 						<p class="describe"><c:out value="${recommend.md_text}"/></p>
 						<p class="run-time"> 런타임: <c:out value="${recommend.md_runtime}"/>’    .     <span>심의등급: <c:out value="${recommend.md_grade}"/> </span></p>

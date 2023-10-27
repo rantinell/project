@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.team1.dto.MovieVo;
 import com.team1.service.MovieService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@Log4j
 @RequestMapping("/movie")
 public class MovieController {
 	
@@ -32,6 +35,7 @@ public class MovieController {
 		model.addAttribute("rankingmovie", rankList);
 		model.addAttribute("comming", commingList);
 		model.addAttribute("now", nowList);
+		
 		
 		return nextPage;
 	}
