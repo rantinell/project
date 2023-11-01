@@ -21,7 +21,8 @@
 		<!-- <security:intercept-url pattern="/movie/home" access="permitAll" /> -->
 		<security:intercept-url pattern="/movie/**" access="permitAll" />
 		<security:intercept-url pattern="/movie/member/**" access="isAuthenticated()" />
-		<security:intercept-url pattern="/movie/upload/*" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/movie/reply/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/movie/upload/**" access="hasRole('ROLE_ADMIN')" />
 
 		<!-- <security:intercept-url	pattern="/movie/member/home" access="hasRole('ROLE_MEMBER')" /> -->
 		<!-- <security:intercept-url	pattern="/movie/member" access="hasRole('ROLE_MEMBER')" /> -->

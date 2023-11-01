@@ -330,18 +330,21 @@
 						        <div id="overview" class="tab active">
 						            <div class="row comnent">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
-						            		<p>Tony Stark creates the Ultron Program to protect the world, but when the peacekeeping program becomes hostile, The Avengers go into action to try and defeat a virtually impossible enemy together. Earth's mightiest heroes must come together once again to protect the world from global extinction.</p>
+						            		<p><c:out value="${movie.md_text}"></c:out></p>
 											<div class="title-hd-sm">
 												<h4>User reviews</h4>
 											</div>
 											<!-- movie user review -->
 											<div class="mv-user-review-item">
+												<!-- 평점 가장 높은 작성자 노출시킬것 -->
 												<h3>작성자: hawaiipierson</h3>
 												<div class="no-star">
 													<c:forEach begin="1" end="${movie.mi_total_point}">
 													<i class="ion-android-star"></i>
 													</c:forEach>
+													<c:forEach begin="${movie.mi_total_point + 1}" end="10">
 													<i class="ion-android-star last"></i>
+													</c:forEach>
 												</div>
 												<p class="time">
 													등록일: 2016년 12월 17일
@@ -384,6 +387,7 @@
 						        </div>
 						        <div id="reviews" class="tab review">
 						           <div class="row">
+						           		<!-- <form action="" method="get"></form> -->
 						            	<div class="rv-hd">
 						            		<div class="div">
 						            			<h3>Related Movies To</h3>
@@ -393,6 +397,7 @@
 							            	<button id="addComment" class="redbtn">Add Comment</button>
 							            	</sec:authorize>
 						            	</div>
+						            	
 						            	<c:forEach items="${comment}" var="comment">
 						            	<div class="comment">
 						            	<!-- 코멘트 리스트 공간  -->

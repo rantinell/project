@@ -4,18 +4,21 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team1.dto.MovieVo;
 import com.team1.dto.PageDTO;
+import com.team1.dto.ReplyVO;
 import com.team1.dto.Criteria;
 import com.team1.dto.MemberVO;
 import com.team1.service.MovieService;
+import com.team1.service.ReplyService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,6 +29,9 @@ public class AllMovieController {
 
 	@Autowired
 	private MovieService movieService;
+	
+	@Autowired
+	private ReplyService service;
 
 	// 랭크 페이지
 	@GetMapping("/rank")
@@ -70,21 +76,26 @@ public class AllMovieController {
 	@GetMapping("/recommend")
 	public String recommendPage(Model model, Principal principal) {
 		System.out.println("[AllMovieController] RecommendPage()");
-		
-		String id = principal.getName();
-		System.out.println("recommendPage id : " + id);
-		
-		MemberVO member = movieService.getGnum(id);
-		System.out.println(member);
-		
-		log.info("선호장르 번호 : " + member.getG_num());
-		List<MovieVo> list = movieService.getRecommendList(member.getG_num());
 
-		model.addAttribute("recommend", list);
+		if (principal != null) {
+			String id = principal.getName();
+			System.out.println("recommendPage id : " + id);
 
-		// 나중에 주석처리
-		for (MovieVo movieVo : list) {
-			log.info(movieVo);
+			MemberVO member = movieService.getGnum(id);
+			System.out.println(member);
+
+			log.info("선호장르 번호 : " + member.getG_num());
+			List<MovieVo> list = movieService.getRecommendList(member.getG_num());
+
+			model.addAttribute("recommend", list);
+
+			// 나중에 주석처리
+			for (MovieVo movieVo : list) {
+				log.info(movieVo);
+			}
+		}else {
+			List<MovieVo> list = movieService.getRankList();
+			model.addAttribute("recommend", list);
 		}
 
 //		String nextPage = "movie/test";
@@ -93,7 +104,7 @@ public class AllMovieController {
 		return nextPage;
 	}
 
-	//검색 결과 페이지
+	// 검색 결과 페이지
 	@GetMapping("/search")
 	public String movieSearchList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 
@@ -140,6 +151,34 @@ public class AllMovieController {
 
 //		String nextPage = "movie/test";
 		String nextPage = "board/nowplaying";
+		return nextPage;
+	}
+	
+	@GetMapping(value = "/{mi_num}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public String movieDetails(@PathVariable("mi_num") Long mi_num, Model model, MovieVo movieVo, Principal principal) {
+		System.out.println("[ReplyController] movieDetails()");
+		String nextPage = "board/moviedetails";
+
+		if (principal != null) {
+			String username = principal.getName();
+			log.info("user id : " + username);
+		}
+
+		MovieVo movie = movieService.getMovieDetails(mi_num);
+		List<ReplyVO> commentList = service.getMovieDetails(mi_num);
+
+		log.info(movieVo.getMi_num());
+		log.info(mi_num);
+
+		model.addAttribute("movie", movie);
+		model.addAttribute("comment", commentList);
+
+		// 나중에 주석처리
+		for (ReplyVO replyVO : commentList) {
+			log.info(replyVO);
+		}
+		log.info(movie);
+
 		return nextPage;
 	}
 
