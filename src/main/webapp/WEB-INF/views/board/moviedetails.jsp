@@ -42,12 +42,12 @@
 		;
 		
 		$('button[data-oper="modify"]').on("click", function(e){
-			operForm.attr("action", "/movie/modify").submit();
+			operForm.attr("action", "/movie/reply/modify").submit();
 		});
 		
 		$('button[data-oper="list"]').on("click", function(e){
 			operForm.find("#m_num").remove();
-			operForm.attr("action", '/movie/"${movie.mi_num}"').submit();
+			operForm.attr("action", '/movie/reply/"${movie.mi_num}"').submit();
 		});
 		
 		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
@@ -73,7 +73,7 @@
 				for(var i=0, len=list.length||0; i<len; i++) {
 					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
 					str+="<h3>작성자: " + list[i].m_num +"</h3>";
-					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='5'></div></div>"
+					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='10'></div></div>"
 					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].c_regdate)+"</p>";
 					str+="</div></div>";
 					str+="<p>" + list[i].comment + "</p>";
@@ -129,7 +129,7 @@
 				m_id : modalInputReplyer.val(),
 				mi_num : mi_numValue,
 				c_point: modalInputRate
-			}
+			};
 			
 			replyService.add(reply, function(result){
 				alert(result);
@@ -146,7 +146,7 @@
 				modalInputReply.val(reply.reply);
 				modalInputReplyDate.closest("div").show();
 				modalInputReplyer.val(reply.replyer);
-				modalInputRate.rating({initialRating: reply.c_point , maxRating: 5});
+				modalInputRate.rating({initialRating: reply.c_point , maxRating: 10});
 				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
 				modal.data("c_num", reply.c_num);
 				modal.find("button[id != 'modalCloseBtn']").hide();
@@ -316,8 +316,7 @@
 							</p>
 						</div>
 						<div class="rate-star">
-							<p>Rate This Movie:  </p>
-							<div class="ui star rating" data-rating="<c:out value="${movie.mi_total_point}"/>" data-max-rating="5" id="readonlyRate"></div>
+							<p>Rate This Movie: <c:out value="${movie.mi_total_point}"/></p>
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -432,7 +431,7 @@
 										<!-- 페이지 버튼  -->
 										</div>	
 										</div>
-										<form id='operForm' action="/movie/modify" method="get">
+										<form id='operForm' action="/movie/reply/modify" method="get">
 					 						<%-- <input type='hidden' id='m_num' name='m_num' value='<c:out value="${comment.m_num}"/>'> --%>
 					         				<input type='hidden' id="md_num" name="md_num" value='<c:out value="${movie.md_num}"/>'/>
 					 						<%-- <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
@@ -466,7 +465,7 @@
 				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 			<div class="form-group">
-				<label>Rate (max 5)</label><p><div name="c_point" id="c_point" class="ui massive star rating" data-max-rating="5"></div>
+				<label>Rate (max 10)</label><p><div name="c_point" id="c_point" class="ui massive star rating" data-max-rating="10"></div>
 			</div>	
 			<div class="form-group">
 				<label>Comment</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>

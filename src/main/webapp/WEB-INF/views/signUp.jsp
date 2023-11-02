@@ -160,10 +160,16 @@ function pwCheck(){
 								<div class="row">
 									<label for="genre-2"> 선호장르 *
 									<select name= "g_num">
-									  <option value="1">액션</option>
-									  <option value="2">SF</option>
-									  <option value="3">로맨스</option>
-									  <option value="4">코메디</option>
+									  <option value="0">선택</option>
+									  <option value="1">드라마</option>
+									  <option value="2">로맨스</option>
+									  <option value="3">애니메이션</option>
+									  <option value="4">액션</option>
+									  <option value="5">어드벤쳐</option>
+									  <option value="6">호러</option>
+									  <option value="7">스릴러</option>
+									  <option value="8">범죄</option>
+									  <option value="9">멜로</option>
 									</select>
 									</label>
 								</div>

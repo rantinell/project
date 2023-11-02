@@ -23,7 +23,7 @@
 	    					<span class="green">comedy</span>
 	    				</div>
 	    				<h6><a href="<c:out value="/movie/${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/></a></h6>
-	    				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"></c:out></span> /5</p>
+	    				<p><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"></c:out></span> /10</p>
 	    			</div>
 	    		</div>
 	    		</c:forEach>
@@ -98,7 +98,7 @@
 					            			</div>
 					            			<div class="title-in">
 					            				<h6><a href="<c:out value="/movie/${comming.mi_num }"/>"><c:out value="${comming.mi_title}"/> </a></h6>
-					            				<p><i class="ion-android-star"></i><span><c:out value="${comming.mi_total_point }"/></span> /5</p>
+					            				<p><i class="ion-android-star"></i><span><c:out value="${comming.mi_total_point }"/></span> /10</p>
 					            			</div>
 					            		</div>
 				            		</div>

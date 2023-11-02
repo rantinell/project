@@ -104,7 +104,7 @@ public class AllMovieController {
 		return nextPage;
 	}
 
-	// 검색 결과 페이지
+	//검색 결과 페이지
 	@GetMapping("/search")
 	public String movieSearchList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 

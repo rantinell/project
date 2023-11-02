@@ -32,7 +32,7 @@
 				<div class="movie-item-style-2">
 					<img src="<c:out value="/resources/images/uploads/${recommend.mi_thumbnail}"/>" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="<c:out value="/movie/reply/${recommend.mi_num}"/>"><c:out value="${recommend.mi_title}"/><span> (2013)  </span></a></h6>
+						<h6><a href="<c:out value="/movie/reply/${recommend.mi_num}"/>"><c:out value="${recommend.mi_title}"/></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span><c:out value="${recommend.mi_total_point}"/></span> /5</p>
 						<p class="describe"><c:out value="${recommend.md_text}"/></p>
 						<p class="run-time"> 런타임: <c:out value="${recommend.md_runtime}"/>’    .     <span>심의등급: <c:out value="${recommend.md_grade}"/> </span></p>
@@ -42,20 +42,6 @@
 				</div>
 			</c:forEach>	
 			<!-- 반복 끝  -->	
-				
-			<!-- 더미 시작  -->	
-				<div class="movie-item-style-2">
-					<img src="/resources/images/uploads/mv5.jpg" alt="">
-					<div class="mv-item-infor">
-						<h6><a href="moviesingle_light.html">skyfall: evil of boss<span> (2013)  </span></a></h6>
-						<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
-						<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span></p>
-						<p>Director: <a href="#">Alan Taylor</a></p>
-						<p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
-					</div>
-				</div>
-			<!-- 더미 끝  -->
 				
 			</div>
 		</div>

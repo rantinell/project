@@ -36,28 +36,13 @@
 							<div class="hvr-inner">
 	            				<a  href="<c:out value="/movie/reply/${commingmovie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 	            			</div>
-							<div class="mv-item-infor">
+							<%-- <div class="mv-item-infor">
 								<h6><a href="<c:out value="${commingmovie.mi_num}"/>"><c:out value="${commingmovie.mi_title}"/></a></h6>
 								<p class="rate"><i class="ion-android-star"></i><span><c:out value="${commingmovie.mi_total_point}"/></span> /5</p>
-							</div>
+							</div> --%>
 						</div>	
 					</c:forEach>	
-					<!-- 반복 끝 -->
-					
-					<!-- 더미 시작 -->					
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="/resources/images/uploads/mv2.jpg" alt="">
-
-							<div class="hvr-inner">
-	            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-
-								<h6><a href="#">into the wild</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>2.8</span> /5</p>
-							</div>
-						</div>
-					<!-- 더미 끝 -->	
+					<!-- 반복 끝 -->	
 					
 
 				</div>		

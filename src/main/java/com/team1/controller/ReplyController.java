@@ -37,8 +37,6 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
-	
-
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 
@@ -85,17 +83,17 @@ public class ReplyController {
 	}
 
 
-	@GetMapping(value = "/pages/{mi_num}/{page}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mi_num") Long mi_num) {
-
-		Criteria cri = new Criteria(page, 10);
-		
-		log.info("get Reply List mi_num: " + mi_num);
-
-		log.info("cri:" + cri);
-
-		return new ResponseEntity<>(service.getListPage(cri, mi_num), HttpStatus.OK);
-	}
+//	@GetMapping(value = "/pages/{mi_num}/{page}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+//	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mi_num") Long mi_num) {
+//
+//		Criteria cri = new Criteria(page, 10);
+//		
+//		log.info("get Reply List mi_num: " + mi_num);
+//
+//		log.info("cri:" + cri);
+//
+//		return new ResponseEntity<>(service.getListPage(cri, mi_num), HttpStatus.OK);
+//	}
 
 }
 

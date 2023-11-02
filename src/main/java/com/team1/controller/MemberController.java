@@ -72,7 +72,7 @@ public class MemberController {
 		int result = memberService.idChk(memberVO.getM_id());
 		memberVO.setM_pw(pwEncoder.encode(memberVO.getM_pw()));
 		memberService.signUp(memberVO);
-		return "main";
+		return "redirect:/movie";
 	}
 	
 //	@GetMapping(value = "/loginForm")

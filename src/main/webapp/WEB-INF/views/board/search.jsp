@@ -31,7 +31,7 @@
                 	<img src="<c:url value="/resources/images/uploads/${movie.mi_thumbnail}"/>"/>
                 	<%-- <img src="<c:url value="/resources/images/uploads/image181.jpg" />"/> --%>
                 	<div class="mv-item-infor">                 
-	                    <h6><a href="<c:url  value="/movie/reply/${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/> <span>(2012)</span></a></h6>
+	                    <h6><a href="<c:url  value="/movie/reply/${movie.mi_num}"/>"><c:out value="${movie.mi_title}"/> </a></h6>
 	                    <p class="rate"><i class="ion-android-star"></i><span><c:out value="${movie.mi_total_point}"/></span> /10</p>
 	                    <p class="describe"><c:out value="${movie.md_text}"/></p>
 	                    <p class="run-time"> Run Time: <c:out value="${movie.md_runtime}"/>. <span>상영가 : <c:out value="${movie.md_grade}"/></span>. <span>Release: 1 May 2015</span></p>
