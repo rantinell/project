@@ -1,5 +1,7 @@
 package com.team1.service;
 
+import java.util.List;
+
 import com.team1.dto.MemberVO;
 
 public interface MemberService {
@@ -24,4 +26,6 @@ public interface MemberService {
 	public void signUp(MemberVO vo);
 	public int idChk(String m_id);
 	public MemberVO get(String m_id);
+
+	public List<MemberVO> getMember();
 }

@@ -116,4 +116,11 @@ public class MemberServiceImpl implements MemberService {
 		log.info("m_id: " + m_id);
 		return mapper.read(m_id);
 	}
+
+	@Override
+	public List<MemberVO> getMember() {
+		log.info("getMember.....");
+		
+		return mapper.getMember();
+	}
 }

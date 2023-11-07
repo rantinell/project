@@ -61,5 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMember" resultType="com.team1.dto.MemberVO">
 		select * from test_member where m_id = #{m_id}
 	</select>
+	
+	<select id="getMember" resultType="com.team1.dto.MemberVO">
+		select * from test_member
+	</select>
 
 </mapper>

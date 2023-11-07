@@ -1,6 +1,7 @@
 package com.team1.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team1.dto.MemberVO;
+import com.team1.dto.MovieVo;
 import com.team1.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -179,4 +181,19 @@ public class MemberController {
 		log.info("admin page...");
 		return "/admin";
 	}
+	
+//	@PostMapping("/select")
+//	public void memberSelect(MemberVO memberVO, Model model) {
+//		System.out.println("[MemberController] memberSelect()");
+//
+//		List<MemberVO> list = memberService.getMember();
+//
+//		model.addAttribute("member", list);
+//
+////		 나중에 주석처리 
+//		for (MemberVO member: list) {
+//			log.info(member);
+//		}
+//		
+//	}
 }

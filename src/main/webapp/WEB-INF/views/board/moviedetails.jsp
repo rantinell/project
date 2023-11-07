@@ -15,6 +15,59 @@
 #c_point {
 	background-color: white;
 }
+.star_rating {
+  width: 100%; 
+  box-sizing: border-box; 
+  display: inline-flex; 
+  float: left;
+  flex-direction: row; 
+  justify-content: flex-start;
+}
+.star_rating .star {
+  width: 25px; 
+  height: 25px; 
+  margin-right: 10px;
+  display: inline-block; 
+  background: url('/resources/images/star/star3_blank.png') no-repeat; 
+  background-size: 100%; 
+  box-sizing: border-box; 
+}
+.star_rating .star.on {
+  width: 25px; 
+  height: 25px;
+  margin-right: 10px;
+  display: inline-block; 
+  background: url('/resources/images/star/star3_fill.png') no-repeat;
+  background-size: 100%; 
+  box-sizing: border-box; 
+}
+
+.star_box {
+  width: 400px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 15px 0;
+  background: #F3F4F8;
+  border: 0;
+  border-radius: 10px;
+  height: 100px;
+  resize: none;
+  padding: 15px;
+  font-size: 13px;
+  font-family: sans-serif;
+}
+.btn02 {
+  display:block;
+  width: 400px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 10px;
+  max-height: 50px;
+  padding: 15px 0;
+  font-size: 1.1em;
+  text-align: center;
+  background:bisque;
+}
 </style>
 
 <script type="text/javascript" src="/resources/js/reply.js"></script>
@@ -22,40 +75,48 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
+		var mi_num = '<c:out value="${movie.mi_num}"/>';
 		var operForm = $("#operForm");
 		
-		function getRating() {
+		// comment 별점
+		$('.star_rating > .star').click(function() {
+		  $(this).parent().children('span').removeClass('on');
+		  $(this).addClass('on').prevAll('span').addClass('on');
+		  var c_point = $(this).attr('data-value');
+		  $("#point").val(c_point); // 히든 인풋에 값 저장.
+		})
+		
+		/* function getRating() {
 		    var currentRating = $('.c_point').rating('get rating');
-		}
+		} */
 
 		// Add javascript here
-		$('.c_point')
+		/* $('.c_point')
 		    .rating({
 		        onRate: getRating
 		    });
 
-		getRating();
+		getRating() */;
 		
 		
-		$('#readonlyRate')
-		  .rating('disable')
-		;
+		/* $('#readonlyRate')
+		  .rating('disable'); */
 		
 		$('button[data-oper="modify"]').on("click", function(e){
-			operForm.attr("action", "/movie/reply/modify").submit();
+			operForm.attr("action", "/movie/modify").submit();
 		});
 		
 		$('button[data-oper="list"]').on("click", function(e){
 			operForm.find("#m_num").remove();
-			operForm.attr("action", '/movie/reply/"${movie.mi_num}"').submit();
+			operForm.attr("action", '/movie/"${movie.mi_num}"').submit();
 		});
 		
 		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
 		var replyComment = $(".comment");
 		
-		showList(1);
+		/* showList(1); */
 		
-		function showList(page){
+		/* function showList(page){
 			replyService.getList({mi_num:mi_numValue, page:page||1}, function(replyCnt, list){
 				console.log("list: " + list);
 				
@@ -73,7 +134,7 @@
 				for(var i=0, len=list.length||0; i<len; i++) {
 					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
 					str+="<h3>작성자: " + list[i].m_num +"</h3>";
-					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='10'></div></div>"
+					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='5'></div></div>"
 					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].c_regdate)+"</p>";
 					str+="</div></div>";
 					str+="<p>" + list[i].comment + "</p>";
@@ -84,13 +145,15 @@
 				showReplyPage(replyCnt);
 			});
 		}
-		
+		 */
 		var modal = $(".modal");
 		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
 		var modalInputReplyDate = modal.find("input[name='replyDate']");
 		//var modalInputRate = $('.ui.rating');
-		var modalInputRate = getRating();
+		//var modalInputRate = getRating();
+		//var modalInputRate = $(".star_rating > span.on").length;
+		var modalInputRate = $("#point")
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
@@ -118,9 +181,9 @@
 		});
 		
 	    
-	  $(document).ajaxSend(function(e, xhr, options) { 
+	  /* $(document).ajaxSend(function(e, xhr, options) { 
 	    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
-	  });
+	  }); */
 
 		
 		modalRegisterBtn.on("click", function(e){
@@ -128,25 +191,27 @@
 				c_comment : modalInputReply.val(),
 				m_id : modalInputReplyer.val(),
 				mi_num : mi_numValue,
-				c_point: modalInputRate
-			};
+				c_point: modalInputRate.val()
+			}
 			
 			replyService.add(reply, function(result){
-				alert(result);
+				console.log(modalInputRate);
+				//alert(result);
+				alert("comment가 등록되었습니다.");
 				modal.find("input").val("");
 				modal.modal("hide");
-				showList(-1);
+				/* showList(-1); */
 			});			
 		});
 		
-		replyComment.on("click", "li", function(e){
+		/* replyComment.on("click", "li", function(e){
 			var c_num = $(this).data("c_num");
 			
 			replyService.get(c_num, function(reply){
 				modalInputReply.val(reply.reply);
 				modalInputReplyDate.closest("div").show();
 				modalInputReplyer.val(reply.replyer);
-				modalInputRate.rating({initialRating: reply.c_point , maxRating: 10});
+				modalInputRate.rating({initialRating: reply.c_point , maxRating: 5});
 				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
 				modal.data("c_num", reply.c_num);
 				modal.find("button[id != 'modalCloseBtn']").hide();
@@ -155,7 +220,7 @@
 				
 				modal.modal("show");
 			});
-		});
+		}); */
 		
 		modalModBtn.on("click", function(e){
 			var originalReplyer = modalInputReplyer.val();
@@ -182,7 +247,7 @@
 			replyService.update(reply, function(result){
 				alert(result);
 				modal.modal("hide");
-				showList(pageNum);
+				/* showList(pageNum); */
 			});
 		});
 		
@@ -211,11 +276,11 @@
 			replyService.remove(c_num, originalReplyer, function(result){
 				alert(result);
 				modal.modal("hide");
-				showList(pageNum);				
+				/* showList(pageNum);				 */
 			});
 		});
 		
-		var pageNum = 1;
+/* 		var pageNum = 1;
 		var replyPageFooter = $(".topbar-filter");
 		
 		function showReplyPage(replyCnt){
@@ -260,8 +325,8 @@
 			var targetPageNum = $(this).attr("href");
 			console.log("targetPageNum: " + targetPageNum);
 			pageNum = targetPageNum;
-			showList(pageNum);	
-		});
+			/* showList(pageNum);	 
+		}); */
 		
 	});
 </script>
@@ -300,7 +365,7 @@
 				<br>
 					<h1 class="bd-hd"><c:out value="${movie.mi_title}"/> <span>2015</span></h1>
 					<div class="social-btn">
-						<sec:authorize access="hasAuthority('3')">
+						<sec:authorize access="hasRole('ADMIN')">
 							<a href="./movieMod" class="parent-btn">영화정보 수정</a>
 						</sec:authorize>
 						<div >
@@ -316,7 +381,16 @@
 							</p>
 						</div>
 						<div class="rate-star">
-							<p>Rate This Movie: <c:out value="${movie.mi_total_point}"/></p>
+							<p>Rate This Movie:  </p>
+							<c:forEach begin="1" end="${movie.mi_total_point}">
+								<i class="ion-android-star"></i>
+							</c:forEach>
+							<c:if test="${movie.mi_total_point != 10}">
+							<c:forEach begin="${movie.mi_total_point + 1}" end="10">
+								<i class="ion-android-star last"></i>
+							</c:forEach>
+							</c:if>
+							
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -340,9 +414,6 @@
 												<div class="no-star">
 													<c:forEach begin="1" end="${movie.mi_total_point}">
 													<i class="ion-android-star"></i>
-													</c:forEach>
-													<c:forEach begin="${movie.mi_total_point + 1}" end="10">
-													<i class="ion-android-star last"></i>
 													</c:forEach>
 												</div>
 												<p class="time">
@@ -431,7 +502,7 @@
 										<!-- 페이지 버튼  -->
 										</div>	
 										</div>
-										<form id='operForm' action="/movie/reply/modify" method="get">
+										<form id='operForm' action="/movie/modify" method="get">
 					 						<%-- <input type='hidden' id='m_num' name='m_num' value='<c:out value="${comment.m_num}"/>'> --%>
 					         				<input type='hidden' id="md_num" name="md_num" value='<c:out value="${movie.md_num}"/>'/>
 					 						<%-- <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
@@ -465,17 +536,30 @@
 				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
 			</div>
 			<div class="form-group">
-				<label>Rate (max 10)</label><p><div name="c_point" id="c_point" class="ui massive star rating" data-max-rating="10"></div>
+				<label>Rate (max 10)</label><p>
+				<div class ="star_rating">
+				  <span class="star on" data-value="1.5"> </span>
+				  <span class="star" data-value="2"> </span>
+				  <span class="star" data-value="3"> </span>
+				  <span class="star" data-value="4"> </span>
+				  <span class="star" data-value="5"> </span>
+				  <span class="star" data-value="6"> </span>
+				  <span class="star" data-value="7"> </span>
+				  <span class="star" data-value="8"> </span>
+				  <span class="star" data-value="9"> </span>
+				  <span class="star" data-value="10"> </span>
+				</div>
 			</div>	
 			<div class="form-group">
-				<label>Comment</label><textarea class="form-control" name='reply' value='New Reply!!!'></textarea>
+				<label>Comment</label><textarea class="form-control" name='reply'></textarea>
 			</div>
 			<div class="form-group">
 				<label>Writer</label><input class="form-control" name='replyer' value='replyer' readonly="readonly">
 			</div>
 			<div class="form-group">
-				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
+				<label>Comment Date</label><input class="form-control" name='replyDate'>
 			</div>
+			<input type="hidden" name="point" id="point" />
 		</div>
 		<div class="actions">
 			<button id='modalModBtn' type='button' class='ui inverted primary button'>Modify</button>

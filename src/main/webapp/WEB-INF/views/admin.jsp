@@ -92,24 +92,24 @@
 						</form>
 				
 						<form action="#" class="userManagement tab" id="userManagement">
-							<c:forEach items="member">
+							<c:forEach items="${member}" var="member">
 								<h4>02. 회원관리</h4>
 								<div class="row">
 									<div class="col-md-2 form-it">
 										<label>회원 번호</label>
-										<input type="text" value="<c:out value="{member.m_num}"/>" readonly="readonly">
+										<input type="text" name="m_num" value="<c:out value="${member.m_num}"/>" readonly="readonly">
 									</div>
 									<div class="col-md-2 form-it">
 										<label>회원 아이디</label>
-										<input type="text" name="m_id" value="<c:out value="{member.m_num}"/>" readonly="readonly">
+										<input type="text" name="m_id" value="<c:out value="${member.m_id}"/>" readonly="readonly">
 									</div>
 									<div class="col-md-2 form-it">
 										<label>닉네임</label>
-										<input type="text" name="m_nick" value="<c:out value="{member.m_nick}"/>">
+										<input type="text" name="m_nick" value="<c:out value="${member.m_nick}"/>">
 									</div>
 									<div class="col-md-2 form-it">
 										<label>회원등급</label>
-										<input type="text" name="m_lev" value="<c:out value="{member.m_lev}"/>">
+										<input type="text" name="m_lev" value="<c:out value="${member.m_lev}"/>">
 									</div>
 									<div class="col-md-2">
 										<label>회원변경</label>

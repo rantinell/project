@@ -7,10 +7,10 @@ var replyService = (function(){
 	
 	function add(reply, callback, errorfn) {
 		console.log("reply........");
-		
+		console.log(reply);
 		$.ajax({
 			type : 'post',
-			url : '/replies/new',
+			url : '/movie/reply/new',
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -31,7 +31,7 @@ var replyService = (function(){
 		var mi_num = param.mi_num;
 		var page = param.page || 1;
 		
-		$.getJSON("/replies/pages/" + mi_num + ".json",
+		$.getJSON("/movie/reply/pages/" + mi_num + ".json",
 			function(data){
 				if(callback) {
 					callback(data.replyCnt, data.list);
@@ -48,7 +48,7 @@ var replyService = (function(){
 	function remove(c_num, replyer, callback, errorfn) {
 		$.ajax({
 			type : 'delete',
-			url : '/replies/' + c_num,
+			url : '/movie/reply/' + c_num,
 			data: JSON.stringify({c_num:c_num, replyer:replyer}),
 			contentType: "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr) {
@@ -71,7 +71,7 @@ var replyService = (function(){
 		
 		$.ajax({
 			type : 'put',
-			url : '/replies/' + reply.c_num,
+			url : '/movie/reply/' + reply.c_num,
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -88,7 +88,7 @@ var replyService = (function(){
 	}
 	
 	function get(c_num, callback, errorfn) {
-		$.get("/replies/" + c_num + ".json", function(result) {
+		$.get("/movie/reply/" + c_num + ".json", function(result) {
 			
 			if(callback) {
 				callback(result);

@@ -32,7 +32,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.team1.dto.MemberVO;
 import com.team1.dto.MovieVo;
+import com.team1.service.MemberService;
 import com.team1.service.MovieService;
 
 import lombok.extern.log4j.Log4j;
@@ -45,11 +47,25 @@ public class UploadController {
 	
 	@Autowired
 	private MovieService service;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/insert")
-	public String uploadForm() {
+	public String uploadForm(MemberVO memberVO, Model model) {
 		log.info("upload form");
+		
+		System.out.println("[MemberController] memberSelect()");
 
+		List<MemberVO> list = memberService.getMember();
+
+		model.addAttribute("member", list);
+
+//		 나중에 주석처리 
+		for (MemberVO member: list) {
+			log.info(member);
+		}
+		
 		String nextPage = "admin";
 		return nextPage;
 	}

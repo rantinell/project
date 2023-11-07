@@ -83,7 +83,7 @@ public class ReplyController {
 	}
 
 
-//	@GetMapping(value = "/pages/{mi_num}/{page}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+//	@GetMapping(value = "/pages/{mi_num}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 //	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mi_num") Long mi_num) {
 //
 //		Criteria cri = new Criteria(page, 10);

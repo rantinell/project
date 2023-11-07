@@ -1,5 +1,7 @@
 package com.team1.mapper;
 
+import java.util.List;
+
 import com.team1.dto.MemberVO;
 
 public interface MemberMapper {
@@ -16,4 +18,6 @@ public interface MemberMapper {
 	public void signUp(MemberVO vo);
 	public int idChk(String m_id);
 	public MemberVO get(String m_id);
+
+	public List<MemberVO> getMember();
 }
