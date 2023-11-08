@@ -123,4 +123,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.getMember();
 	}
+
+	@Override
+	public MemberVO memberModify(MemberVO memberVO) {
+		log.info("memberModify.....");
+		
+		return mapper.memberModify(memberVO);
+	}
 }

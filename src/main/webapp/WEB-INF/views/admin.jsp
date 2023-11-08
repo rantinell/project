@@ -91,9 +91,9 @@
 							</div>	
 						</form>
 				
-						<form action="#" class="userManagement tab" id="userManagement">
+						<form class="userManagement tab" id="userManagement">
+						<h4>02. 회원관리</h4>
 							<c:forEach items="${member}" var="member">
-								<h4>02. 회원관리</h4>
 								<div class="row">
 									<div class="col-md-2 form-it">
 										<label>회원 번호</label>
@@ -113,14 +113,34 @@
 									</div>
 									<div class="col-md-2">
 										<label>회원변경</label>
-										<input class="submit modifyUser" type="submit" value="변경" id="modifyUser">
+										<input class="submit modifyUser" type="submit" value="변경" id="modifyUser" onclick="javascript: form.action='/movie/upload/modify';">
 									</div>
 									<div class="col-md-2">
 										<label>회원삭제</label>
-										<input class="submit deleteUser" type="submit" value="삭제" id="deleteUser">
+										<input class="submit deleteUser" type="submit" value="삭제" id="deleteUser" onclick="javascript: form.action='/movie/upload/remove';">
 									</div>
 								</div>
-							</c:forEach>	
+							</c:forEach>
+							<%-- <table>
+							<tr>
+								<td>회원 번호</td>
+								<td>회원 아이디</td>
+								<td>닉네임</td>
+								<td>회원 등급</td>
+								<td>회원 변경</td>
+								<td>회원 삭제</td>
+							</tr>
+							<c:forEach items="${member}" var="member">
+								<tr>
+									<td><input type="text" name="m_num" value="<c:out value="${member.m_num}"/>" readonly="readonly"></td>
+									<td><input type="text" name="m_id" value="<c:out value="${member.m_id}"/>" readonly="readonly"></td>
+									<td><input type="text" name="m_nick" value="<c:out value="${member.m_nick}"/>"></td>
+									<td><input type="text" name="m_lev" value="<c:out value="${member.m_lev}"/>"></td>
+									<td><input class="submit modifyUser" type="submit" value="변경" id="modifyUser" onclick="javascript: form.action='/movie/upload/modify';"></td>
+									<td><input class="submit deleteUser" type="submit" value="삭제" id="deleteUser" onclick="javascript: form.action='/movie/upload/remove';"></td>
+								</tr>
+							</c:forEach>
+						</table> --%>
 						</form>
 					</div>
 				</div>

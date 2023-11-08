@@ -27,5 +27,8 @@ public interface MemberService {
 	public int idChk(String m_id);
 	public MemberVO get(String m_id);
 
+	//추가
 	public List<MemberVO> getMember();
+
+	public MemberVO memberModify(MemberVO memberVO);
 }

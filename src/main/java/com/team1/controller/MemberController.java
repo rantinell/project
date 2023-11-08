@@ -29,28 +29,27 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/movie/member")
 public class MemberController {
-	
+
 	@Autowired
 	MemberService memberService;
-	
+
 	// 추가
 	@Autowired
 	BCryptPasswordEncoder pwEncoder;
-	
+
 	@GetMapping("/createMemberForm")
 	public String createMemberForm() {
 		log.info("create member.....");
 		return "signUp";
 	}
-	
+
 	// 추가
-	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
 	public @ResponseBody int idChk(String m_id) throws Exception {
 		int result = memberService.idChk(m_id);
-		return result;	
+		return result;
 	}
-	
-	
+
 	@PostMapping(value = "/signUp")
 	public String createMember(MemberVO memberVO) {
 		log.info("signUp....");
@@ -76,78 +75,78 @@ public class MemberController {
 		memberService.signUp(memberVO);
 		return "redirect:/movie";
 	}
-	
+
 //	@GetMapping(value = "/loginForm")
-	@RequestMapping(value = "/loginForm", method = {RequestMethod.GET})
+	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET })
 	public String loginForm() {
 		log.info("login.....");
 		return "/login";
 	}
-	
+
 //	@PostMapping(value = "/login")
 //	@RequestMapping(value = "/login", method= {RequestMethod.GET, RequestMethod.POST})
-	public String Longin(@ModelAttribute("username") String m_id,
-						 @ModelAttribute("password") String m_pw,
-						 HttpSession session, HttpServletRequest request) {
-		String nextPage="/movie";
+	public String Longin(@ModelAttribute("username") String m_id, @ModelAttribute("password") String m_pw,
+			HttpSession session, HttpServletRequest request) {
+		String nextPage = "/movie";
 
 		System.out.println("logindata1 : " + m_id + "||" + m_pw);
-		
+
 		MemberVO loginedMemberVO = memberService.login(m_id);
-		
+
 		System.out.println("logindata2 : " + loginedMemberVO);
 		log.warn("logindata : " + loginedMemberVO);
-		
-		if(loginedMemberVO == null) {
+
+		if (loginedMemberVO == null) {
 			nextPage = "/loginForm";
-		}else {
+		} else {
 			session = request.getSession();
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
 		}
 		return nextPage;
 	}
-	
+
 //	@GetMapping("/home")
 //	public String home() {
 //		log.info("movie home");
 //		return "main";
 //	}
-	
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/memberInfo")
 	public String memberInfo(Principal principal, Model model) {
 		log.info("member info.....");
-		String userid=principal.getName();
-    MemberVO vo = memberService.get(userid);
-    model.addAttribute("member", vo);
+		String userid = principal.getName();
+		MemberVO vo = memberService.get(userid);
+		model.addAttribute("member", vo);
 		return "userdetails";
 	}
-	
-	/* userdetails 페이지에서 정보 수정
-	 * @GetMapping("/modifyMemberForm") public void modifyMemberForm(HttpSession
-	 * session) { log.info("modify member....."); MemberVO loginedMemberVO =
-	 * (MemberVO) session.getAttribute("loginedMemberVO"); }
-	 */
-	
+
+//	userdetails 페이지에서 정보 수정 
+//	@GetMapping("/modifyMemberForm")
+//	public void modifyMemberForm(HttpSession session) {
+//		log.info("modify member.....");
+//		MemberVO loginedMemberVO = (MemberVO) session.getAttribute("loginedMemberVO");
+//	}
+
 	@PostMapping("/memberInfo")
 	public String modifyMember(MemberVO memberVO, HttpSession session) {
 		String nextPage = "userdetails";
-		
+
 		int result = memberService.modifyMember(memberVO);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			MemberVO loginedMemberVO = memberService.getMemberByNum(memberVO.getM_num());
-			
+
 			session.setAttribute("loginedMemberVO", loginedMemberVO);
 			session.setMaxInactiveInterval(60 * 30);
-		}else { 
+		} else {
 			nextPage = "movie/member/modifyFailed";
-			}
-			 
+		}
+
 		return nextPage;
 	}
-	
+
 //	@GetMapping("/logout")
 //	public String logout(HttpSession session) {
 //		log.info("logout.....");
@@ -157,43 +156,29 @@ public class MemberController {
 //		
 //		return nextPage;
 //	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		log.info("logout.....");
-		
+
 		return "/logout";
 	}
-	
+
 	@PostMapping("/logout")
 	public String logoutPost(HttpSession session) {
 		log.info("post logout");
-		
+
 		session.removeAttribute("loginedMemberVO");
 		session.invalidate();
-		
+
 		return "redirect:/movie";
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public String adminpage() {
 		log.info("admin page...");
 		return "/admin";
 	}
-	
-//	@PostMapping("/select")
-//	public void memberSelect(MemberVO memberVO, Model model) {
-//		System.out.println("[MemberController] memberSelect()");
-//
-//		List<MemberVO> list = memberService.getMember();
-//
-//		model.addAttribute("member", list);
-//
-////		 나중에 주석처리 
-//		for (MemberVO member: list) {
-//			log.info(member);
-//		}
-//		
-//	}
+
 }

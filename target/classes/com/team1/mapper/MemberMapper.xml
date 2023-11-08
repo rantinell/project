@@ -65,5 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMember" resultType="com.team1.dto.MemberVO">
 		select * from test_member
 	</select>
+	
+	<update id="memberModify">
+		update test_member set m_nick = #{m_nick}, m_lev = #{m_lev} where m_num = #{m_num}
+	</update>
 
 </mapper>

@@ -20,4 +20,6 @@ public interface MemberMapper {
 	public MemberVO get(String m_id);
 
 	public List<MemberVO> getMember();
+
+	public MemberVO memberModify(MemberVO memberVO);
 }

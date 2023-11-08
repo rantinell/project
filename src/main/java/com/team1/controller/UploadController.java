@@ -109,5 +109,14 @@ public class UploadController {
 
 		return "redirect:/movie";
 	}
+	
+	@PostMapping("/modify")
+	public void memberModify(@ModelAttribute MemberVO memberVO) {
+		System.out.println("[UploadController] memberModify()");
+		log.info(memberVO);
+		
+		memberService.memberModify(memberVO);
+		log.info("memberModify success");
+	}
 
 }

@@ -85,23 +85,7 @@
 		  var c_point = $(this).attr('data-value');
 		  $("#point").val(c_point); // 히든 인풋에 값 저장.
 		})
-		
-		/* function getRating() {
-		    var currentRating = $('.c_point').rating('get rating');
-		} */
 
-		// Add javascript here
-		/* $('.c_point')
-		    .rating({
-		        onRate: getRating
-		    });
-
-		getRating() */;
-		
-		
-		/* $('#readonlyRate')
-		  .rating('disable'); */
-		
 		$('button[data-oper="modify"]').on("click", function(e){
 			operForm.attr("action", "/movie/modify").submit();
 		});
@@ -113,39 +97,8 @@
 		
 		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
 		var replyComment = $(".comment");
+
 		
-		/* showList(1); */
-		
-		/* function showList(page){
-			replyService.getList({mi_num:mi_numValue, page:page||1}, function(replyCnt, list){
-				console.log("list: " + list);
-				
-				if(page == -1){
-					pageNum = Math.ceil(replyCnt/10.0);
-					showList(pageNum);
-					return;
-				}
-				
-				var str="";
-				if(list == null || list.length == 0){
-					replyComment.html("");
-					return;
-				}
-				for(var i=0, len=list.length||0; i<len; i++) {
-					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
-					str+="<h3>작성자: " + list[i].m_num +"</h3>";
-					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='5'></div></div>"
-					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].c_regdate)+"</p>";
-					str+="</div></div>";
-					str+="<p>" + list[i].comment + "</p>";
-					str+="</div>"
-				}
-				replyComment.html(str);
-				
-				showReplyPage(replyCnt);
-			});
-		}
-		 */
 		var modal = $(".modal");
 		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
@@ -204,24 +157,7 @@
 			});			
 		});
 		
-		/* replyComment.on("click", "li", function(e){
-			var c_num = $(this).data("c_num");
-			
-			replyService.get(c_num, function(reply){
-				modalInputReply.val(reply.reply);
-				modalInputReplyDate.closest("div").show();
-				modalInputReplyer.val(reply.replyer);
-				modalInputRate.rating({initialRating: reply.c_point , maxRating: 5});
-				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
-				modal.data("c_num", reply.c_num);
-				modal.find("button[id != 'modalCloseBtn']").hide();
-				modalModBtn.show();
-				modalRemoveBtn.show();
-				
-				modal.modal("show");
-			});
-		}); */
-		
+
 		modalModBtn.on("click", function(e){
 			var originalReplyer = modalInputReplyer.val();
 			
@@ -279,54 +215,6 @@
 				/* showList(pageNum);				 */
 			});
 		});
-		
-/* 		var pageNum = 1;
-		var replyPageFooter = $(".topbar-filter");
-		
-		function showReplyPage(replyCnt){
-			var endNum = Math.ceil(pageNum / 10.0) * 10;
-			var startNum = endNum - 9;
-			
-			var prev = startNum != 1;
-			var next = false;
-			
-			if(endNum * 10 >= replyCnt) {
-				endNum = Math.ceil(replyCnt / 10.0);
-			} else {
-				next = true;
-			}
-			
-			var str = "<div class='pagination2'>";
-			
-			if(prev){
-				str+="<a href='"+(startNum-1)+"'>Previous</a>";
-			}
-			
-			for(var i=startNum; i<=endNum; i++){
-				var active = pageNum == i ? " active" : "";
-				str+="<a class='page-link' href='"+i+"'>"+i+"</a>";
-			}
-			
-			if(next){
-				str+="<a class='page-link' href='"+(endNum+1)+"'>Next</a>";
-			}
-			
-			str+="</div>";
-			
-			console.log(str);
-			
-			replyPageFooter.html(str);
-		}
-		
-		replyPageFooter.on("click", "div a", function(e){
-			e.preventDefault();
-			console.log("page click");
-			
-			var targetPageNum = $(this).attr("href");
-			console.log("targetPageNum: " + targetPageNum);
-			pageNum = targetPageNum;
-			/* showList(pageNum);	 
-		}); */
 		
 	});
 </script>
