@@ -63,10 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMember" resultType="com.team1.dto.MemberVO">
-		select * from test_member
+		select * from test_member 
+		<if test="keyword != null">
+				where upper(m_id) like upper('%'||#{keyword}||'%')
+		</if>
 	</select>
 	
-	<update id="memberModify">
+	<update id="memberModify" parameterType="com.team1.dto.MemberVO">
 		update test_member set m_nick = #{m_nick}, m_lev = #{m_lev} where m_num = #{m_num}
 	</update>
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team1.dto.Criteria;
 //import com.team1.controller.MemberController;
 import com.team1.dto.MemberDAO;
 import com.team1.dto.MemberVO;
@@ -118,16 +119,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> getMember() {
+	public List<MemberVO> getMember(Criteria cri) {
 		log.info("getMember.....");
 		
-		return mapper.getMember();
+		return mapper.getMember(cri);
 	}
 
 	@Override
-	public MemberVO memberModify(MemberVO memberVO) {
+	public void memberModify(MemberVO memberVO) {
 		log.info("memberModify.....");
 		
-		return mapper.memberModify(memberVO);
+		mapper.memberModify(memberVO);
 	}
 }

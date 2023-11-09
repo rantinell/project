@@ -2,6 +2,7 @@ package com.team1.mapper;
 
 import java.util.List;
 
+import com.team1.dto.Criteria;
 import com.team1.dto.MemberVO;
 
 public interface MemberMapper {
@@ -19,7 +20,7 @@ public interface MemberMapper {
 	public int idChk(String m_id);
 	public MemberVO get(String m_id);
 
-	public List<MemberVO> getMember();
+	public List<MemberVO> getMember(Criteria cri);
 
-	public MemberVO memberModify(MemberVO memberVO);
+	public void memberModify(MemberVO memberVO);
 }

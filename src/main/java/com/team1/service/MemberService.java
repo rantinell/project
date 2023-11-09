@@ -2,6 +2,7 @@ package com.team1.service;
 
 import java.util.List;
 
+import com.team1.dto.Criteria;
 import com.team1.dto.MemberVO;
 
 public interface MemberService {
@@ -28,7 +29,7 @@ public interface MemberService {
 	public MemberVO get(String m_id);
 
 	//추가
-	public List<MemberVO> getMember();
+	public List<MemberVO> getMember(Criteria cri);
 
-	public MemberVO memberModify(MemberVO memberVO);
+	public void memberModify(MemberVO memberVO);
 }

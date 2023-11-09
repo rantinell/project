@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.team1.dto.Criteria;
 import com.team1.dto.MemberVO;
 import com.team1.dto.MovieVo;
 import com.team1.service.MemberService;
@@ -52,20 +53,9 @@ public class UploadController {
 	private MemberService memberService;
 
 	@GetMapping("/insert")
-	public String uploadForm(MemberVO memberVO, Model model) {
+	public String uploadForm(Criteria cri, MemberVO memberVO, Model model) {
 		log.info("upload form");
-		
-		System.out.println("[MemberController] memberSelect()");
 
-		List<MemberVO> list = memberService.getMember();
-
-		model.addAttribute("member", list);
-
-//		 나중에 주석처리 
-		for (MemberVO member: list) {
-			log.info(member);
-		}
-		
 		String nextPage = "admin";
 		return nextPage;
 	}
@@ -110,13 +100,34 @@ public class UploadController {
 		return "redirect:/movie";
 	}
 	
+	@PostMapping("/memberSearch")
+	public String memberSearch(@ModelAttribute("cri")Criteria cri, MemberVO memberVO, Model model) {		
+		System.out.println("[UploadController] memberSelect()");
+		
+		model.addAttribute("search", memberService.getMember(cri));
+		
+		log.info(memberService.getMember(cri));
+		
+		List<MemberVO> list = memberService.getMember(cri);
+
+		model.addAttribute("member", list);
+//		나중에 주석처리 
+		for (MemberVO member: list) {
+			log.info(member);
+		}
+		
+		return "admin";
+	}
+	
 	@PostMapping("/modify")
-	public void memberModify(@ModelAttribute MemberVO memberVO) {
+	public String memberModify(@ModelAttribute MemberVO memberVO) {
 		System.out.println("[UploadController] memberModify()");
 		log.info(memberVO);
 		
 		memberService.memberModify(memberVO);
 		log.info("memberModify success");
+		
+		return "redirect:/movie/upload/insert"; 
 	}
 
 }

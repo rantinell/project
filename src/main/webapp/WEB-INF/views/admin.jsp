@@ -91,8 +91,12 @@
 							</div>	
 						</form>
 				
-						<form class="userManagement tab" id="userManagement">
+						<form class="userManagement tab" id="userManagement" action="/movie/upload/memberSearch" method="post">
 						<h4>02. 회원관리</h4>
+						<div class="top-search">
+	    						<input type="text" id="keyword" name="keyword" placeholder="회원 닉네임 or 아이디를 입력하세요.">
+						    	<button type="submit" class="btn btn-default" id="searchBtn">&emsp;&emsp;&emsp;</button>
+	    				</div>
 							<c:forEach items="${member}" var="member">
 								<div class="row">
 									<div class="col-md-2 form-it">
