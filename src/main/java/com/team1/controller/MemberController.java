@@ -130,32 +130,28 @@ public class MemberController {
 //	}
 
 	@PostMapping("/memberInfo")
-	public String modifyMember(MemberVO memberVO, HttpSession session) {
+	public String modifyMember(@ModelAttribute MemberVO memberVO, HttpSession session) {
 		String nextPage = "userdetails";
-
-		int result = memberService.modifyMember(memberVO);
-
-		if (result > 0) {
-			MemberVO loginedMemberVO = memberService.getMemberByNum(memberVO.getM_num());
-
-			session.setAttribute("loginedMemberVO", loginedMemberVO);
-			session.setMaxInactiveInterval(60 * 30);
-		} else {
-			nextPage = "movie/member/modifyFailed";
-		}
+		System.out.println("[MemberController] modifyMember");
+		
+		log.info(memberVO.getM_id());
+		memberService.modifyMember(memberVO);
 
 		return nextPage;
 	}
 
-//	@GetMapping("/logout")
-//	public String logout(HttpSession session) {
-//		log.info("logout.....");
-//		String nextPage = "redirect:/";
-//		
-//		session.removeAttribute("loginedMemberVO");
-//		
-//		return nextPage;
-//	}
+	@PostMapping("/memberPassword")
+	public String memberPasword(@ModelAttribute MemberVO memberVO) {
+		String nextPage = "userdetails";
+		System.out.println("[MemberController] memberPassword");
+		
+		log.info(memberVO.getM_id());
+		log.info(memberVO.getM_pw());
+		memberVO.setM_pw(pwEncoder.encode(memberVO.getM_pw()));
+		memberService.memberPassword(memberVO);
+
+		return nextPage;
+	}
 
 	@GetMapping("/logout")
 	public String logout() {

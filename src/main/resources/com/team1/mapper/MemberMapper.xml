@@ -69,8 +69,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<update id="memberModify" parameterType="com.team1.dto.MemberVO">
+	<update id="memberModify">
 		update test_member set m_nick = #{m_nick}, m_lev = #{m_lev} where m_num = #{m_num}
 	</update>
-
+	
+	<update id="modifyMember">
+		update test_member set m_nick = #{m_nick}, m_tel = #{m_tel}, m_mail = #{m_mail}, g_num=#{g_num} where m_id = #{m_id}
+	</update>
+	
+	<update id="memberPassword">
+		update test_member set m_pw=#{m_pw} where m_id=#{m_id}
+	</update>
 </mapper>

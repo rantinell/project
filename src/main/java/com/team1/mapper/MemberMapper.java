@@ -23,4 +23,8 @@ public interface MemberMapper {
 	public List<MemberVO> getMember(Criteria cri);
 
 	public void memberModify(MemberVO memberVO);
+	
+	public void modifyMember(MemberVO memberVO);
+
+	public void memberPassword(MemberVO memberVO);
 }

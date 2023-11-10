@@ -16,7 +16,7 @@ public interface MemberService {
 
 	public int setAccount(String m_id, String m_lev);
 
-	public int modifyMember(MemberVO memberVO);
+//	public int modifyMember(MemberVO memberVO);
 
 	public int updateAccount(String m_id, String m_lev);
 
@@ -32,4 +32,8 @@ public interface MemberService {
 	public List<MemberVO> getMember(Criteria cri);
 
 	public void memberModify(MemberVO memberVO);
+	
+	public void modifyMember(MemberVO memberVO);
+
+	public void memberPassword(MemberVO memberVO);
 }

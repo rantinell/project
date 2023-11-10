@@ -61,10 +61,15 @@
 								<div class="col-md-6 form-it">
 									<label>장르</label>
 									<select name="g_num" required>
-									  <option value="1">액션</option>
-									  <option value="2">SF</option>
-									  <option value="3">로맨스</option>
-									  <option value="4">코메디</option>
+									  <option value="1">드라마</option>
+									  <option value="2">로맨스</option>
+									  <option value="3">애니메이션</option>
+									  <option value="4">액션</option>
+									  <option value="5">어드벤쳐</option>
+									  <option value="6">호러</option>
+									  <option value="7">스릴러</option>
+									  <option value="8">범죄</option>
+									  <option value="9">멜로</option>
 									</select>
 								</div>
 								<div class="col-md-6 form-it">

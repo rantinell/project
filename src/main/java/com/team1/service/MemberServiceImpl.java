@@ -82,8 +82,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int modifyMember(MemberVO memberVO) {
-		return MemberDAO.updateMember(memberVO);
+	public void modifyMember(MemberVO memberVO) {
+//		MemberDAO.updateMember(memberVO);
+		System.out.println("[MemberServiceImpl] modifyMember");
+		log.info("modifyMember : " + memberVO);
+		mapper.modifyMember(memberVO);
+	}
+	
+	public void memberPassword(MemberVO memberVO) {
+		System.out.println("[MemberServiceImpl] memberPassword");
+		log.info("memberPassword : " + memberVO);
+		mapper.memberPassword(memberVO);
 	}
 
 	@Override
