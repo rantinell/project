@@ -26,4 +26,6 @@ public interface ReplyService {
 	public int getCountCpoint(ReplyVO vo);
 
 	public void updateNewTotalPoint(float newTotalPoint);
+
+	public float getTotalPoint(Long mi_num);
 }

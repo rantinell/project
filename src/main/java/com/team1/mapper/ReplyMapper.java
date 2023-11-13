@@ -24,5 +24,7 @@ public interface ReplyMapper {
 	public int getCountByBno(Long mi_num);
 
 	public void updateNewTotalPoint(float newTotalPoint);
+
+	public float getTotalPoint(Long mi_num);
 	
 }

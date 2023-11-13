@@ -6,7 +6,7 @@
 
 	<insert id="insert">
 		insert into test_comment (c_num, mi_num, c_comment, m_num, c_point)
-		values (seq_reply.nextval, #{mi_num}, #{c_comment}, (select m_num from test_member where m_id = #{m_id}), #{c_point})
+		values (test_seq_comment.nextval, #{mi_num}, #{c_comment}, (select m_num from test_member where m_id = #{m_id}), #{c_point})
 	</insert>
 	
 	<select id="read" resultType="com.team1.dto.ReplyVO">
@@ -19,7 +19,7 @@
 
 	<update id="update">
 	<![CDATA[
-		update test_comment set c_comment = #{c_comment}, c_updatedate = sysdate, c_point=#{c_point}
+		update test_comment set c_comment = #{c_comment}, updatedate = sysdate, c_point=#{c_point}
 		where c_num = #{c_num}
 		]]>
 	</update>
@@ -37,7 +37,6 @@
 				and rownum <= #{cri.pageNum} * #{cri.amount}
 			) where rn > (#{cri.pageNum} - 1) * #{cri.amount} 
 		]]>
-
 	</select>
 	
 	<select id="getCountByBno" resultType="int">
@@ -51,13 +50,5 @@
                 inner join test_member member on comments.m_num = member.m_num
                 where comments.mi_num = #{mi_num}
 	</select>
-	
-	<select id="getTotalPoint" resultType="float">
-		select mi_total_point from test_movie_info where mi_num = #{mi_num}
-	</select>
-	
-	<update id="updateNewTotalPoint">
-		update test_movie_info set mi_total_point = #{newTotalPoint} where mi_num = #{mi_num}
-	</update>
 	
 </mapper>

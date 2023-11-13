@@ -37,12 +37,22 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
+	private MovieVo movieVO;
+	
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 
 		log.info("ReplyVO: " + vo);
 
 		int insertCount = service.register(vo);
+		
+		//평점 평균계산
+		int c_cnt = service.getCountCpoint(vo);
+		float totalpoint = service.getTotalPoint(vo.getMi_num());
+		float newTotalPoint = Math.round((((totalpoint * (c_cnt - 1)) + vo.getC_point())/c_cnt * 100)/100);
+		
+		log.info("newTotalPoint : " + newTotalPoint);
+		service.updateNewTotalPoint(newTotalPoint);
 
 		log.info("Reply INSERT COUNT: " + insertCount);
 
@@ -66,6 +76,13 @@ public class ReplyController {
 
 		log.info("c_num: " + c_num);
 		log.info("modify: " + vo);
+		
+		//평점 평균계산
+		int c_cnt = service.getCountCpoint(vo);
+		float totalpoint = service.getTotalPoint(vo.getMi_num());
+		float newTotalPoint = Math.round((((totalpoint * (c_cnt - 1)) + vo.getC_point())/c_cnt * 100)/100);
+		log.info("newTotalPoint : " + newTotalPoint);
+		service.updateNewTotalPoint(newTotalPoint);
 
 		return service.modify(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

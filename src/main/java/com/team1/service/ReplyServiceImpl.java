@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.team1.dto.Criteria;
 import com.team1.dto.ReplyPageDTO;
 import com.team1.dto.ReplyVO;
+import com.team1.mapper.MovieMapper;
 import com.team1.mapper.ReplyMapper;
 
 import lombok.Setter;
@@ -20,6 +21,9 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MovieMapper moiveMapper;
 
 	@Override
 	public List<ReplyVO> getMovieDetails(Long mi_num) {
@@ -95,6 +99,13 @@ public class ReplyServiceImpl implements ReplyService {
 	public void updateNewTotalPoint(float newTotalPoint) {
 		log.info("newTotalPoint : " + newTotalPoint);
 		mapper.updateNewTotalPoint(newTotalPoint);
+	}
+
+	@Override
+	public float getTotalPoint(Long mi_num) {
+		log.info("mi_num : " + mi_num);
+		
+		return mapper.getTotalPoint(mi_num);
 	}
 
 }

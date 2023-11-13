@@ -52,6 +52,10 @@
                 where comments.mi_num = #{mi_num}
 	</select>
 	
+	<select id="getTotalPoint" resultType="float">
+		select mi_total_point from test_movie_info where mi_num = #{mi_num}
+	</select>
+	
 	<update id="updateNewTotalPoint">
 		update test_movie_info set mi_total_point = #{newTotalPoint} where mi_num = #{mi_num}
 	</update>
