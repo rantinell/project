@@ -34,7 +34,7 @@
 	            		<div class="movie-item-style-2 movie-item-style-1">
 							<img src="<c:out value="/resources/images/uploads/${commingmovie.mi_thumbnail}"/>" alt="">
 							<div class="hvr-inner">
-	            				<a  href="<c:out value="/movie/reply/${commingmovie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+	            				<a  href="<c:out value="/movie/${commingmovie.mi_num}"/>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 	            			</div>
 							<%-- <div class="mv-item-infor">
 								<h6><a href="<c:out value="${commingmovie.mi_num}"/>"><c:out value="${commingmovie.mi_title}"/></a></h6>

@@ -375,11 +375,11 @@
 						<div class="rate-star">
 							<p>Rate This Movie:  </p>
 							<c:forEach begin="1" end="${movie.mi_total_point}">
-								<i class="ion-android-star"></i>
+								<img height="31px" width="31px" src="/resources/images/star/star3_fill.png">
 							</c:forEach>
 							<c:if test="${movie.mi_total_point != 10}">
 							<c:forEach begin="${movie.mi_total_point + 1}" end="10">
-								<i class="ion-android-star last"></i>
+								<img height="31px" width="31px" src="/resources/images/star/star3_blank.png">
 							</c:forEach>
 							</c:if>
 						</div>
