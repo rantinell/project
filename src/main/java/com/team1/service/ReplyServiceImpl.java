@@ -84,4 +84,17 @@ public class ReplyServiceImpl implements ReplyService {
 		return new ReplyPageDTO(mapper.getCountByBno(mi_num), mapper.getListWithPaging(cri, mi_num));
 	}
 
+	@Override
+	public int getCountCpoint(ReplyVO vo) {
+		log.info("get : " + vo);
+		Long mi_num = vo.getMi_num();
+		return mapper.getCountByBno(mi_num);
+	}
+	
+	@Override
+	public void updateNewTotalPoint(float newTotalPoint) {
+		log.info("newTotalPoint : " + newTotalPoint);
+		mapper.updateNewTotalPoint(newTotalPoint);
+	}
+
 }

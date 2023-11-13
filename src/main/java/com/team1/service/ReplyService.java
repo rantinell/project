@@ -22,4 +22,8 @@ public interface ReplyService {
 	public List<ReplyVO> getList(Criteria cri, Long mi_num);
 	
 	public ReplyPageDTO getListPage(Criteria cri, Long mi_num);
+
+	public int getCountCpoint(ReplyVO vo);
+
+	public void updateNewTotalPoint(float newTotalPoint);
 }

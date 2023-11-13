@@ -85,7 +85,7 @@
 		  var c_point = $(this).attr('data-value');
 		  $("#point").val(c_point); // 히든 인풋에 값 저장.
 		})
-
+		
 		$('button[data-oper="modify"]').on("click", function(e){
 			operForm.attr("action", "/movie/modify").submit();
 		});
@@ -97,15 +97,44 @@
 		
 		var mi_numValue = '<c:out value="${movie.mi_num}"/>';
 		var replyComment = $(".comment");
-
+		// 이하 주석이었던 곳
+		 /*   showList(1);
 		
+		 function showList(page){
+			replyService.getList({mi_num:mi_numValue, page:page||1}, function(replyCnt, list){
+				console.log("list: " + list);
+				
+				if(page == -1){
+					pageNum = Math.ceil(replyCnt/10.0);
+					showList(pageNum);
+					return;
+				}
+				
+				var str="";
+				if(list == null || list.length == 0){
+					replyComment.html("");
+					return;
+				}
+				for(var i=0, len=list.length||0; i<len; i++) {
+					str+="<div class='mv-user-review-item'><div class='user-infor'><div>";
+					str+="<h3>작성자: " + list[i].m_num +"</h3>";
+					str+="<div><div class='ui star rating' data-rating='" + list[i].mi_total_point + "' data-max-rating='10'></div></div>"
+					str+="<p class='time'>등록일: "+replyService.displayTime(list[i].c_regdate)+"</p>";
+					str+="</div></div>";
+					str+="<p>" + list[i].list + "</p>";
+					str+="</div>"
+				}
+				replyComment.html(str);
+				
+				showReplyPage(replyCnt);
+			});
+		}   */
+		// 주석 끝 
+		 
 		var modal = $(".modal");
 		var modalInputReply = modal.find("textarea[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
 		var modalInputReplyDate = modal.find("input[name='replyDate']");
-		//var modalInputRate = $('.ui.rating');
-		//var modalInputRate = getRating();
-		//var modalInputRate = $(".star_rating > span.on").length;
 		var modalInputRate = $("#point")
 		
 		var modalModBtn = $("#modalModBtn");
@@ -157,14 +186,34 @@
 			});			
 		});
 		
-
+		replyComment.on("click", "div", function(e){
+			var c_num = $(this).data("c_num");
+			var m_id = $(this).find("h3").data("m_id");
+			console.log(c_num);
+			
+			replyService.get(c_num, function(reply){
+				modalInputReply.val(reply.c_comment);
+				modalInputReplyDate.closest("div").show();
+				//modalInputReplyer.val(reply.m_id);
+				modalInputReplyer.val(m_id);
+				//modalInputRate.rating({initialRating: reply.c_point , maxRating: 5});
+				modalInputReplyDate.val(replyService.displayTime(reply.c_regdate)).attr("readonly", "readonly");
+				modal.data("c_num", reply.c_num);
+				modal.find("button[id != 'modalCloseBtn']").hide();
+				modalModBtn.show();
+				modalRemoveBtn.show();
+				
+				modal.modal("show");
+			});
+		});
+		
 		modalModBtn.on("click", function(e){
 			var originalReplyer = modalInputReplyer.val();
 			
 			var reply = {c_num:modal.data("c_num"),
-										reply: modalInputReply.val(),
-										c_point: $('.ui.rating').rating('get rating'),
-										replyer: originalReplyer};
+						 c_comment: modalInputReply.val(),
+						 c_point: modalInputRate.val(),
+						 m_id: originalReplyer};
 			
 			if(!replyer){
 				alert("로그인 후 수정이 가능합니다.");
@@ -204,9 +253,16 @@
 			console.log("Original Replyer: " + originalReplyer);
 			
 			if(replyer != originalReplyer){
-				alert("자신이 작성한 코멘트만 삭제 가능합니다.");
-				modal.modal("hide");
-				return;
+				if(replyer == "admin"){
+					replyService.remove(c_num, originalReplyer, function(result){
+						alert(result);
+						modal.modal("hide");
+					});
+				}else{
+					alert("자신이 작성한 코멘트만 삭제 가능합니다.");
+					modal.modal("hide");
+					return;
+				}
 			}
 			
 			replyService.remove(c_num, originalReplyer, function(result){
@@ -215,6 +271,54 @@
 				/* showList(pageNum);				 */
 			});
 		});
+		
+/* 		var pageNum = 1;
+		var replyPageFooter = $(".topbar-filter");
+		
+		function showReplyPage(replyCnt){
+			var endNum = Math.ceil(pageNum / 10.0) * 10;
+			var startNum = endNum - 9;
+			
+			var prev = startNum != 1;
+			var next = false;
+			
+			if(endNum * 10 >= replyCnt) {
+				endNum = Math.ceil(replyCnt / 10.0);
+			} else {
+				next = true;
+			}
+			
+			var str = "<div class='pagination2'>";
+			
+			if(prev){
+				str+="<a href='"+(startNum-1)+"'>Previous</a>";
+			}
+			
+			for(var i=startNum; i<=endNum; i++){
+				var active = pageNum == i ? " active" : "";
+				str+="<a class='page-link' href='"+i+"'>"+i+"</a>";
+			}
+			
+			if(next){
+				str+="<a class='page-link' href='"+(endNum+1)+"'>Next</a>";
+			}
+			
+			str+="</div>";
+			
+			console.log(str);
+			
+			replyPageFooter.html(str);
+		}
+		
+		replyPageFooter.on("click", "div a", function(e){
+			e.preventDefault();
+			console.log("page click");
+			
+			var targetPageNum = $(this).attr("href");
+			console.log("targetPageNum: " + targetPageNum);
+			pageNum = targetPageNum;
+			/* showList(pageNum);	 
+		}); */
 		
 	});
 </script>
@@ -278,7 +382,6 @@
 								<i class="ion-android-star last"></i>
 							</c:forEach>
 							</c:if>
-							
 						</div>
 					</div>
 					<div class="movie-tabs">
@@ -357,15 +460,15 @@
 						            	</div>
 						            	
 						            	<c:forEach items="${comment}" var="comment">
-						            	<div class="comment">
+						            	<div class="comment" >
 						            	<!-- 코멘트 리스트 공간  -->
 						            	
 						            	<!-- 위치 확인용 더미 시작 -->
-											<div class="mv-user-review-item">
+										 <div class="mv-user-review-item"  data-c_num="${comment.c_num}">
 												<div class="user-infor">
-													<div>
-														<h3>작성자: <c:out value="${comment.m_id}" /></h3>
-														<div class="no-star">
+													<div class="modaldata">
+														<h3 class="comment_m_id" data-m_id="${comment.m_id}"><c:out value="${comment.m_id}" /></h3>
+														<div class="no-star" data-c_point="${comment.c_point}">
 															<c:forEach begin="1" end="${comment.c_point}">
 															<i class="ion-android-star"></i>
 															</c:forEach>
@@ -375,12 +478,12 @@
 															</c:forEach>
 															</c:if>
 														</div>
-														<p class="time">
-															등록일: <c:out value="${comment.c_regdate}" />
+														<p class="time" data-c_regdate="${comment.c_regdate}">
+															<c:out value="${comment.c_regdate}" />
 														</p>
 													</div>
 												</div>
-												<p><c:out value="${comment.c_comment}" /></p>
+												<p data-c_comment="${comment.c_comment}"><c:out value="${comment.c_comment}" /></p>
 											</div>
 										<!-- 위치 확인용 더미 끝 -->	
 											
@@ -392,7 +495,7 @@
 										</div>
 										<form id='operForm' action="/movie/modify" method="get">
 					 						<%-- <input type='hidden' id='m_num' name='m_num' value='<c:out value="${comment.m_num}"/>'> --%>
-					         				<input type='hidden' id="md_num" name="md_num" value='<c:out value="${movie.md_num}"/>'/>
+					         				<input type='hidden' id="mi_num" name="mi_num" value='<c:out value="${movie.mi_num}"/>'/>
 					 						<%-- <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 					 						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 					 						<input type='hidden' name="type" value='<c:out value="${cri.type}"/>'/> --%>
@@ -416,16 +519,14 @@
 <div class="ui basic modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		
 		<div class="header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
 			<h4 class="modal-title" id="myModalLabel">Comment Modal</h4>
 		</div>
 		<div class="content">
 			<div class="form-group">
-				<label>Comment Date</label><input class="form-control" name='replyDate' value=''>
-			</div>
-			<div class="form-group">
 				<label>Rate (max 10)</label><p>
 				<div class ="star_rating">
+				
 				  <span class="star on" data-value="1.5"> </span>
 				  <span class="star" data-value="2"> </span>
 				  <span class="star" data-value="3"> </span>
@@ -436,6 +537,7 @@
 				  <span class="star" data-value="8"> </span>
 				  <span class="star" data-value="9"> </span>
 				  <span class="star" data-value="10"> </span>
+				
 				</div>
 			</div>	
 			<div class="form-group">

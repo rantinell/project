@@ -97,11 +97,9 @@
 						</form>
 						
 						<form action="/movie/member/memberPassword" class="userpassword tab" id="userpassword" method="post">
-							
 							<h4>02. 비밀번호 변경</h4>
 							<div class="col-md-6 form-it">
 									<input type="hidden" name="m_id" readonly="readonly" value='<c:out value="${member.m_id}"/>'>
-								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
