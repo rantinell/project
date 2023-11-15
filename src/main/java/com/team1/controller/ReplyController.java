@@ -52,7 +52,7 @@ public class ReplyController {
 		float newTotalPoint = Math.round((((totalpoint * (c_cnt - 1)) + vo.getC_point())/c_cnt * 100)/100);
 		
 		log.info("newTotalPoint : " + newTotalPoint);
-		service.updateNewTotalPoint(newTotalPoint);
+		service.updateNewTotalPoint(newTotalPoint, vo.getMi_num());
 
 		log.info("Reply INSERT COUNT: " + insertCount);
 
@@ -82,7 +82,7 @@ public class ReplyController {
 		float totalpoint = service.getTotalPoint(vo.getMi_num());
 		float newTotalPoint = Math.round((((totalpoint * (c_cnt - 1)) + vo.getC_point())/c_cnt * 100)/100);
 		log.info("newTotalPoint : " + newTotalPoint);
-		service.updateNewTotalPoint(newTotalPoint);
+		service.updateNewTotalPoint(newTotalPoint, vo.getMi_num());
 
 		return service.modify(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

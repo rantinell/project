@@ -96,9 +96,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	@Override
-	public void updateNewTotalPoint(float newTotalPoint) {
+	public void updateNewTotalPoint(float newTotalPoint, Long mi_num) {
 		log.info("newTotalPoint : " + newTotalPoint);
-		mapper.updateNewTotalPoint(newTotalPoint);
+		mapper.updateNewTotalPoint(newTotalPoint, mi_num);
 	}
 
 	@Override

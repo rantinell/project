@@ -160,6 +160,7 @@
 		
 		$("#modalCloseBtn").on("click", function(e){
 			modal.modal("hide");
+			
 		});
 		
 	    
@@ -253,7 +254,7 @@
 			console.log("Original Replyer: " + originalReplyer);
 			
 			if(replyer != originalReplyer){
-				if(replyer == "admin"){
+				if(replyer == "admin" || replyer == "manager"){
 					replyService.remove(c_num, originalReplyer, function(result){
 						alert(result);
 						modal.modal("hide");
@@ -319,8 +320,8 @@
 			pageNum = targetPageNum;
 			/* showList(pageNum);	 
 		}); */
-		
 	});
+	
 </script>
 
     	<div class="buster-light">
@@ -400,6 +401,12 @@
 											</div>
 											<!-- movie user review -->
 											<div class="mv-user-review-item">
+												<div>
+												<c:if test="${movie.mi_condition == 0}">
+													<h4>아직 상영되지 않은 영화입니다.</h4>
+												</c:if>
+												</div>
+												<c:if test="${movie.mi_condition == 1}">
 												<!-- 평점 가장 높은 작성자 노출시킬것 -->
 												<h3>작성자: hawaiipierson</h3>
 												<div class="no-star">
@@ -411,6 +418,7 @@
 													등록일: 2016년 12월 17일
 												</p>
 												<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
+												</c:if>
 											</div>
 						            	</div>
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
@@ -454,11 +462,15 @@
 						            			<h3>Related Movies To</h3>
 							            		<h2><c:out value="${movie.mi_title}" /></h2>
 							            	</div>
+							            	<c:if test="${movie.mi_condition == 1}">
 							            	<sec:authorize access="isAuthenticated()">
 							            	<button id="addComment" class="redbtn">Add Comment</button>
 							            	</sec:authorize>
+							            	</c:if>
 						            	</div>
-						            	
+						            	<c:if test="${movie.mi_condition == 0}">
+						            		<h4>상영예정인 작품에는 코멘트를 작성 할 수 업습니다.</h4>
+						            	</c:if>
 						            	<c:forEach items="${comment}" var="comment">
 						            	<div class="comment" >
 						            	<!-- 코멘트 리스트 공간  -->

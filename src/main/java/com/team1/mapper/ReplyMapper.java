@@ -23,7 +23,7 @@ public interface ReplyMapper {
 
 	public int getCountByBno(Long mi_num);
 
-	public void updateNewTotalPoint(float newTotalPoint);
+	public void updateNewTotalPoint(@Param("newTotalPoint")float newTotalPoint, @Param("mi_num")Long mi_num);
 
 	public float getTotalPoint(Long mi_num);
 	

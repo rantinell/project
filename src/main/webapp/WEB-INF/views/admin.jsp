@@ -3,7 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
      
 <%@ include file="includes/header.jsp"%>
- 
+
+<<style>
+textarea {
+	width:500px;
+	height:210px;
+}
+</style>
   
 <div class="hero user-hero">
 	<div class="container">
@@ -56,11 +62,12 @@
 								</div>
 								<div class="col-md-6 form-it">
 									<label>소개</label>
-									<textarea name="md_text"></textarea>
+									<textarea name="md_text" rows="100"></textarea>
 								</div>
 								<div class="col-md-6 form-it">
 									<label>장르</label>
 									<select name="g_num" required>
+									  <option value="0">장르선택</option>
 									  <option value="1">드라마</option>
 									  <option value="2">로맨스</option>
 									  <option value="3">애니메이션</option>
@@ -100,7 +107,6 @@
 						<h4>02. 회원관리</h4>
 						<div class="top-search">
 	    						<input type="text" id="keyword" name="keyword" placeholder="회원 닉네임 or 아이디를 입력하세요.">
-						    	<button type="submit" class="btn btn-default" id="searchBtn">&emsp;&emsp;&emsp;</button>
 	    				</div>
 							<c:forEach items="${member}" var="member">
 								<div class="row">
@@ -118,7 +124,11 @@
 									</div>
 									<div class="col-md-2 form-it">
 										<label>회원등급</label>
-										<input type="text" name="m_lev" value="<c:out value="${member.m_lev}"/>">
+										<select name="m_lev" value="<c:out value="${member.m_lev}"/>">
+											<option value="1" <c:if test="${member.m_lev eq 1}">selected</c:if>>member</option>
+											<option value="2" <c:if test="${member.m_lev eq 2}">selected</c:if>>manager</option>
+											<option value="3" <c:if test="${member.m_lev eq 3}">selected</c:if>>admin</option>
+										</select>
 									</div>
 									<div class="col-md-2">
 										<label>회원변경</label>
